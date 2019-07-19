@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<WebApp/> render with default/required props 1`] = `
+exports[`WebApp render with default/required props 1`] = `
 <div
   className="App"
 >
-  <RAGTileContainer />
+  <RagTileContainer />
 </div>
 `;

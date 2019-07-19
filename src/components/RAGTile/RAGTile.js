@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {TileHeader, TileWrapper} from './RagTileStyling';
+import {TileWrapper, TileHeader} from './RagTileStyling';
 
 
 const RagTile = ({id, name, status, onClick}) => {
   return (
-    <TileWrapper tileColour = {status} key = {id} onClick = {() => onClick(id)}>
+    <TileWrapper tileColour = {status} onClick = {() => onClick(id)}>
         <TileHeader> {name} </TileHeader>
     </TileWrapper> 
   )

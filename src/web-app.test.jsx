@@ -5,7 +5,7 @@ import WebApp from './web-app';
 
 configure({ adapter: new Adapter() });
 
-describe('<WebApp/>', () => {
+describe('WebApp', () => {
     const props = {
     };
 
