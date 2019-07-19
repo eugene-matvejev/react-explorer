@@ -1,8 +1,14 @@
-import { PureComponent } from 'react';
+import React from 'react';
+import RAGTileContainer from './containers/RAGTileContainer';
 
-export default class WebApp extends PureComponent {
+export default class WebApp extends React.Component {
     render() {
-        return '<WebApp/>';
+        return (
+            <div className="App">
+              
+              <RAGTileContainer />
+            </div>
+          );
     }
 
     static propTypes = {
