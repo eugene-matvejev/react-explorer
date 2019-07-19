@@ -1,5 +1,5 @@
 import React from 'react';
-import RAGTile from '../components/RAGTile/RAGTile';
+import RagTile from '../components/RagTile/RagTile';
 import HealthCheck from '../components/Dialog/HealthCheck';
 
 const fetchStatuses = callBack => callBack([
@@ -23,8 +23,7 @@ const fetchStatuses = callBack => callBack([
     }
 ]);
 
-
-class RAGTileContainer extends React.Component {
+export default class RagTileContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -32,20 +31,32 @@ class RAGTileContainer extends React.Component {
       isExpanded: false,
       isExpandedIndex: 0,
     }
+
+    this.onClick = this.onClick.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
   
   componentDidMount() {
     fetchStatuses(statusArray => 
       this.setState({
-        statuses: statusArray
+        statuses: statusArray,
     }));
   }
 
   setExpandedState(tileIndex) {
-    this.setState(state => ({
-      isExpanded: !state.isExpanded,
+    const { isExpanded } = this.state;
+    this.setState({
+      isExpanded: !isExpanded,
       isExpandedIndex: tileIndex
-    }));
+    });
+  }
+
+  onClick(tileId) {
+    this.setExpandedState(tileId);
+  }
+
+  handleClose(){
+    this.setExpandedState(0);
   }
 
   render() {
@@ -55,15 +66,13 @@ class RAGTileContainer extends React.Component {
     return (
       <div>
         {statuses.map(
-          (status) => <RAGTile key = {status.id} {...status} handleClick={() => this.setExpandedState(status.id)} />
+          (status) => <RagTile key = {status.id} {...status} onClick={this.onClick} />
         )}
         {this.state.isExpanded ? 
-          <HealthCheck { ...{ isExpanded, ...dialogStatus[0] }} handleClose={() => this.setExpandedState(0)}/>
+          <HealthCheck { ...{ isExpanded, ...dialogStatus[0] }} handleClose={this.handleClose}/>
           : null
         }
       </div>
     );
   }
 }
-
-export default RAGTileContainer;
