@@ -1,12 +1,12 @@
 import React from 'react';
-import RagTileContainer from './containers/RagTileContainer';
+import TileHandler from './handlers/TileHandler';
 
 export default class WebApp extends React.Component {
     render() {
         return (
             <div className="App">
               
-              <RagTileContainer />
+              <TileHandler />
             </div>
           );
     }

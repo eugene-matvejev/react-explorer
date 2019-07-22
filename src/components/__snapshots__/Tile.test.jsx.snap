@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Tile/> render with default/require d props 1`] = `
+<div
+  className="rag-tile "
+>
+  <div
+    className="rag-tile__label"
+  >
+    {{label}}
+  </div>
+</div>
+`;
+
+exports[`<Tile/> render with optional props [::className] as "{{className}}" 1`] = `
+<div
+  className="rag-tile {{className}}"
+>
+  <div
+    className="rag-tile__label"
+  >
+    {{label}}
+  </div>
+</div>
+`;
+
+exports[`<Tile/> render with optional props [::data-cy] as "{{data-cy}}" 1`] = `
+<div
+  className="rag-tile "
+  data-cy="{{data-cy}}"
+>
+  <div
+    className="rag-tile__label"
+  >
+    {{label}}
+  </div>
+</div>
+`;

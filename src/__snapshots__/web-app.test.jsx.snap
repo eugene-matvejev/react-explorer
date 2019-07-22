@@ -4,6 +4,6 @@ exports[`WebApp render with default/required props 1`] = `
 <div
   className="App"
 >
-  <RagTileContainer />
+  <TileHandler />
 </div>
 `;

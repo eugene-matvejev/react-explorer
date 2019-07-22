@@ -1,6 +1,6 @@
 import React from 'react';
-import RagTile from '../components/RagTile/RagTile';
-import HealthCheck from '../components/Dialog/HealthCheck';
+import Tile from '../components/Tile';
+import HealthCheck from '../components/HealthCheck';
 
 const fetchStatuses = callBack => callBack([
     {
@@ -23,7 +23,7 @@ const fetchStatuses = callBack => callBack([
     }
 ]);
 
-export default class RagTileContainer extends React.Component {
+export default class TileHandler extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,6 +35,7 @@ export default class RagTileContainer extends React.Component {
     this.onClick = this.onClick.bind(this);
     this.handleClose = this.handleClose.bind(this);
   }
+  
   
   componentDidMount() {
     fetchStatuses(statusArray => 
@@ -62,17 +63,17 @@ export default class RagTileContainer extends React.Component {
   render() {
     const {statuses, isExpanded, isExpandedIndex} = this.state;
     const dialogStatus = statuses.filter(status => status.id === isExpandedIndex);
-
+    let className;
     return (
-      <div>
+      <section className={`tile-handler ${className}`}>
         {statuses.map(
-          (status) => <RagTile key = {status.id} {...status} onClick={this.onClick} />
+          (status) => <Tile key = {status.id} {...status} onClick={this.onClick} />
         )}
         {this.state.isExpanded ? 
           <HealthCheck { ...{ isExpanded, ...dialogStatus[0] }} handleClose={this.handleClose}/>
           : null
         }
-      </div>
+      </section>
     );
   }
 }
