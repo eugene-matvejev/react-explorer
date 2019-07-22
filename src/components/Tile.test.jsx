@@ -18,6 +18,7 @@ describe('<Tile/>', () => {
         describe('with optional props', () => {
             [
                 ['className', '{{className}}'],
+                ['data-id', '{{data-id}}'],
                 ['data-cy', '{{data-cy}}'], /** should be passed 'as is' */
             ].forEach(([prop, v]) => {
                 it(`[::${prop}] as "${v}"`, () => {

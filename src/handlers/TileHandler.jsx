@@ -35,14 +35,17 @@ export default class TileHandler extends React.Component {
     this.onClick = this.onClick.bind(this);
     this.handleClose = this.handleClose.bind(this);
   }
-  
-  
-  componentDidMount() {
-    fetchStatuses(statusArray => 
-      this.setState({
-        statuses: statusArray,
-    }));
-  }
+
+  //   componentDidMount() {
+  //   const { onMount } = this.props;
+
+  //   onMount && onMount(this.props, this.state, this.onSuccess, this.onError);
+
+  //   fetchStatuses(statusArray => 
+  //     this.setState({
+  //       statuses: statusArray,
+  //   }));
+  // }
 
   setExpandedState(tileIndex) {
     const { isExpanded } = this.state;
@@ -52,27 +55,33 @@ export default class TileHandler extends React.Component {
     });
   }
 
-  onClick(tileId) {
-    this.setExpandedState(tileId);
+
+  onClose(){
+    this.setExpandedState(0);
   }
 
-  handleClose(){
-    this.setExpandedState(0);
+  onClick(e) {
+    this.setExpandedState(tileId);
   }
 
   render() {
     const {statuses, isExpanded, isExpandedIndex} = this.state;
     const dialogStatus = statuses.filter(status => status.id === isExpandedIndex);
-    let className;
+
+    const { className, 'data-cy': cy } = this.props;
+
     return (
-      <section className={`tile-handler ${className}`}>
+      <section
+       className={`tile-handler ${className}`} 
+       onClick={this.onClick} 
+       data-cy={`tile-handler-${cy}`}>
         {statuses.map(
-          (status) => <Tile key = {status.id} {...status} onClick={this.onClick} />
+          (status) => <Tile key={status.id} {...status} />
         )}
-        {this.state.isExpanded ? 
+        {/* {this.state.isExpanded ? 
           <HealthCheck { ...{ isExpanded, ...dialogStatus[0] }} handleClose={this.handleClose}/>
           : null
-        }
+        } */}
       </section>
     );
   }
