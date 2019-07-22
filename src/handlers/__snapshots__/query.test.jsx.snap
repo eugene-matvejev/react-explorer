@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Query/> render with optional props ::qaSelector as "{{qaSelector}}" 1`] = `
+exports[`<Query/> render with optional props ::data-cy as "{{data-cy}}" 1`] = `
 <div
   className="query--loading"
-  data-cy="is-loading"
+  data-cy="{{data-cy}}is-loading"
 >
   <div />
   <div />

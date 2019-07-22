@@ -8,22 +8,22 @@ configure({ adapter: new Adapter() });
 describe('<Query/>', () => {
     const props = {
         onMount: () => true,
-        children: () => <div/>
+        children: () => <div />
     };
 
     describe('render', () => {
         it('with required/default props', () => {
-            const c = shallow(<Query {...props}/>);
+            const c = shallow(<Query {...props} />);
 
             expect(c).toMatchSnapshot();
         });
 
         describe('with optional props', () => {
             [
-                ['qaSelector', '{{qaSelector}}'],
+                ['data-cy', '{{data-cy}}'],
             ].forEach(([prop, v]) => {
                 it(`::${prop} as "${v}"`, () => {
-                    const c = shallow(<Query {...props} {...{[prop]: v}}/>);
+                    const c = shallow(<Query {...props} {...{ [prop]: v }} />);
 
                     expect(c).toMatchSnapshot();
                 });
@@ -34,7 +34,7 @@ describe('<Query/>', () => {
             it('if internal state field [::isLoading] is true, it should call children with arguments [props, internal state]', () => {
                 const spy = spyOn(props, 'children');
 
-                const c = shallow(<Query {...props} onMount={(_, __, onSuccess, onError) => onSuccess() }/>);
+                const c = shallow(<Query {...props} onMount={(_, __, onSuccess, onError) => onSuccess()} />);
 
                 expect(spy).toBeCalledWith(c.instance().props, c.state());
             });
@@ -46,7 +46,7 @@ describe('<Query/>', () => {
             it('should invoke external callback [::onMount]', () => {
                 const spy = spyOn(props, 'onMount');
 
-                const c = shallow(<Query {...props}/>);
+                const c = shallow(<Query {...props} />);
 
                 expect(spy).toBeCalledWith(c.instance().props, c.state(), c.instance().onSuccess, c.instance().onError);
             });
@@ -74,7 +74,7 @@ describe('<Query/>', () => {
             });
         });
 
-        
+
         describe('::onError', () => {
             it('should set internal state field [::isLoading] to false, reset [::data] and [::errors] from payload', () => {
                 const spy = spyOn(Query.prototype, 'setState');
