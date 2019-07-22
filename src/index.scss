@@ -5,3 +5,9 @@
 @import './media';
 @import './variables';
 @import './web-app';
+
+@import './components/tile.scss';
+@import './components/top-nav.scss';
+
+@import './handlers/query.scss';
+@import './handlers/tile-handler.scss';

@@ -1,18 +1,21 @@
-.rag-tile {
-    background: "#4AD964";
-    padding: 3em;
-    margin: 50px auto 0px;
-    width: 300px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
-    border-radius: 5px;
+.tile {
+    background: grey;
+    height: 3rem;
+    width: 5rem;
+    display: inline-block;
+    border: 1px #000 dotted;
 
     &:hover {
         box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
     }
 
-    &__label {
-        text-align: center;
-        font-size: 3em;
-        font-weight: bold;
-    }  
+    &--red {
+        background: red;
+    }
+    &--amber {
+        background: #d9ca4a;
+    }
+    &--green {
+        background: #4AD964;
+    }
 }

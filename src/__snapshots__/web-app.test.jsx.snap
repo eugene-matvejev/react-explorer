@@ -1,9 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`WebApp render with default/required props 1`] = `
-<div
-  className="App"
+<section
+  className="webapp "
 >
-  <TileHandler />
-</div>
+  <TopNav
+    className=""
+    data-cy="topnav"
+  />
+</section>
+`;
+
+exports[`WebApp render with optional props [::className] as "{{className}}" 1`] = `
+<section
+  className="webapp {{className}}"
+>
+  <TopNav
+    className=""
+    data-cy="topnav"
+  />
+</section>
 `;

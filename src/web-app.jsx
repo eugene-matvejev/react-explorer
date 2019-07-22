@@ -1,19 +1,19 @@
 import React from 'react';
-import TileHandler from './handlers/TileHandler';
+import PropTypes from 'prop-types';
+import TopNav from './components/top-nav';
 
-export default class WebApp extends React.Component {
-    render() {
-        return (
-            <div className="App">
-              
-              <TileHandler />
-            </div>
-          );
-    }
+const WebApp = ({ className, children }) =>
+    <section className={`webapp ${className}`}>
+        <TopNav data-cy="topnav" />
+        {children}
+    </section>;
 
-    static propTypes = {
-    };
+WebApp.propTypes = {
+    className: PropTypes.string.isRequired,
+};
 
-    static defaultProps = {
-    };
-}
+WebApp.defaultProps = {
+    className: '',
+};
+
+export default WebApp;

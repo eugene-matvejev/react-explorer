@@ -16,9 +16,9 @@ describe('WebApp', () => {
             expect(c).toMatchSnapshot();
         });
 
-        describe.skip('with optional props', () => {
+        describe('with optional props', () => {
             [
-                ['user', user],
+                ['className', '{{className}}'],
             ].forEach(([prop, v]) => {
                 it(`[::${prop}] as "${v}"`, () => {
                     const c = shallow(<WebApp {...props} {...{ [prop]: v }} />);
