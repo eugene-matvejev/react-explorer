@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Tile from '../components/tile_';
+import Tile from '../components/tile';
 
 export default class TileHandler extends PureComponent {
     constructor({ data }) {
