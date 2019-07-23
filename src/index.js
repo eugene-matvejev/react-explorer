@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import WebApp from './web-app';
 import Query from './handlers/query';
-import TileHandler from './handlers/tile_-handler';
+import TileHandler from './handlers/tile-handler';
 
 import './index.scss';
 
