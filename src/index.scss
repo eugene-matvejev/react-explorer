@@ -6,8 +6,13 @@
 @import './variables';
 @import './web-app';
 
-@import './components/tile.scss';
-@import './components/top-nav.scss';
+@import './component/form/accordion.scss';
 
-@import './handlers/query.scss';
-@import './handlers/tile-handler.scss';
+@import './component/button.scss';
+@import './component/tile.scss';
+@import './component/top-nav.scss';
+
+@import './handler/form-handler.scss';
+@import './handler/query.scss';
+@import './handler/tile-handler.scss';
+@import './handler/tree-handler.scss';
