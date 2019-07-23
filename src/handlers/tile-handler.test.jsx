@@ -1,7 +1,7 @@
 import React from 'react';
 import { configure, shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import TileHandler from './tile-handler';
+import TileHandler from './tile_-handler';
 
 configure({ adapter: new Adapter() });
 
