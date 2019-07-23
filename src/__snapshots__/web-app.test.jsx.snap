@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`WebApp render with default/required props 1`] = `
+exports[`<WebApp/> render with default/required props 1`] = `
 <section
   className="webapp "
 >
@@ -11,7 +11,7 @@ exports[`WebApp render with default/required props 1`] = `
 </section>
 `;
 
-exports[`WebApp render with optional props [::className] as "{{className}}" 1`] = `
+exports[`<WebApp/> render with optional props [::className] as "{{className}}" 1`] = `
 <section
   className="webapp {{className}}"
 >
