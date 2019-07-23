@@ -5,17 +5,7 @@ import FormHandler from '../handler/form-handler';
 import TreeHandler from '../handler/tree-handler';
 import createStatus from './forms/create.status';
 import searchStatus from './trees/search.status';
-
-const onMount = (props, state, onSuccess, onError) => {
-    const data = (new Array(128)).fill(1).map((_, i) => ({
-        name: `name ${i + 1}`,
-        id: i,
-    }))
-
-    setTimeout(() => {
-        onSuccess(data)
-    }, 300);
-};
+import { onMount, onFilter } from './dashboard/default';
 
 export default [
     {
@@ -24,7 +14,7 @@ export default [
         component: () =>
             <Query
                 onMount={onMount}
-                children={(props, state) => <TileHandler {...state} />}
+                children={(props, state) => <TileHandler {...state} onFilter={onFilter} />}
             />
     },
     {

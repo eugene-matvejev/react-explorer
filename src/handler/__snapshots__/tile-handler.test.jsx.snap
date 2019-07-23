@@ -3,44 +3,71 @@
 exports[`<TileHandler/> render with default/require d props 1`] = `
 <section
   className="tile-handler "
-  onClick={[Function]}
 >
-  <Tile
-    className=""
-    data-cy="-tile-0"
-    data-id={1}
-    id={1}
-    key="0"
+  <ComposedInput
+    className="tile-handler_pattern"
+    data-cy="-pattern"
+    label="fast filter"
+    onChange={[Function]}
   />
+  <div
+    onClick={[Function]}
+  >
+    <Tile
+      className=""
+      data-cy="-tile-0"
+      data-id={1}
+      id={1}
+      key="0"
+    />
+  </div>
 </section>
 `;
 
 exports[`<TileHandler/> render with optional props [::className] as "{{className}}" 1`] = `
 <section
   className="tile-handler {{className}}"
-  onClick={[Function]}
 >
-  <Tile
-    className=""
-    data-cy="-tile-0"
-    data-id={1}
-    id={1}
-    key="0"
+  <ComposedInput
+    className="tile-handler_pattern"
+    data-cy="-pattern"
+    label="fast filter"
+    onChange={[Function]}
   />
+  <div
+    onClick={[Function]}
+  >
+    <Tile
+      className=""
+      data-cy="-tile-0"
+      data-id={1}
+      id={1}
+      key="0"
+    />
+  </div>
 </section>
 `;
 
 exports[`<TileHandler/> render with optional props [::data-cy] as "{{data-cy}}" 1`] = `
 <section
   className="tile-handler "
-  onClick={[Function]}
 >
-  <Tile
-    className=""
-    data-cy="{{data-cy}}-tile-0"
-    data-id={1}
-    id={1}
-    key="0"
+  <ComposedInput
+    className="tile-handler_pattern"
+    data-cy="{{data-cy}}-pattern"
+    label="fast filter"
+    onChange={[Function]}
   />
+  <div
+    onClick={[Function]}
+  >
+    <Tile
+      className=""
+      data-cy="{{data-cy}}-tile-0"
+      data-id={1}
+      id={1}
+      key="0"
+    />
+  </div>
 </section>
 `;
