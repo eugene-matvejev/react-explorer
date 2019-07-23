@@ -1,13 +1,19 @@
-import { PureComponent } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import TopNav from './components/top-nav';
 
-export default class WebApp extends PureComponent {
-    render() {
-        return '<WebApp/>';
-    }
+const WebApp = ({ className, children }) =>
+    <section className={`webapp ${className}`}>
+        <TopNav data-cy="topnav" />
+        {children}
+    </section>;
 
-    static propTypes = {
-    };
+WebApp.propTypes = {
+    className: PropTypes.string.isRequired,
+};
 
-    static defaultProps = {
-    };
-}
+WebApp.defaultProps = {
+    className: '',
+};
+
+export default WebApp;

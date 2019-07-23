@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TopNav/> render with default/require d props 1`] = `
+<nav
+  className="topnav "
+  label="{{label}}"
+>
+  <img
+    alt="logo"
+    className="topnav__logo"
+    src="/assets/img/placeholder.png"
+  />
+</nav>
+`;
+
+exports[`<TopNav/> render with optional props [::className] as "{{className}}" 1`] = `
+<nav
+  className="topnav {{className}}"
+  label="{{label}}"
+>
+  <img
+    alt="logo"
+    className="topnav__logo"
+    src="/assets/img/placeholder.png"
+  />
+</nav>
+`;
+
+exports[`<TopNav/> render with optional props [::data-cy] as "{{data-cy}}" 1`] = `
+<nav
+  className="topnav "
+  data-cy="{{data-cy}}"
+  label="{{label}}"
+>
+  <img
+    alt="logo"
+    className="topnav__logo"
+    src="/assets/img/placeholder.png"
+  />
+</nav>
+`;

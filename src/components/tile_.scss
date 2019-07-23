@@ -1,0 +1,21 @@
+.tile {
+    background: grey;
+    height: 3rem;
+    width: 5rem;
+    display: inline-block;
+    border: 1px #000 dotted;
+
+    &:hover {
+        box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    &--red {
+        background: red;
+    }
+    &--amber {
+        background: #d9ca4a;
+    }
+    &--green {
+        background: #4AD964;
+    }
+}
