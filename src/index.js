@@ -1,29 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import WebApp from './web-app';
-import Query from './handlers/query';
-import TileHandler from './handlers/tile-handler';
-
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import TopNav from './component/top-nav';
+import routes from './__config/routes';
 import './index.scss';
 
-const onMount = (props, state, onSuccess, onError) => {
-    const data = (new Array(128)).fill(1).map((_, i) => ({
-        name: `name ${i + 1}`,
-        id: i,
-    }))
-
-    setTimeout(() => {
-        onSuccess(data)
-    }, 300);
-}
-const children = (props, state) => <TileHandler {...state} />
-
 ReactDOM.render(
-    <WebApp>
-        <Query
-            onMount={onMount}
-            children={children}
-        />
-    </WebApp>,
+    <BrowserRouter>
+        <TopNav data-cy="topnav" />
+        <Switch>
+            {
+                routes.map((props, i) => <Route key={i} {...props} />)
+            }
+        </Switch>
+    </BrowserRouter>,
     document.getElementById('app')
 );
