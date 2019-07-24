@@ -5,20 +5,28 @@ exports[`<TileHandler/> render with default/require d props 1`] = `
   className="tile-handler "
 >
   <ComposedInput
-    className="tile-handler_pattern"
+    className=""
     data-cy="-pattern"
-    label="fast filter"
+    label="filter"
     onChange={[Function]}
+    placeholder="type pattern to search..."
   />
   <div
-    onClick={[Function]}
+    className="tile-handler__container"
   >
     <Tile
       className=""
       data-cy="-tile-0"
-      data-id={1}
       id={1}
       key="0"
+      target="_blank"
+      to="/explore/1"
+    />
+    <Tile
+      className="tile__add-control"
+      data-cy="-add"
+      target="_blank"
+      to="/new"
     />
   </div>
 </section>
@@ -29,20 +37,28 @@ exports[`<TileHandler/> render with optional props [::className] as "{{className
   className="tile-handler {{className}}"
 >
   <ComposedInput
-    className="tile-handler_pattern"
+    className=""
     data-cy="-pattern"
-    label="fast filter"
+    label="filter"
     onChange={[Function]}
+    placeholder="type pattern to search..."
   />
   <div
-    onClick={[Function]}
+    className="tile-handler__container"
   >
     <Tile
       className=""
       data-cy="-tile-0"
-      data-id={1}
       id={1}
       key="0"
+      target="_blank"
+      to="/explore/1"
+    />
+    <Tile
+      className="tile__add-control"
+      data-cy="-add"
+      target="_blank"
+      to="/new"
     />
   </div>
 </section>
@@ -53,20 +69,28 @@ exports[`<TileHandler/> render with optional props [::data-cy] as "{{data-cy}}" 
   className="tile-handler "
 >
   <ComposedInput
-    className="tile-handler_pattern"
+    className=""
     data-cy="{{data-cy}}-pattern"
-    label="fast filter"
+    label="filter"
     onChange={[Function]}
+    placeholder="type pattern to search..."
   />
   <div
-    onClick={[Function]}
+    className="tile-handler__container"
   >
     <Tile
       className=""
       data-cy="{{data-cy}}-tile-0"
-      data-id={1}
       id={1}
       key="0"
+      target="_blank"
+      to="/explore/1"
+    />
+    <Tile
+      className="tile__add-control"
+      data-cy="{{data-cy}}-add"
+      target="_blank"
+      to="/new"
     />
   </div>
 </section>

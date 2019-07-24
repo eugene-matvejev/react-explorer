@@ -42,57 +42,7 @@ describe('<TreeHandler/>', () => {
         });
     });
 
-    describe('lifecycle events', () => {
-        describe('::componentDidMount', () => {
-            it('should invoke external callback [::onMount]', () => {
-                const spy = jest.fn();
-
-                const c = shallow(<TreeHandler {...props} onMount={spy} />);
-
-                expect(spy).toBeCalledWith(c.instance().props, c.state(), c.instance().onSuccess, c.instance().onError);
-            });
-        });
-    });
-
     describe('internal callbacks', () => {
-        describe('::onSuccess', () => {
-            it('should set state fields [::data] from payload', () => {
-                const spy = spyOn(TreeHandler.prototype, 'setState');
-
-                shallow(<TreeHandler {...props} />).instance().onSuccess({ data });
-
-                expect(spy).toBeCalledWith({ data });
-            });
-
-            it('should invoke external callback [::onSuccess]', () => {
-                const spy = jest.fn();
-
-                const c = shallow(<TreeHandler {...props} onSuccess={spy} />);
-                c.instance().onSuccess({ data });
-
-                expect(spy).toBeCalledWith(c.instance().props, c.state());
-            });
-        });
-
-        describe('::onError', () => {
-            it('should set state field ::data to empty array', () => {
-                const spy = spyOn(TreeHandler.prototype, 'setState');
-
-                shallow(<TreeHandler {...props} />).instance().onError();
-
-                expect(spy).toBeCalledWith({ data: [] });
-            });
-
-            it('should invoke external callback [::onError]', () => {
-                const spy = jest.fn();
-
-                const c = shallow(<TreeHandler {...props} onError={spy} />);
-                c.instance().onError({ data });
-
-                expect(spy).toBeCalledWith(c.instance().props, c.state());
-            });
-        });
-
         /** functionality relay on data-node attribute */
         describe('::onExpand', () => {
             it('should invoke external callback [::onExpand] with [::data] state field and value of ["data-node"] from on a click on [data-cy="tree-node-0"]', () => {

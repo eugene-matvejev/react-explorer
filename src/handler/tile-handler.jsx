@@ -13,6 +13,8 @@ export default class TileHandler extends PureComponent {
             data,
             pattern,
         };
+
+        this.onChange = this.onChange.bind(this);
     }
 
     onChange(e) {

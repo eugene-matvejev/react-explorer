@@ -37,20 +37,7 @@ describe('<TileHandler/>', () => {
     });
 
     describe('internal callbacks', () => {
-        describe('::onClick', () => {
-            it('should be invoked from a click on a [data-cy="-tile-0"]', () => {
-                const spy = spyOn(TileHandler.prototype, 'onClick');
-
-                mount(<TileHandler {...props} />)
-                    .find('Tile[data-cy="-tile-0"]')
-                    .simulate('click');
-
-                expect(spy).toBeCalled();
-            });
-        });
-
         describe('::onChange', () => {
-            // it('should be invoked from a change on a [data-cy="-pattern"]', () => {
             it('should be invoked from a change on a [data-cy="-pattern"]', () => {
                 const spy = spyOn(TileHandler.prototype, 'onChange');
 
