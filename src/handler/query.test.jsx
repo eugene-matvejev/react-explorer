@@ -72,6 +72,15 @@ describe('<Query/>', () => {
 
                 expect(spy).toBeCalledWith({ data, errors: undefined, isLoading: false });
             });
+
+            it('should invoke external callback ::onSuccess, if it provided with props/state as payload', () => {
+                const spy = jest.fn();
+
+                const c = shallow(<Query {...props} onSuccess={spy} />);
+                c.instance().onSuccess([]);
+
+                expect(spy).toBeCalledWith(c.instance().props, c.state());
+            });
         });
 
 
@@ -87,6 +96,15 @@ describe('<Query/>', () => {
                 c.instance().onError(errors);
 
                 expect(spy).toBeCalledWith({ data: undefined, errors, isLoading: false });
+            });
+
+            it('should invoke external callback ::onError, if it provided with props/state as payload', () => {
+                const spy = jest.fn();
+
+                const c = shallow(<Query {...props} onError={spy} />);
+                c.instance().onError([]);
+
+                expect(spy).toBeCalledWith(c.instance().props, c.state());
             });
         });
     });
