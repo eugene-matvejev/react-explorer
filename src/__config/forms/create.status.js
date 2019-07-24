@@ -4,8 +4,6 @@ import Text from '../../component/form/generic-input';
 
 const onSubmit = (props, state, onSuccess, onError) => {
     const { config } = state;
-
-    console.log({ config });
 };
 
 export default {
