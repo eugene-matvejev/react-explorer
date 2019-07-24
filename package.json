@@ -40,12 +40,9 @@
   ],
   "jest": {
     "collectCoverageFrom": [
-      "src/**?(/*).js?(x)",
-      "src/components/**?(/*).js?(x)",
-      "src/handlers/**?(/*).js?(x)",
-      "!src/parameters.js?(x)",
-      "!src/**?(/*)index.js?(x)",
-      "!src/__configs/**.js?(x)"
+      "src/*/**.js?(x)",
+      "!src/*/**index.js?(x)",
+      "!src/__config/**.js?(x)"
     ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
