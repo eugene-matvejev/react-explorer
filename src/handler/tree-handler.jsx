@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import TreeNode from '../component/tree-node';
 
@@ -11,27 +11,8 @@ export default class TreeHandler extends PureComponent {
             pattern,
         }
 
-        this.onSuccess = this.onSuccess.bind(this);
-        this.onError = this.onError.bind(this);
-
         this.onExpand = this.onExpand.bind(this);
         this.onChange = this.onChange.bind(this);
-    }
-
-    componentDidMount() {
-        this.props.onMount && this.props.onMount(this.props, this.state, this.onSuccess, this.onError);
-    }
-
-    onSuccess({ data }) {
-        this.setState({ data });
-
-        this.props.onSuccess && this.props.onSuccess(this.props, this.state);
-    }
-
-    onError() {
-        this.setState({ data: [] });
-
-        this.props.onError && this.props.onError(this.props, this.state);
     }
 
     onExpand(e) {
