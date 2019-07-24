@@ -11,6 +11,7 @@ export const onMount = (props, state, onSuccess, onError) => {
                 query: `
                 {
                     statuses {
+                        id
                         name
                         seq
                     }

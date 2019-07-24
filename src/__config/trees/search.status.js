@@ -1,19 +1,61 @@
 import axios from 'axios';
-
 import { filter } from '../../filtering/filter';
+import { api } from '../../parameters';
 
-const onMount = (props, state, onSuccess, onError) => {
-    const { pattern } = state;
-    onSuccess([])
-    // axios
-    //     .get(`/spotlight`)
-    //     .then((r) => {
-    //         const data = r.data;
-    //         onFilter(data, pattern);
+const graphqlURI = `${api.protocol}://${api.host}:${api.port}`;
 
-    //         onSuccess({ data });
-    //     })
-    //     .catch(onError);
+const resolveTree = (v, onlyId) => {
+    const hashmap = {};
+    const roots = [];
+
+    for (const node of v) {
+        hashmap[node.id] = node;
+
+        /** required fields for tree-search */
+        hashmap[node.id].text = node.name;
+    }
+
+    for (const node of v) {
+        if (node.parent) {
+            if (undefined === hashmap[node.parent.id].nodes) {
+                hashmap[node.parent.id].nodes = [];
+            }
+
+            hashmap[node.parent.id].nodes.push(node);
+        } else {
+            roots.push(node);
+        }
+    }
+    
+    return onlyId ? [hashmap[onlyId]] : roots;
+}
+
+export const onMount = (props, state, onSuccess, onError) => {
+    const { match: { params: { id } } } = props;
+
+    axios
+        .post(
+            graphqlURI,
+            {
+                query: `
+                {
+                    statuses {
+                        id
+                        seq
+                        name
+                        parent {
+                            id
+                        }
+                    }
+                }`
+            }
+        )
+        .then(({ data: { data } }) => {
+            const v = resolveTree(data.statuses, id);
+
+            onSuccess({ data: v });
+        })
+        .catch(onError);
 };
 
 const onExpand = (data, path) => {
