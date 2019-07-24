@@ -12,14 +12,7 @@ export default class TileHandler extends PureComponent {
         this.state = {
             data,
             pattern,
-        }
-
-        this.onClick = this.onClick.bind(this);
-        this.onChange = this.onChange.bind(this);
-    }
-
-    onClick(e) {
-        const id = e.target.getAttribute('data-id');
+        };
     }
 
     onChange(e) {
@@ -41,22 +34,30 @@ export default class TileHandler extends PureComponent {
         return <section className={`tile-handler ${className}`}>
             <ComposedInput
                 onChange={this.onChange}
-                className="tile-handler_pattern"
-                label="fast filter"
+                placeholder="type pattern to search..."
+                // className="tile-handler_pattern"
+                label="filter"
                 value={pattern}
                 data-cy={`${cy}-pattern`}
             />
-            <div onClick={this.onClick}>
+            <div className="tile-handler__container">
                 {
                     data.map((v, i) =>
                         <Tile
                             key={i}
-                            data-id={v.id}
                             data-cy={`${cy}-tile-${i}`}
+                            to={`/explore/${v.id}`}
+                            target="_blank"
                             {...v}
                         />
                     )
                 }
+                <Tile
+                    data-cy={`${cy}-add`}
+                    className="tile__add-control"
+                    to="/new"
+                    target="_blank"
+                />
             </div>
         </section>;
     }

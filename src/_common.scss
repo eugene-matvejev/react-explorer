@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    color: #fff;
+    // color: #fff;
 
     background: snow;
 
@@ -10,4 +10,12 @@ body {
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+a,
+a:visited,
+a:link,
+a:active,
+a:hover {
+    text-decoration: none;
 }

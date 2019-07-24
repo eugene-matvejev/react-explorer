@@ -53,7 +53,7 @@ export const onMount = (props, state, onSuccess, onError) => {
         .then(({ data: { data } }) => {
             const v = resolveTree(data.statuses, id);
 
-            onSuccess({ data: v });
+            onSuccess(v);
         })
         .catch(onError);
 };

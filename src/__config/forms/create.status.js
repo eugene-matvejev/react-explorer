@@ -3,7 +3,7 @@ import { validationEngine } from '../../validation/engine';
 import Text from '../../component/form/generic-input';
 
 const onSubmit = (props, state, onSuccess, onError) => {
-    const { config } = state;
+    // const { config } = state;
 };
 
 export default {

@@ -1,14 +1,15 @@
 .tile {
     background: grey;
+    text-decoration: none;
     height: 3rem;
-    width: 5rem;
+    flex: 0 0 5rem;
     display: inline-block;
     vertical-align: top; /** to fix 'tile' spacing */
     border: 1px #000 dotted; 
 
-    &:hover {
-        box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
-    }
+    // &:hover {
+    //     // box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
+    // }
 
     &[disabled] {
         opacity: .33;
@@ -17,10 +18,32 @@
     &--red {
         background: red;
     }
+
     &--amber {
         background: #d9ca4a;
     }
+
     &--green {
         background: #4AD964;
+    }
+}
+
+.tile.tile__add-control {
+    background: transparent;
+    border: none;
+    color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+
+    &:hover {
+        color: #000;
+
+        // cursor: pointer;
+    }
+
+    &:before {
+        content: "+";
     }
 }
