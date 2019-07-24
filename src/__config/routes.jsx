@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Query from '../handler/query';
 import TileHandler from '../handler/tile-handler';
 import FormHandler from '../handler/form-handler';
@@ -18,13 +18,22 @@ export default [
             />
     },
     {
-        path: ['/new', '/add', '/status/new', '/status/add'],
+        path: ['/create', '/status/create'],
         exact: true,
         component: () => <FormHandler {...createStatus} />,
     },
     {
-        path: ['/view', '/tree', '/explore', '/status/:id/explore'],
+        path: ['/explore', '/explore/:id', '/status/:id/explore'],
         exact: true,
-        component: () => <TreeHandler {...searchStatus} />,
-    }
+        component: (props) => <TreeHandler {...props} {...searchStatus} />,
+    },
+    {
+        path: ['/view/:id'],
+        exact: true,
+        component: (props) =>
+            <Fragment>
+                <FormHandler {...createStatus} />
+                <TreeHandler {...props} {...searchStatus} />
+            </Fragment>,
+    },
 ]

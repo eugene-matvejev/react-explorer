@@ -66,7 +66,7 @@ export default class TreeHandler extends PureComponent {
         const { data, pattern } = this.state;
         const { 'data-cy': cy, className, placeholder } = this.props;
 
-        return <Fragment>
+        return <section className={`tree ${className}`} onClick={this.onExpand}>
             <input
                 data-cy={`${cy}tree-pattern`}
                 className="tree_input"
@@ -75,20 +75,16 @@ export default class TreeHandler extends PureComponent {
                 onChange={this.onChange}
             />
             {
-                data && <section className={`tree ${className}`} onClick={this.onExpand}>
-                    {
-                        data.map((v, i) =>
-                            <TreeNode
-                                {...v}
-                                key={i}
-                                data-cy={`${cy}tree-node-${i}`}
-                                data-node={`${i}`}
-                            />
-                        )
-                    }
-                </section>
+                data && data.map((v, i) =>
+                    <TreeNode
+                        {...v}
+                        key={i}
+                        data-cy={`${cy}tree-node-${i}`}
+                        data-node={`${i}`}
+                    />
+                )
             }
-        </Fragment>;
+        </section>;
     }
 
     static propTypes = {
