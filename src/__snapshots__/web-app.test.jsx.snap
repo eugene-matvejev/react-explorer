@@ -3,27 +3,11 @@
 exports[`<WebApp/> render with default/required props 1`] = `
 <section
   className="webapp "
->
-  <TopNav
-    className=""
-    data-cy="topnav"
-  />
-  <ButtonHandler
-    data-cy=""
-  />
-</section>
+/>
 `;
 
 exports[`<WebApp/> render with optional props [::className] as "{{className}}" 1`] = `
 <section
   className="webapp {{className}}"
->
-  <TopNav
-    className=""
-    data-cy="topnav"
-  />
-  <ButtonHandler
-    data-cy=""
-  />
-</section>
+/>
 `;

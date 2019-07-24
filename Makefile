@@ -3,6 +3,9 @@
 .SERVE_IMAGE := explorer-cwa-serve
 
 PORT := 8080
+REACT_APP_API_PROTOCOL := http
+REACT_APP_API_HOST := localhost
+REACT_APP_API_PORT := 8081
 
 .SHARED_VOLUMES := \
 	-v $(PWD)/public:/www/public \
@@ -10,7 +13,10 @@ PORT := 8080
 	-v $(PWD)/.env:/www/.env
 
 .ENV_VARIABLES := \
-	-e PORT=$(PORT)
+	-e PORT=$(PORT) \
+	-e REACT_APP_API_PROTOCOL=$(REACT_APP_API_PROTOCOL) \
+	-e REACT_APP_API_HOST=$(REACT_APP_API_HOST) \
+	-e REACT_APP_API_PORT=$(REACT_APP_API_PORT)
 
 help:
 	@echo ""
