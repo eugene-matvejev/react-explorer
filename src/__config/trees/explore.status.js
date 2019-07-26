@@ -38,16 +38,16 @@ export const onMount = (props, state, onSuccess, onError) => {
             graphqlURI,
             {
                 query: `
-                {
-                    statuses {
-                        id
-                        seq
-                        name
-                        parent {
-                            id
-                        }
-                    }
-                }`
+{
+    statuses {
+        id
+        seq
+        name
+        parent {
+            id
+        }
+    }
+}`
             }
         )
         .then(({ data: { data } }) => {
@@ -89,6 +89,8 @@ const onFilter = (data, pattern) => {
 };
 
 export default {
+    placeholder: 'type to search in a tree',
+    className: 'tree--explore-mode',
     onMount,
 
     onExpand,
