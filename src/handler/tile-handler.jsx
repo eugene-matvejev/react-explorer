@@ -1,9 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Tile from '../component/tile';
-import composeInput from '../component/form/compose-input';
-
-const ComposedInput = composeInput((props) => <input {...props} />);
+import GenericInput from '../component/form/generic-input';
 
 export default class TileHandler extends PureComponent {
     constructor({ data, pattern }) {
@@ -34,7 +32,7 @@ export default class TileHandler extends PureComponent {
         const { className, 'data-cy': cy } = this.props;
 
         return <section className={`tile-handler ${className}`}>
-            <ComposedInput
+            <GenericInput
                 onChange={this.onChange}
                 placeholder="type pattern to search..."
                 // className="tile-handler_pattern"
