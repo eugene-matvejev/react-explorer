@@ -28,15 +28,21 @@ export default class FormHandler extends PureComponent {
     }
 
     onSuccess({ data, config }) {
-        this.setState({ data, config });
-
-        this.props.onSuccess && this.props.onSuccess(this.props, this.state);
+        this.setState(
+            { data, config },
+            () => {
+                this.props.onSuccess && this.props.onSuccess(this.props, this.state);
+            }
+        );
     }
 
     onError({ data, config }) {
-        this.setState({ data, config });
-
-        this.props.onError && this.props.onError(this.props, this.state);
+        this.setState(
+            { data, config },
+            () => {
+                this.props.onError && this.props.onError(this.props, this.state);
+            }
+        );
     }
 
     onSubmit(e) {
@@ -102,9 +108,9 @@ export default class FormHandler extends PureComponent {
                 config.map(({ className, title, isCollapsed, items }, i) =>
                     <Accordion
                         className={className}
+                        title={title}
                         isCollapsed={isCollapsed}
                         onCollapse={this.onCollapse}
-                        title={title}
                         key={i}
                         data-section={i}
                         data-cy={`${cy}section-${i}`}
