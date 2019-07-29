@@ -1,6 +1,6 @@
 import { composeRule, isRequired, isMatchRegex } from '../../validation/rules';
 import { validationEngine } from '../../validation/engine';
-import Text from '../../component/form/interactive-search';
+import Text from '../../component/form/generic-input';
 import resolvePayload from '../../graphql/payload-resolver';
 import { api } from '../../parameters';
 import axios from 'axios';
