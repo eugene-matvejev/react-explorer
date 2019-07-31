@@ -1,0 +1,193 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Suggestions/> render with default/required props 1`] = `
+<div
+  className="suggestions "
+>
+  <div
+    className="suggestion undefined"
+    key="0"
+  >
+    <div
+      className="suggestion__label"
+    >
+      {{label-only}}
+    </div>
+  </div>
+  <div
+    className="suggestion undefined"
+    key="1"
+  >
+    <div
+      className="suggestion__hierarchy"
+    >
+      <span
+        className="suggestion__hierarchy-label undefined"
+        key="0"
+      >
+        {{root}}
+      </span>
+      <span
+        className="suggestion__hierarchy-label undefined"
+        key="1"
+      >
+        {{sub-children}}
+      </span>
+      <span
+        className="suggestion__hierarchy-label undefined"
+        key="2"
+      >
+        {{label-with-hierarchy}}
+      </span>
+    </div>
+    <div
+      className="suggestion__label"
+    >
+      {{label-with-hierarchy}}
+    </div>
+  </div>
+  <div
+    className="suggestion undefined"
+    key="2"
+  >
+    <div
+      className="suggestion__label"
+    >
+      {{label-with-description}}
+    </div>
+    <p
+      className="suggestion__description"
+    >
+      {{description}}
+    </p>
+  </div>
+</div>
+`;
+
+exports[`<Suggestions/> render with optional props [::className] as "{{className}}" 1`] = `
+<div
+  className="suggestions {{className}}"
+>
+  <div
+    className="suggestion undefined"
+    key="0"
+  >
+    <div
+      className="suggestion__label"
+    >
+      {{label-only}}
+    </div>
+  </div>
+  <div
+    className="suggestion undefined"
+    key="1"
+  >
+    <div
+      className="suggestion__hierarchy"
+    >
+      <span
+        className="suggestion__hierarchy-label undefined"
+        key="0"
+      >
+        {{root}}
+      </span>
+      <span
+        className="suggestion__hierarchy-label undefined"
+        key="1"
+      >
+        {{sub-children}}
+      </span>
+      <span
+        className="suggestion__hierarchy-label undefined"
+        key="2"
+      >
+        {{label-with-hierarchy}}
+      </span>
+    </div>
+    <div
+      className="suggestion__label"
+    >
+      {{label-with-hierarchy}}
+    </div>
+  </div>
+  <div
+    className="suggestion undefined"
+    key="2"
+  >
+    <div
+      className="suggestion__label"
+    >
+      {{label-with-description}}
+    </div>
+    <p
+      className="suggestion__description"
+    >
+      {{description}}
+    </p>
+  </div>
+</div>
+`;
+
+exports[`<Suggestions/> render with optional props [::data-cy] as "{{data-cy}}" 1`] = `
+<div
+  className="suggestions "
+>
+  <div
+    className="suggestion undefined"
+    key="0"
+  >
+    <div
+      className="suggestion__label"
+    >
+      {{label-only}}
+    </div>
+  </div>
+  <div
+    className="suggestion undefined"
+    key="1"
+  >
+    <div
+      className="suggestion__hierarchy"
+    >
+      <span
+        className="suggestion__hierarchy-label undefined"
+        key="0"
+      >
+        {{root}}
+      </span>
+      <span
+        className="suggestion__hierarchy-label undefined"
+        key="1"
+      >
+        {{sub-children}}
+      </span>
+      <span
+        className="suggestion__hierarchy-label undefined"
+        key="2"
+      >
+        {{label-with-hierarchy}}
+      </span>
+    </div>
+    <div
+      className="suggestion__label"
+    >
+      {{label-with-hierarchy}}
+    </div>
+  </div>
+  <div
+    className="suggestion undefined"
+    key="2"
+  >
+    <div
+      className="suggestion__label"
+    >
+      {{label-with-description}}
+    </div>
+    <p
+      className="suggestion__description"
+    >
+      {{description}}
+    </p>
+  </div>
+</div>
+`;
