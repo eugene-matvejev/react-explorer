@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Tile from '../component/tile';
 import GenericInput from '../component/form/generic-input';
 
-    
 export default class TileHandler extends PureComponent {
     constructor({ data, pattern }) {
         super();
