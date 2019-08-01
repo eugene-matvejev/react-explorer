@@ -1,8 +1,10 @@
-import { composeRule, isRequired, isMatchRegex } from '../../validation/rules';
+import { composeRule, isRequired, isLengthBetween } from '../../validation/rules';
 import { validationEngine } from '../../validation/engine';
 import Text from '../../component/form/generic-input';
+import InteractiveSearch from '../../component/form/interactive-search';
 import resolvePayload from '../../graphql/payload-resolver';
 import { api } from '../../parameters';
+import { hasSequence } from 'byte-sequence-calculator';
 import axios from 'axios';
 
 const graphqlURI = `${api.protocol}://${api.host}:${api.port}`;
@@ -72,13 +74,56 @@ export default {
                     ],
                 },
                 {
-                    c: Text,
+                    c: InteractiveSearch,
                     attr: 'parent',
                     label: 'parent',
                     placeholder: 'parent status',
                     validators: [
-                        composeRule(isMatchRegex, 'id should be a number', [/^[1-9][0-9]*$/]),
+                        composeRule(isLengthBetween, 'only one parent allowed', [, 1]),
                     ],
+                    maxValues: 1,
+                    valueTransformer: (v) => !v ? null : v[0].value,
+                    onFilter: (props, state, onSuccess, onError) => {
+                        axios
+                            .post(
+                                graphqlURI,
+                                {
+                                    query: `
+{
+    statuses {
+        id
+        seq
+        name
+    }
+}`
+                                }
+                            )
+                            .then(({ data: { data } }) => {
+                                const resolveClassName = (seq) => {
+                                    if (hasSequence(seq, 0x1000)) {
+                                        return 'suggestion--red';
+                                    }
+                                    if (hasSequence(seq, 0x0100)) {
+                                        return 'suggestion--amber';
+                                    }
+                                    if (hasSequence(seq, 0x0010)) {
+                                        return 'suggestion--green';
+                                    }
+
+                                    return '';
+                                }
+
+                                const v = data.statuses.map(({ id: value, name: label, seq }) => ({
+                                    value,
+                                    label,
+                                    className: resolveClassName(seq),
+                                    description: 'lorum ipsum, '.repeat(20),
+                                }));
+
+                                onSuccess(v);
+                            })
+                            .catch(onError);
+                    }
                 },
             ],
         },
@@ -86,6 +131,9 @@ export default {
     onSubmit,
     submitCTRL: {
         label: 'submit',
+    },
+    updateCTRL: {
+        label: 'update',
     },
     cancelCTRL: {
         label: 'cancel',

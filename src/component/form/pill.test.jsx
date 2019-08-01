@@ -20,7 +20,7 @@ describe('<Pill/>', () => {
         describe('with optional props', () => {
             [
                 ['data-cy', '{{data-cy}}'],
-                ['onClick', () => { }],
+                ['data-id', '{{data-id}}'],
             ].forEach(([prop, v]) => {
                 it(`[::${prop}] as "${v}"`, () => {
                     const c = shallow(<Pill {...props} {...{ [prop]: v }} />);
@@ -28,18 +28,6 @@ describe('<Pill/>', () => {
                     expect(c).toMatchSnapshot();
                 });
             });
-        });
-    });
-
-    describe('external callbacks', () => {
-        describe('::onClick', () => {
-            it('should be invoked from a click on a [data-cy="-remove"]', () => {
-                const spy = jest.fn();
-
-                shallow(<Pill {...props} onClick={spy} />).find('[data-cy="-remove"]').simulate('click');
-
-                expect(spy).toBeCalled();
-            })
         });
     });
 });

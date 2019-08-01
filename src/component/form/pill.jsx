@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Pill = ({ 'data-cy': cy, label, onClick }) =>
+const Pill = ({ 'data-cy': cy, label, 'data-id': id }) =>
     <span className="pill" data-cy={cy}>
         {label}
-        {onClick && <button data-cy={`${cy}-remove`} className="pill__control" onClick={onClick}>×</button>}
+        {undefined !== id && <button data-cy={`${cy}-remove`} data-id={id} className="pill__control">×</button>}
     </span>;
 
 Pill.propTypes = {
     'data-cy': PropTypes.string,
+    'data-id': PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     label: PropTypes.string.isRequired,
-    onClick: PropTypes.func,
 }
 
 Pill.defaultProps = {

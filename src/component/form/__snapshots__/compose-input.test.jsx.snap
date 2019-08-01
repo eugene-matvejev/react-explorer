@@ -7,7 +7,9 @@ exports[`<ComposedInput/> render with default/required props 1`] = `
   <label
     className="form-input_label"
   >
-    <Component />
+    <Component
+      data-cy=""
+    />
   </label>
 </div>
 `;
@@ -19,13 +21,15 @@ exports[`<ComposedInput/> render with optional props [::errors] as "{{error}}" 1
   <label
     className="form-input_label"
   >
-    <Component />
+    <Component
+      data-cy=""
+    />
     <ul
       className="form-input_errors"
     >
       <li
         className="form-input_error"
-        data-cy="undefined-error-0"
+        data-cy="-error-0"
         key="0"
       >
         {{error}}

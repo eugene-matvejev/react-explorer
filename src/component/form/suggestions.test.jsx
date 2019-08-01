@@ -10,14 +10,17 @@ describe('<Suggestions/>', () => {
         options: [
             {
                 label: '{{label-only}}',
+                value: 1,
             },
             {
                 label: '{{label-with-hierarchy}}',
                 hierarchy: ['{{root}}', '{{sub-children}}', '{{label-with-hierarchy}}'],
+                value: 2,
             },
             {
                 label: '{{label-with-description}}',
                 description: '{{description}}',
+                value: 'three',
             },
         ],
     };
@@ -40,6 +43,12 @@ describe('<Suggestions/>', () => {
 
                     expect(c).toMatchSnapshot();
                 });
+            });
+
+            it(`[::hashmap] - should NOT render options with values which are present in ::hashmap`, () => {
+                const c = shallow(<Suggestions {...props} hashmap={{ 2: true, three: true }} />);
+
+                expect(c).toMatchSnapshot();
             });
         });
     });

@@ -20,19 +20,18 @@ describe('<InputWithPills/>', () => {
 
             expect(c).toMatchSnapshot();
         });
-    });
 
-    describe('with optional props', () => {
-        [
-            ['data-cy', '{{data-cy}}'],
-        ].forEach(([prop, v]) => {
-            it(`[::${prop}] as "${v}"`, () => {
-                const c = shallow(<InputWithPills {...props} {...{ [prop]: v }} />);
+        describe('with optional props', () => {
+            [
+                ['data-cy', '{{data-cy}}'],
+                ['onClick', () => {}],
+            ].forEach(([prop, v]) => {
+                it(`[::${prop}] as "${v}"`, () => {
+                    const c = shallow(<InputWithPills {...props} {...{ [prop]: v }} />);
 
-                expect(c).toMatchSnapshot();
+                    expect(c).toMatchSnapshot();
+                });
             });
         });
     });
 });
-
-
