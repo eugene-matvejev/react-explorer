@@ -5,17 +5,17 @@
 @import './media';
 @import './variables';
 
-@import './component/form/accordion.scss';
+@import './component/form/accordion';
 @import './component/form/input-with-pills';
 @import './component/form/pill';
 @import './component/form/suggestions';
 
-@import './component/button.scss';
-@import './component/tile.scss';
-@import './component/top-nav.scss';
-@import './component/tree-node.scss';
+@import './component/button';
+@import './component/tile';
+@import './component/top-nav';
+@import './component/tree-node';
 
-@import './handler/form-handler.scss';
-@import './handler/query.scss';
-@import './handler/tile-handler.scss';
-@import './handler/tree-handler.scss';
+@import './handler/form-handler';
+@import './handler/query';
+@import './handler/tile-handler';
+@import './handler/tree-handler';
