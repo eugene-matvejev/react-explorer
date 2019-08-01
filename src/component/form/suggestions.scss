@@ -2,7 +2,7 @@
     border: 1px solid #eaecef;
     border-top: none;
     overflow: scroll;
-    height: 20rem;
+    max-height: 20rem;
     box-shadow: 5px 5px 10px 1px #eaeaea, -5px 5px 10px #eaeaea;
 }
 
@@ -23,28 +23,12 @@
         font-size: .75rem;
 
         &-label {
-            // font-size: .5rem;
             padding-right: .5rem;
 
             &:not(:last-child)::after {
                 margin-left: .5rem;
                 content: '>>';
             }
-
-        /** status related colours */
-            // &--green {
-            //     // color: $RAGGreen;
-            // }
-
-            // &--amber {
-            //     // color: $RAGAmber;
-            //     // color: #fff;
-            // }
-
-            // &--red {
-            //     // color: $RAGRed;
-            //     // color: #fff;
-            // }
         }
     }
 
@@ -64,37 +48,27 @@
         white-space: nowrap;
         overflow: hidden;
         padding: 0;
-        margin: .5rem 0 0 0;    
+        margin: .5rem 0 0 0;
     }
-    // suggestion__hierachy-label suggestion__hierachy-label--green
+
     /** status related colours */
- 
-    
-&--green {
+    &--green {
         .suggestion__label {
             background-color: $RAGGreen;
-            // font-size: 1.25rem;
         }
-        // background-color: $RAGGreen;
     }
 
     &--amber {
         .suggestion__label {
-            // background-color: $RAGGreen;
             background-color: $RAGAmber;
             color: #fff;
-            // font-size: 1.25rem;
         }
-        // background-color: $RAGAmber;
     }
 
     &--red {
         .suggestion__label {
-            // background-color: $RAGGreen;
             background-color: $RAGRed;
             color: #fff;
-            // font-size: 1.25rem;
         }
-        // background-color: $RAGRed;
     }
 }

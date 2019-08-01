@@ -17,6 +17,7 @@ const onMount = (props, { config }, onSuccess, onError) => {
         name
         parent {
             id
+            name
         }
     }
 }`
@@ -34,7 +35,7 @@ const onMount = (props, { config }, onSuccess, onError) => {
             config[0].items[0].value = status.name;
 
             if (null !== status.parent) {
-                config[0].items[1].value = status.parent.id;
+                config[0].items[1].value = [{ value: status.parent.id, label: status.parent.name }];
             }
 
             onSuccess({ data: status, config });

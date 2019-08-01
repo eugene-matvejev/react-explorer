@@ -18,7 +18,7 @@ exports[`<Pill/> render with optional props [::data-cy] as "{{data-cy}}" 1`] = `
 </span>
 `;
 
-exports[`<Pill/> render with optional props [::onClick] as "() => {}" 1`] = `
+exports[`<Pill/> render with optional props [::data-id] as "{{data-id}}" 1`] = `
 <span
   className="pill"
   data-cy=""
@@ -27,7 +27,7 @@ exports[`<Pill/> render with optional props [::onClick] as "() => {}" 1`] = `
   <button
     className="pill__control"
     data-cy="-remove"
-    onClick={[Function]}
+    data-id="{{data-id}}"
   >
     ×
   </button>
