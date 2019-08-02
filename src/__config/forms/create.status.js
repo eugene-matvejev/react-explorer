@@ -79,7 +79,7 @@ export default {
                     label: 'parent',
                     placeholder: 'parent status',
                     validators: [
-                        composeRule(isLengthBetween, 'only one parent allowed', [, 1]),
+                        composeRule(isLengthBetween, 'only one parent allowed', [undefined, 1]),
                     ],
                     maxValues: 1,
                     valueTransformer: (v) => !v ? null : v[0].value,
