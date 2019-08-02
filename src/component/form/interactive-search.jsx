@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Suggestions from './suggestions';
 import InputWithPills from './input-with-pills';
@@ -162,7 +162,7 @@ class InteractiveSearch extends PureComponent {
                     data-cy={cy}
                     onClick={this.onChange}
                     options={options}
-                    hashmap={value.reduce((acc, { value: v }) => (acc[v] = v, acc), {})}
+                    hashmap={value.reduce((acc, { value: v }) => { acc[v] = v; return acc; }, {})}
                 />
             }
         </div>;
