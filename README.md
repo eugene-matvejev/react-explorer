@@ -15,7 +15,7 @@
 
 # "RAG Status" CWA
 
-##### THIS IS SPARE TIME PROJECT, WORK IN PROGRESS!
+##### THIS IS SPARE TIME PROJECT, WORK IN PROGRESS! [DEMO](https://cwa-explorer.herokuapp.com)
 
 ### software requirements
 
