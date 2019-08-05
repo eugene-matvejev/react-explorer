@@ -1,4 +1,4 @@
-import { composeRule, isRequired, isLengthBetween } from '../../validation/rules';
+import { composeRule, isRequired } from '../../validation/rules';
 import { validationEngine } from '../../validation/engine';
 import Text from '../../component/form/generic-input';
 import InteractiveSearch from '../../component/form/interactive-search';
@@ -79,7 +79,6 @@ export default {
                     label: 'parent',
                     placeholder: 'parent status',
                     validators: [
-                        composeRule(isLengthBetween, 'only one parent allowed', [undefined, 1]),
                     ],
                     maxValues: 1,
                     valueTransformer: (v) => !v ? null : v[0].value,
