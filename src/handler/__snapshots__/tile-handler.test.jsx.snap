@@ -17,14 +17,26 @@ exports[`<TileHandler/> render with default/require d props 1`] = `
       data-cy="-tile-0"
       id={1}
       key="0"
-      target="_blank"
-      to="/explore/1"
+      to={
+        Object {
+          "pathname": "/explore/1",
+          "state": Object {
+            "isModal": true,
+          },
+        }
+      }
     />
     <Tile
       className="tile__add-control"
       data-cy="-add"
-      target="_blank"
-      to="/new"
+      to={
+        Object {
+          "pathname": "new",
+          "state": Object {
+            "isModal": true,
+          },
+        }
+      }
     />
   </div>
 </section>
@@ -47,14 +59,26 @@ exports[`<TileHandler/> render with optional props [::className] as "{{className
       data-cy="-tile-0"
       id={1}
       key="0"
-      target="_blank"
-      to="/explore/1"
+      to={
+        Object {
+          "pathname": "/explore/1",
+          "state": Object {
+            "isModal": true,
+          },
+        }
+      }
     />
     <Tile
       className="tile__add-control"
       data-cy="-add"
-      target="_blank"
-      to="/new"
+      to={
+        Object {
+          "pathname": "new",
+          "state": Object {
+            "isModal": true,
+          },
+        }
+      }
     />
   </div>
 </section>
@@ -77,14 +101,26 @@ exports[`<TileHandler/> render with optional props [::data-cy] as "{{data-cy}}" 
       data-cy="{{data-cy}}-tile-0"
       id={1}
       key="0"
-      target="_blank"
-      to="/explore/1"
+      to={
+        Object {
+          "pathname": "/explore/1",
+          "state": Object {
+            "isModal": true,
+          },
+        }
+      }
     />
     <Tile
       className="tile__add-control"
       data-cy="{{data-cy}}-add"
-      target="_blank"
-      to="/new"
+      to={
+        Object {
+          "pathname": "new",
+          "state": Object {
+            "isModal": true,
+          },
+        }
+      }
     />
   </div>
 </section>

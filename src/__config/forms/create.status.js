@@ -56,10 +56,15 @@ export default {
     title: 'create new status',
     validate: validationEngine,
     isValid: true,
-    onSuccess: ({ history }, state) => {
-        const { data } = state;
+    onMount: (props, state, onSuccess, onError) => {
+        const { config: c } = state;
 
-        history.push(`/explore/${data.id}`);
+        c[0].items[0].value = '';
+        c[0].items[1].value = undefined;
+        c[0].items.splice(2);
+
+        /** hack for because of PureComponent, @TODO improve it */
+        onSuccess({ config: [...c] });
     },
     config: [
         {

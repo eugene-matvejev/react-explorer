@@ -45,7 +45,6 @@ const onMount = (props, { config }, onSuccess, onError) => {
 export default {
     ...create,
     title: undefined,
-    className: 'form--explore-mode',
     onMount,
     onSubmit: composeMutation('updateStatus'),
 }
