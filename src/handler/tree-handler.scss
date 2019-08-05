@@ -1,11 +1,6 @@
 .tree {
-    padding-top: 1rem;
-    overflow: auto;
-    display: flex;
-
-    flex-direction: column;
-
     &_input {
+        width: 35rem;
         font-size: 1.5rem;
         color: #000;
         border: none;
