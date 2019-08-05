@@ -46,10 +46,6 @@ export default {
     ...create,
     title: undefined,
     className: 'form--explore-mode',
-    updateCTRL: {
-        ...create.cancelCTRL,
-        label: 'update',
-    },
     onMount,
     onSubmit: composeMutation('updateStatus'),
 }
