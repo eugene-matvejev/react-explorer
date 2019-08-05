@@ -57,6 +57,7 @@ export default class TreeHandler extends PureComponent {
             />
             {
                 data && data.map((v, i) =>
+                    (undefined === v.isVisible || v.isVisible) &&
                     <TreeNode
                         {...v}
                         key={i}
@@ -75,7 +76,7 @@ export default class TreeHandler extends PureComponent {
 
         data: PropTypes.arrayOf(
             PropTypes.shape({
-                isExpanded: PropTypes.bool,
+                isVisible: PropTypes.bool,
             })
         ),
 

@@ -31,7 +31,7 @@ export default class TileHandler extends PureComponent {
     }
 
     render() {
-        const { pattern, data } = this.state;
+        const { pattern, data, expanded } = this.state;
 
         const { className, 'data-cy': cy, location, label, placeholder, modals } = this.props;
 

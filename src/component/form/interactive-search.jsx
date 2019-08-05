@@ -141,8 +141,8 @@ class InteractiveSearch extends PureComponent {
     }
 
     render() {
-        const { 'data-cy': cy, className, value } = this.props;
-        const { placeholder, isExpanded, options } = this.state;
+        const { 'data-cy': cy, className, placeholder, value } = this.props;
+        const { isExpanded, options } = this.state;
 
         return <div
             className={`interactive-search ${className}`}
@@ -151,10 +151,10 @@ class InteractiveSearch extends PureComponent {
         >
             <InputWithPills
                 data-cy={cy}
-                value={value}
-                placeholder={placeholder}
                 onChange={this.onKeyDown}
                 onClick={this.onRemoveOption}
+                value={value}
+                placeholder={placeholder}
             />
             {
                 isExpanded && options && !!options.length
