@@ -13,9 +13,9 @@
 | __tests__     | [![tests][ci.tests-master-badge]][ci.tests-master]            | [![tests][ci.tests-heroku-badge]][ci.tests-heroku]
 | __coverage__  | [![coverage][ci.coverage-master-badge]][ci.coverage-master]   | [![coverage][ci.coverage-heroku-badge]][ci.coverage-heroku]
 
-# "RAG Status" CWA
+# 'Explorer' react frontend
 
-##### THIS IS SPARE TIME PROJECT, WORK IN PROGRESS!
+##### THIS IS SPARE TIME PROJECT, WORK IN PROGRESS! [DEMO](https://cwa-explorer.herokuapp.com)
 
 ### software requirements
 
@@ -69,7 +69,7 @@ if you're using `make` commands, local **node.js** and **npm** aren't required
 ### gitflow
 
 * master -> most upto date __production__ version
-* __proxy branch__ heroku -> master is not deployed to heroku with every push, because of limiations of 'free account'
+* __proxy branch__ heroku -> master is not deployed to heroku with every push, because of limitations of 'free account'
 * other branches -> 'feature branches' get merged into master
 CI build is mandatory check for every PR into master/heroku branches
 

@@ -16,9 +16,6 @@ describe('<Modal/>', () => {
 
             expect(c).toMatchSnapshot();
         });
-        // 'data-cy': PropTypes.string,
-        // className: PropTypes.string,
-        // onClose: PropTypes.func.isRequired,
 
         describe('with optional props', () => {
             [
