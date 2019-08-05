@@ -6,10 +6,6 @@
     display: inline-block;
     vertical-align: top; /** to fix 'tile' spacing */
 
-    // &:hover {
-    //     // box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
-    // }
-
     &[disabled] {
         opacity: .33;
     }
