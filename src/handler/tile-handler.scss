@@ -1,5 +1,6 @@
 .tile-handler {
-    flex: 1 0 100%;
+    flex-grow: 1;
+    padding: 2rem;
 
     &__container {
         display: flex;
