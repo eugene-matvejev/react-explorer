@@ -10,6 +10,16 @@ exports[`<TopNav/> render with default/require d props 1`] = `
     className="topnav__logo"
     src="/assets/img/placeholder.png"
   />
+  <Link
+    target="_blank"
+    to="//github.com/eugene-matvejev/react-explorer"
+  >
+    <img
+      alt=" GitHub logo"
+      className="topnav__github-logo"
+      src="/assets/img/github-logo.png"
+    />
+  </Link>
 </nav>
 `;
 
@@ -23,6 +33,16 @@ exports[`<TopNav/> render with optional props [::className] as "{{className}}" 1
     className="topnav__logo"
     src="/assets/img/placeholder.png"
   />
+  <Link
+    target="_blank"
+    to="//github.com/eugene-matvejev/react-explorer"
+  >
+    <img
+      alt=" GitHub logo"
+      className="topnav__github-logo"
+      src="/assets/img/github-logo.png"
+    />
+  </Link>
 </nav>
 `;
 
@@ -37,5 +57,15 @@ exports[`<TopNav/> render with optional props [::data-cy] as "{{data-cy}}" 1`] =
     className="topnav__logo"
     src="/assets/img/placeholder.png"
   />
+  <Link
+    target="_blank"
+    to="//github.com/eugene-matvejev/react-explorer"
+  >
+    <img
+      alt=" GitHub logo"
+      className="topnav__github-logo"
+      src="/assets/img/github-logo.png"
+    />
+  </Link>
 </nav>
 `;
