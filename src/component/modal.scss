@@ -1,0 +1,39 @@
+.modal {
+    margin: auto;
+    width: 40rem;
+    background: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem;
+    border-radius: 2rem;
+
+    &--fullscreen {
+        width: 60rem;
+    }
+
+    &_container {
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        background: #00000060;
+    }
+
+    &_title {
+        display: flex;
+        justify-content: flex-end;
+        margin-left: auto;
+        flex: 1 0 100%;
+    }
+
+    &_body {
+        display: flex;
+    }
+
+    &-control {
+        &__close {
+            border: none;
+            font-size: 2rem;
+        }
+    }
+}
