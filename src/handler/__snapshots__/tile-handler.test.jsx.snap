@@ -7,9 +7,7 @@ exports[`<TileHandler/> render with default/require d props 1`] = `
   <ComposedInput
     className=""
     data-cy="-pattern"
-    label="filter"
     onChange={[Function]}
-    placeholder="type pattern to search..."
   />
   <div
     className="tile-handler__container"
@@ -39,9 +37,7 @@ exports[`<TileHandler/> render with optional props [::className] as "{{className
   <ComposedInput
     className=""
     data-cy="-pattern"
-    label="filter"
     onChange={[Function]}
-    placeholder="type pattern to search..."
   />
   <div
     className="tile-handler__container"
@@ -71,9 +67,7 @@ exports[`<TileHandler/> render with optional props [::data-cy] as "{{data-cy}}" 
   <ComposedInput
     className=""
     data-cy="{{data-cy}}-pattern"
-    label="filter"
     onChange={[Function]}
-    placeholder="type pattern to search..."
   />
   <div
     className="tile-handler__container"
