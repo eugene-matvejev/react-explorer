@@ -28,6 +28,8 @@ export default class FormHandler extends PureComponent {
     }
 
     onSuccess({ data, config }) {
+        config = config || this.state.config;
+
         this.setState(
             { data, config },
             () => {
@@ -37,6 +39,8 @@ export default class FormHandler extends PureComponent {
     }
 
     onError({ data, config }) {
+        config = config || this.state.config;
+
         this.setState(
             { data, config },
             () => {

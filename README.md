@@ -69,7 +69,7 @@ if you're using `make` commands, local **node.js** and **npm** aren't required
 ### gitflow
 
 * master -> most upto date __production__ version
-* __proxy branch__ heroku -> master is not deployed to heroku with every push, because of limiations of 'free account'
+* __proxy branch__ heroku -> master is not deployed to heroku with every push, because of limitations of 'free account'
 * other branches -> 'feature branches' get merged into master
 CI build is mandatory check for every PR into master/heroku branches
 

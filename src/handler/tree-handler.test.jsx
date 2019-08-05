@@ -14,7 +14,7 @@ describe('<TreeHandler/>', () => {
                     text: 'children',
                 }
             ]
-        }
+        },
     ];
     const props = {
         onFilter: jest.fn(),
@@ -38,6 +38,12 @@ describe('<TreeHandler/>', () => {
 
                     expect(c).toMatchSnapshot();
                 });
+            });
+
+            it('if node has isVisible property as false, it should NOT render it', () => {
+                const c = shallow(<TreeHandler {...props} data={data.map((v) => ({ ...v, isVisible: false }))} />);
+
+                expect(c).toMatchSnapshot();
             });
         });
     });
