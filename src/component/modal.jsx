@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Modal = ({ className, 'data-cy': cy, onClose, children }) =>
+const Modal = ({ 'data-cy': cy, className, onClose, children }) =>
     <div className="modal_container">
         <section className={`modal ${className}`}>
             <div className="modal_title">
@@ -16,7 +16,7 @@ const Modal = ({ className, 'data-cy': cy, onClose, children }) =>
 Modal.propTypes = {
     'data-cy': PropTypes.string,
     className: PropTypes.string,
-    onClose: PropTypes.func,
+    onClose: PropTypes.func.isRequired,
 };
 Modal.defaultProps = {
     'data-cy': '',

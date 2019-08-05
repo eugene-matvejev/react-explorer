@@ -1,11 +1,7 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Tile from '../component/tile';
 import GenericInput from '../component/form/generic-input';
-
-import { Switch, Route } from 'react-router-dom';
-
-import Portal from '../portal';
 
 export default class TileHandler extends PureComponent {
     constructor({ data, pattern }) {
@@ -33,54 +29,40 @@ export default class TileHandler extends PureComponent {
     render() {
         const { pattern, data } = this.state;
 
-        const { className, 'data-cy': cy, location, label, placeholder, modals } = this.props;
+        const { className, 'data-cy': cy, label, placeholder } = this.props;
 
-        const isModal = location.state && location.state.isModal;
-
-        return <Fragment>
-            <section className={`tile-handler ${className}`}>
-                <GenericInput
-                    onChange={this.onChange}
-                    placeholder={placeholder}
-                    label={label}
-                    value={pattern}
-                    data-cy={`${cy}-pattern`}
+        return <section className={`tile-handler ${className}`}>
+            <GenericInput
+                onChange={this.onChange}
+                placeholder={placeholder}
+                label={label}
+                value={pattern}
+                data-cy={`${cy}-pattern`}
+            />
+            <div className="tile-handler__container">
+                {
+                    data.map((v, i) =>
+                        <Tile
+                            key={i}
+                            data-cy={`${cy}-tile-${i}`}
+                            to={{
+                                pathname: `/explore/${v.id}`,
+                                state: { isModal: true },
+                            }}
+                            {...v}
+                        />
+                    )
+                }
+                <Tile
+                    data-cy={`${cy}-add`}
+                    className="tile__add-control"
+                    to={{
+                        pathname: "new",
+                        state: { isModal: true },
+                    }}
                 />
-                <div className="tile-handler__container">
-                    {
-                        data.map((v, i) =>
-                            <Tile
-                                key={i}
-                                data-cy={`${cy}-tile-${i}`}
-                                to={{
-                                    pathname: `/explore/${v.id}`,
-                                    state: { isModal: true },
-                                }}
-                                {...v}
-                            />
-                        )
-                    }
-                    <Tile
-                        data-cy={`${cy}-add`}
-                        className="tile__add-control"
-                        to={{
-                            pathname: "new",
-                            state: { isModal: true },
-                        }}
-                    />
-                </div>
-            </section>
-            {
-                isModal &&
-                <Portal onClose={this.props.history.goBack} className="modal--fullscreen">
-                    <Switch>
-                        {
-                            modals.map((props, i) => <Route key={i} {...this.props} {...props} />)
-                        }
-                    </Switch>
-                </Portal>
-            }
-        </Fragment>;
+            </div>
+        </section>;
     }
 
     static propTypes = {

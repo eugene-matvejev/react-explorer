@@ -1,26 +1,76 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Button/> render with default/required props 1`] = `
-<button
-  className="button "
+exports[`<Modal/> render with default/required props 1`] = `
+<div
+  className="modal_container"
 >
-  {{label}}
-</button>
+  <section
+    className="modal "
+  >
+    <div
+      className="modal_title"
+    >
+      <button
+        className="modal-control__close"
+        data-cy="-modal-close"
+        onClick={[MockFunction]}
+      >
+        ×
+      </button>
+    </div>
+    <div
+      className="modal_body"
+    />
+  </section>
+</div>
 `;
 
-exports[`<Button/> render with optional props [::className] as "{{className}}" 1`] = `
-<button
-  className="button {{className}}"
+exports[`<Modal/> render with optional props [::className] as "{{className}}" 1`] = `
+<div
+  className="modal_container"
 >
-  {{label}}
-</button>
+  <section
+    className="modal {{className}}"
+  >
+    <div
+      className="modal_title"
+    >
+      <button
+        className="modal-control__close"
+        data-cy="-modal-close"
+        onClick={[MockFunction]}
+      >
+        ×
+      </button>
+    </div>
+    <div
+      className="modal_body"
+    />
+  </section>
+</div>
 `;
 
-exports[`<Button/> render with optional props [::data-cy] as "{{data-cy}}" 1`] = `
-<button
-  className="button "
-  data-cy="{{data-cy}}"
+exports[`<Modal/> render with optional props [::data-cy] as "{{data-cy}}" 1`] = `
+<div
+  className="modal_container"
 >
-  {{label}}
-</button>
+  <section
+    className="modal "
+  >
+    <div
+      className="modal_title"
+    >
+      <button
+        className="modal-control__close"
+        data-cy="{{data-cy}}-modal-close"
+        onClick={[MockFunction]}
+      >
+        ×
+      </button>
+    </div>
+    <div
+      className="modal_body"
+    />
+  </section>
+</div>
 `;

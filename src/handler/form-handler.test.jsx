@@ -87,6 +87,15 @@ describe('<FormHandler/>', () => {
                 expect(spy).toBeCalledWith({ data, config: props.config });
             });
 
+            it(`should set state fields ::config from local state, if it hasn't been provide in payload`, () => {
+                const spy = spyOn(FormHandler.prototype, 'setState');
+
+                const c = shallow(<FormHandler {...props} />);
+                c.instance().onSuccess({ data });
+
+                expect(spy).toBeCalledWith({ data, config: c.state('config') });
+            });
+
             it('should invoke external callback [::onSuccess]', () => {
                 const spy = jest.fn();
 
@@ -104,6 +113,15 @@ describe('<FormHandler/>', () => {
                 shallow(<FormHandler {...props} />).instance().onError({ data, config: props.config });
 
                 expect(spy).toBeCalledWith({ data, config: props.config });
+            });
+
+            it(`should set state fields ::config from local state, if it hasn't been provide in payload`, () => {
+                const spy = spyOn(FormHandler.prototype, 'setState');
+
+                const c = shallow(<FormHandler {...props} />);
+                c.instance().onError({ data });
+
+                expect(spy).toBeCalledWith({ data, config: c.state('config') });
             });
 
             it('should invoke external callback [::onError]', () => {
