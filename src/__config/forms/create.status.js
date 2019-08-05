@@ -9,12 +9,12 @@ import axios from 'axios';
 
 const graphqlURI = `${api.protocol}://${api.host}:${api.port}`;
 
-const onSubmit = (props, state, onSuccess, onError) => {
+export const composeMutation = (type) => (props, state, onSuccess, onError) => {
     const v = resolvePayload(state.config);
 
     const query = `
 mutation {
-    addStatus(
+    ${type}(
         input: {
         ${
         Object
@@ -47,7 +47,7 @@ mutation {
                 throw new Error(data.errors);
             }
 
-            onSuccess({ data: data.data.addStatus, config: state.config });
+            onSuccess({ data: data.data[type], config: state.config });
         })
         .catch(onError);
 };
@@ -128,7 +128,7 @@ export default {
             ],
         },
     ],
-    onSubmit,
+    onSubmit: composeMutation('addStatus'),
     submitCTRL: {
         label: 'submit',
     },
