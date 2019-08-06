@@ -5,18 +5,26 @@ exports[`<TopNav/> render with default/require d props 1`] = `
   className="topnav "
   label="{{label}}"
 >
-  <img
-    alt="logo"
-    className="topnav__logo"
-    src="/assets/img/placeholder.png"
-  />
   <Link
+    className="topnav__link--main"
+    to="/"
+  >
+    <img
+      alt="Logo"
+      className="topnav__logo--main"
+      data-cy="topnav-main"
+      src="/assets/img/placeholder.png"
+    />
+  </Link>
+  <Link
+    className="topnav__link--github"
     target="_blank"
     to="//github.com/eugene-matvejev/react-explorer"
   >
     <img
-      alt=" GitHub logo"
-      className="topnav__github-logo"
+      alt="GitHub logo"
+      className="topnav__logo--github"
+      data-cy="topnav-github"
       src="/assets/img/github-logo.png"
     />
   </Link>
@@ -28,18 +36,26 @@ exports[`<TopNav/> render with optional props [::className] as "{{className}}" 1
   className="topnav {{className}}"
   label="{{label}}"
 >
-  <img
-    alt="logo"
-    className="topnav__logo"
-    src="/assets/img/placeholder.png"
-  />
   <Link
+    className="topnav__link--main"
+    to="/"
+  >
+    <img
+      alt="Logo"
+      className="topnav__logo--main"
+      data-cy="topnav-main"
+      src="/assets/img/placeholder.png"
+    />
+  </Link>
+  <Link
+    className="topnav__link--github"
     target="_blank"
     to="//github.com/eugene-matvejev/react-explorer"
   >
     <img
-      alt=" GitHub logo"
-      className="topnav__github-logo"
+      alt="GitHub logo"
+      className="topnav__logo--github"
+      data-cy="topnav-github"
       src="/assets/img/github-logo.png"
     />
   </Link>
@@ -49,21 +65,28 @@ exports[`<TopNav/> render with optional props [::className] as "{{className}}" 1
 exports[`<TopNav/> render with optional props [::data-cy] as "{{data-cy}}" 1`] = `
 <nav
   className="topnav "
-  data-cy="{{data-cy}}"
   label="{{label}}"
 >
-  <img
-    alt="logo"
-    className="topnav__logo"
-    src="/assets/img/placeholder.png"
-  />
   <Link
+    className="topnav__link--main"
+    to="/"
+  >
+    <img
+      alt="Logo"
+      className="topnav__logo--main"
+      data-cy="{{data-cy}}topnav-main"
+      src="/assets/img/placeholder.png"
+    />
+  </Link>
+  <Link
+    className="topnav__link--github"
     target="_blank"
     to="//github.com/eugene-matvejev/react-explorer"
   >
     <img
-      alt=" GitHub logo"
-      className="topnav__github-logo"
+      alt="GitHub logo"
+      className="topnav__logo--github"
+      data-cy="{{data-cy}}topnav-github"
       src="/assets/img/github-logo.png"
     />
   </Link>

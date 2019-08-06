@@ -1,14 +1,22 @@
 .topnav {
+    display: flex;
     flex: 1 0 100%;
 
-    &__logo {
+    &__logo--main {
         width: 10rem;
         height: 4rem;
-    } 
+        box-sizing: border-box;
+        margin-left: .5rem;
+    }
 
-    &__github-logo {
-        width: 1.5em;
-        float: right;
-        margin: 0.5em;
+    &__logo--github {
+        height: 4rem;
+        width: 4rem;
+        padding: .5rem;
+        box-sizing: border-box;
+    }
+
+    &__link--github {
+        margin-left: auto;
     }
 }
