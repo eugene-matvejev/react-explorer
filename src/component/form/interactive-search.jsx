@@ -151,6 +151,7 @@ class InteractiveSearch extends PureComponent {
         >
             <InputWithPills
                 data-cy={cy}
+                onFocus={this.onMouseEnter}
                 onChange={this.onKeyDown}
                 onClick={this.onRemoveOption}
                 value={value}
