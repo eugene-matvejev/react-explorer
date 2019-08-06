@@ -10,6 +10,7 @@ exports[`<InteractiveSearch/> render with default/required props 1`] = `
     data-cy=""
     onChange={[Function]}
     onClick={[Function]}
+    onFocus={[Function]}
     value={Array []}
   />
 </div>
@@ -25,6 +26,7 @@ exports[`<InteractiveSearch/> render with optional props [::className] as "{{cla
     data-cy=""
     onChange={[Function]}
     onClick={[Function]}
+    onFocus={[Function]}
     value={Array []}
   />
 </div>
@@ -40,6 +42,7 @@ exports[`<InteractiveSearch/> render with optional props [::data-cy] as "{{data-
     data-cy="{{data-cy}}"
     onChange={[Function]}
     onClick={[Function]}
+    onFocus={[Function]}
     value={Array []}
   />
 </div>
@@ -55,6 +58,7 @@ exports[`<InteractiveSearch/> render with optional props [::maxValues] as "1" 1`
     data-cy=""
     onChange={[Function]}
     onClick={[Function]}
+    onFocus={[Function]}
     value={Array []}
   />
 </div>
@@ -70,6 +74,7 @@ exports[`<InteractiveSearch/> render with optional props [::onError] as "() => {
     data-cy=""
     onChange={[Function]}
     onClick={[Function]}
+    onFocus={[Function]}
     value={Array []}
   />
 </div>
@@ -85,6 +90,7 @@ exports[`<InteractiveSearch/> render with optional props [::onSuccess] as "() =>
     data-cy=""
     onChange={[Function]}
     onClick={[Function]}
+    onFocus={[Function]}
     value={Array []}
   />
 </div>
@@ -100,6 +106,7 @@ exports[`<InteractiveSearch/> render with optional props [::options] as "[object
     data-cy=""
     onChange={[Function]}
     onClick={[Function]}
+    onFocus={[Function]}
     value={Array []}
   />
 </div>
@@ -115,6 +122,7 @@ exports[`<InteractiveSearch/> render with optional props [::placeholder] as "{{p
     data-cy=""
     onChange={[Function]}
     onClick={[Function]}
+    onFocus={[Function]}
     placeholder="{{placeholder}}"
     value={Array []}
   />
@@ -131,6 +139,7 @@ exports[`<InteractiveSearch/> render with optional props [::value] as "[object O
     data-cy=""
     onChange={[Function]}
     onClick={[Function]}
+    onFocus={[Function]}
     value={
       Array [
         Object {
