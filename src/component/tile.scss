@@ -1,10 +1,10 @@
 .tile {
     background: grey;
-    text-decoration: none;
+    display: inline-block;
     height: 3rem;
     flex: 0 0 5rem;
-    display: inline-block;
-    vertical-align: top; /** to fix 'tile' spacing */
+    font-size: 0;
+    text-decoration: none;
 
     &[disabled] {
         opacity: .33;
@@ -34,8 +34,6 @@
 
     &:hover {
         color: #000;
-
-        // cursor: pointer;
     }
 
     &:before {
