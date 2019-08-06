@@ -6,7 +6,7 @@ RUN apk add --no-cache nodejs nodejs-npm
 
 COPY package.json package-lock.json ./
 
-RUN npm i --verbose --production
+RUN npm i --verbose
 
 COPY public ./public
 COPY src ./src
