@@ -7,7 +7,7 @@ import './index.scss';
 
 ReactDOM.render(
     <BrowserRouter>
-        <TopNav data-cy="topnav" />
+        <TopNav />
         <Switch>
             {
                 routes.map((props, i) => <Route key={i} {...props} />)
