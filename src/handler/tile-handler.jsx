@@ -29,14 +29,13 @@ export default class TileHandler extends PureComponent {
     render() {
         const { pattern, data } = this.state;
 
-        const { className, 'data-cy': cy } = this.props;
+        const { className, 'data-cy': cy, label, placeholder } = this.props;
 
         return <section className={`tile-handler ${className}`}>
             <GenericInput
                 onChange={this.onChange}
-                placeholder="type pattern to search..."
-                // className="tile-handler_pattern"
-                label="filter"
+                placeholder={placeholder}
+                label={label}
                 value={pattern}
                 data-cy={`${cy}-pattern`}
             />
@@ -46,8 +45,10 @@ export default class TileHandler extends PureComponent {
                         <Tile
                             key={i}
                             data-cy={`${cy}-tile-${i}`}
-                            to={`/explore/${v.id}`}
-                            target="_blank"
+                            to={{
+                                pathname: `/explore/${v.id}`,
+                                state: { isModal: true },
+                            }}
                             {...v}
                         />
                     )
@@ -55,8 +56,10 @@ export default class TileHandler extends PureComponent {
                 <Tile
                     data-cy={`${cy}-add`}
                     className="tile__add-control"
-                    to="/new"
-                    target="_blank"
+                    to={{
+                        pathname: "new",
+                        state: { isModal: true },
+                    }}
                 />
             </div>
         </section>;

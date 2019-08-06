@@ -1,6 +1,5 @@
-import create from './create.status';
+import create, { composeMutation } from './create.status';
 import axios from 'axios';
-import resolvePayload from '../../graphql/payload-resolver';
 import { api } from '../../parameters';
 
 const graphqlURI = `${api.protocol}://${api.host}:${api.port}`;
@@ -42,57 +41,10 @@ const onMount = (props, { config }, onSuccess, onError) => {
         })
         .catch(onError)
 };
-const onSubmit = (props, state, onSuccess, onError) => {
-    const v = resolvePayload(state.config);
-
-    const query = `
-mutation {
-    updateStatus(
-        input: {
-    ${
-        Object
-            .keys(v)
-            .reduce(
-                (acc, key) => {
-                    acc += `
-            ${key}: ${typeof v[key] === 'string' ? `"${v[key]}"` : v[key]}`;
-
-                    return acc;
-                },
-                ''
-            )
-    }
-        }
-    ) {
-        id
-    }
-}`;
-
-    axios
-        .post(
-            graphqlURI,
-            {
-                query,
-            }
-        )
-        .then(({ data }) => {
-            if (data.errors) {
-                throw new Error(data.errors);
-            }
-
-            onSuccess({ data: data.data.updateStatus, config: state.config });
-        })
-        .catch(onError);
-};
 
 export default {
     ...create,
     title: undefined,
-    className: 'form--explore-mode',
-    updateCTRL: {
-        ...create.cancelCTRL,
-        label: 'update',
-    },
     onMount,
-    onSubmit,
+    onSubmit: composeMutation('updateStatus'),
 }

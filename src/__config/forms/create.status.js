@@ -1,4 +1,4 @@
-import { composeRule, isRequired, isLengthBetween } from '../../validation/rules';
+import { composeRule, isRequired } from '../../validation/rules';
 import { validationEngine } from '../../validation/engine';
 import Text from '../../component/form/generic-input';
 import InteractiveSearch from '../../component/form/interactive-search';
@@ -9,12 +9,12 @@ import axios from 'axios';
 
 const graphqlURI = `${api.protocol}://${api.host}:${api.port}`;
 
-const onSubmit = (props, state, onSuccess, onError) => {
+export const composeMutation = (type) => (props, state, onSuccess, onError) => {
     const v = resolvePayload(state.config);
 
     const query = `
 mutation {
-    addStatus(
+    ${type}(
         input: {
         ${
         Object
@@ -47,7 +47,7 @@ mutation {
                 throw new Error(data.errors);
             }
 
-            onSuccess({ data: data.data.addStatus, config: state.config });
+            onSuccess({ data: data.data[type], config: state.config });
         })
         .catch(onError);
 };
@@ -56,10 +56,15 @@ export default {
     title: 'create new status',
     validate: validationEngine,
     isValid: true,
-    onSuccess: ({ history }, state) => {
-        const { data } = state;
+    onMount: (props, state, onSuccess, onError) => {
+        const { config: c } = state;
 
-        history.push(`/explore/${data.id}`);
+        c[0].items[0].value = '';
+        c[0].items[1].value = undefined;
+        c[0].items.splice(2);
+
+        /** hack for because of PureComponent, @TODO improve it */
+        onSuccess({ config: [...c] });
     },
     config: [
         {
@@ -79,7 +84,6 @@ export default {
                     label: 'parent',
                     placeholder: 'parent status',
                     validators: [
-                        composeRule(isLengthBetween, 'only one parent allowed', [undefined, 1]),
                     ],
                     maxValues: 1,
                     valueTransformer: (v) => !v ? null : v[0].value,
@@ -128,7 +132,7 @@ export default {
             ],
         },
     ],
-    onSubmit,
+    onSubmit: composeMutation('addStatus'),
     submitCTRL: {
         label: 'submit',
     },

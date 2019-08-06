@@ -1,13 +1,20 @@
+import React, { Fragment } from 'react';
 import axios from 'axios';
 import { hasSequence } from 'byte-sequence-calculator';
+import FormHandler from '../../handler/form-handler';
+import TreeHandler from '../../handler/tree-handler';
+import Query from '../../handler/query';
+import createStatus from '../forms/create.status';
+import updateStatus from '../forms/update.status';
+import searchStatus from '../trees/explore.status';
 import { api } from '../../parameters';
 
 const graphqlURI = `${api.protocol}://${api.host}:${api.port}`;
+
 const resolveClassName = (status) => {
     if (hasSequence(status.seq, 0x1000)) {
         status.className = 'tile--red';
     }
-
     if (hasSequence(status.seq, 0x0100)) {
         status.className = 'tile--amber';
     }
@@ -22,13 +29,13 @@ const onMount = (props, state, onSuccess, onError) => {
             graphqlURI,
             {
                 query: `
-                {
-                    statuses {
-                        id
-                        name
-                        seq
-                    }
-                }`
+{
+    statuses {
+        id
+        name
+        seq
+    }
+}`
             }
         )
         .then(({ data: { data } }) => {
@@ -50,6 +57,27 @@ const onFilter = ({ data }, state, pattern) => {
 export default {
     onMount,
     onFilter,
+    label: 'filter by pattern',
+    placeholder: 'type pattern here...',
+    modals: [
+        {
+            path: ['/new'],
+            exact: true,
+            component: (props) => <FormHandler className="form--centered" {...props} {...createStatus} onCancel={props.history.goBack}/>,
+        },
+        {
+            path: ['/explore/:id'],
+            exact: true,
+            // className: "modal--fullscreen",
+            component: (props) =>
+                <Fragment>
+                    <FormHandler {...props} {...updateStatus} className="form--explore-mode" />
+                    <Query
+                        {...props}
+                        onMount={searchStatus.onMount}
+                        children={(_, state) => <TreeHandler {...props} {...state} {...searchStatus} onCancel={props.history.goBack}/>}
+                    />
+                </Fragment>,
+        },
+    ],
 };
-
-

@@ -115,6 +115,7 @@ exports[`<InteractiveSearch/> render with optional props [::placeholder] as "{{p
     data-cy=""
     onChange={[Function]}
     onClick={[Function]}
+    placeholder="{{placeholder}}"
     value={Array []}
   />
 </div>
