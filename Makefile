@@ -2,10 +2,11 @@
 .DEV_IMAGE := explorer-cwa
 .SERVE_IMAGE := explorer-cwa-serve
 
-PORT := 8080
-REACT_APP_API_PROTOCOL := http
-REACT_APP_API_HOST := localhost
-REACT_APP_API_PORT := 8081
+
+.PORT := 8080
+PORT := $(.PORT)
+.REACT_APP_GRAPHQL := //localhost:8081
+REACT_APP_GRAPHQL := $(.REACT_APP_GRAPHQL)
 
 .SHARED_VOLUMES := \
 	-v $(PWD)/public:/www/public \
@@ -14,9 +15,7 @@ REACT_APP_API_PORT := 8081
 
 .ENV_VARIABLES := \
 	-e PORT=$(PORT) \
-	-e REACT_APP_API_PROTOCOL=$(REACT_APP_API_PROTOCOL) \
-	-e REACT_APP_API_HOST=$(REACT_APP_API_HOST) \
-	-e REACT_APP_API_PORT=$(REACT_APP_API_PORT)
+	-e REACT_APP_GRAPHQL=$(REACT_APP_GRAPHQL)
 
 help:
 	@echo ""
@@ -38,6 +37,10 @@ help:
 	@echo " make cypress\t\texecute 'cypress' integration tests"
 	@echo " make build\t\tgenerate static assets in './build' directory"
 	@echo ""
+	@echo "-- ARGUMENTS"
+	@echo " argument\t\tdefault"
+	@echo " PORT\t\t\t$(.PORT)"
+	@echo " REACT_APP_GRAPHQL\t$(.REACT_APP_GRAPHQL)"
 
 cy-image:
 	docker-compose -f cypress.compose.yml build
@@ -75,7 +78,7 @@ cypress: cy-image
 interactive: dev-image
 	docker run \
 		--rm \
-		--name explorer-cwa \
+		--name explorer-cwa-$(PORT) \
 		-it \
 		$(.SHARED_VOLUMES) \
 		$(.ENV_VARIABLES) \
@@ -86,7 +89,7 @@ interactive: dev-image
 serve: build serve-image
 	docker run \
 		--rm \
-		--name cwa-serve \
+		--name cwa-serve-$(PORT) \
 		-it \
 		-v $(PWD)/build:/www/build \
 		-v $(PWD)/serve.json:/www/serve.json \
