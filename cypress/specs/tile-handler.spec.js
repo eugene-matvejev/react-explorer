@@ -35,13 +35,14 @@ describe(`<TileHandler/>`, () => {
         cy.get('[data-cy="form-action-submit"]').click();
 
         cy.wait('@graphql');
+        cy.get('[data-cy="form-action-submit"]').should('not.exist');
         cy.get('[data-cy="form-action-update"]').should('exist');
 
         cy.visit('/');
         cy.wait('@graphql');
 
         cy.get('[data-cy="-pattern"]').type(salt);
-        cy.get('[data-cy^="-tile-"]:not(disabled)').should('exist');
+        cy.get('[data-cy^="-tile-"]:not([disabled])').should('exist');
     });
 
     it(`as a user, I should able to create new CHILDREN status and find it in statuses later`, () => {
@@ -69,7 +70,7 @@ describe(`<TileHandler/>`, () => {
         cy.wait('@graphql');
 
         cy.get('[data-cy="-pattern"]').type(salt);
-        cy.get('[data-cy^="-tile-"]:not(disabled)').should('exist');
+        cy.get('[data-cy^="-tile-"]:not([disabled])').should('exist');
     });
 
     it(`as a user, I should able to update existing status, and see it reflected in tree`, () => {
@@ -91,6 +92,44 @@ describe(`<TileHandler/>`, () => {
         cy.wait('@graphql');
 
         cy.get('[data-cy="-pattern"]').type(`updated by cypress at ${salt}`);
-        cy.get('[data-cy^="-tile-"]:not(disabled)').should('exist');
+        cy.get('[data-cy^="-tile-"]:not([disabled])').should('exist');
+
+        cy.get('[data-cy^="-tile-"]:not([disabled])').click();
+        cy.get('[data-cy="tree-node-0"]').should('contain', salt);
+    });
+
+    it(`as a user, I should able to search in tree of hierarchy, inside status`, () => {
+        cy.server();
+        cy.route('POST', `${Cypress.env('graphql')}`).as('graphql');
+
+        cy.visit('/');
+
+        cy.get('[data-cy^="-tile"]').first().click();
+
+        cy.wait(['@graphql','@graphql']);
+
+        cy.get('[data-cy="tree-pattern"]').type('sta');
+        cy.get('[data-cy^="tree-node-0"]').should('to.have.length.of.at.least', 2);
+
+        cy.get('[data-cy="tree-pattern"]').clear().type('weird not existing status name');
+        cy.get('[data-cy^="tree-node-0"]').should('to.have.length.of.at.least', 0);
+    });
+
+    it(`as a user, I should NOT see prefillied values, if I previously views existing status`, () => {
+        cy.server();
+        cy.route('POST', `${Cypress.env('graphql')}`).as('graphql');
+
+        cy.visit('/');
+
+        cy.get('[data-cy^="-tile"]').first().click();
+
+        cy.wait(['@graphql','@graphql']);
+
+        cy.get('[data-cy="-modal-close"]').click();
+
+        cy.get('[data-cy="-add"]').click();
+
+        cy.get('[data-cy="section-0-input-0"]').should('not.have.value');
+        cy.get('[data-cy="section-0-input-1-pill-0"]').should('not.exist');
     });
 });
