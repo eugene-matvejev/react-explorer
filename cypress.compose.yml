@@ -10,27 +10,53 @@ services:
       - 28080:28080
     environment:
       - PORT=28080
-      - REACT_APP_API_PROTOCOL=http
-      - REACT_APP_API_HOST=localhost
-      - REACT_APP_API_PORT=28081
+      # proper address
+      # - REACT_APP_GRAPHQL=//sa:28081
+      # enforce cypress to intercept request with 'graphql' prefix
+      - REACT_APP_GRAPHQL=//sa:28081/graphql
       - REACT_APP_WEBSITE_NAME=example
     entrypoint:
       - serve
     command: -n
 
+  sa:
+    container_name: cy-sa
+    build:
+      context: .
+      dockerfile: cypress.sa.Dockerfile
+    image: explorer-sa-cypress
+    ports:
+      - 28081:28081
+      - 3306:3306
+    environment:
+      - PORT=28081
+      - DB_HOSTNAME=host.docker.internal
+      - DB_USERNAME=root
+      - DB_PASSWORD=password
+      - DB_NAME=explorer
+      - DB_PORT=3306
+      - DB_DIALECT=mysql
+    command: node -r dotenv/config build/app.js
+
   cypress:
-    container_name: cy
+    container_name: cypress
     build:
       context: .
       dockerfile: cypress.Dockerfile
     image: cypress
     depends_on:
       - cwa
+      - sa
     environment:
-      - CYPRESS_BASE_URL=http://cwa:28080
+      - CYPRESS_baseUrl=http://cwa:28080
+    # proper addres
+    #  - CYPRESS_baseUrl=http://sa:28081
+    # enforce cypress to intercept requests with 'graphql' prefix
+      - CYPRESS_graphql=graphql
     entrypoint:
       - npm
     command: run test
     volumes:
       - ./cypress/specs:/www/specs
+      - ./cypress/screenshots:/www/screenshots
       - ./cypress/cypress.json:/www/cypress.json
