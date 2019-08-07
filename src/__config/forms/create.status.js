@@ -88,13 +88,15 @@ export default {
                     maxValues: 1,
                     valueTransformer: (v) => !v ? null : v[0].value,
                     onFilter: (props, state, onSuccess, onError) => {
+                        const { pattern } = state;
+
                         axios
                             .post(
                                 graphqlURI,
                                 {
                                     query: `
 {
-    statuses {
+    search(pattern: "${pattern}") {
         id
         seq
         name
