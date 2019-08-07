@@ -86,13 +86,15 @@ export default {
                     maxValues: 1,
                     valueTransformer: (v) => !v ? null : v[0].value,
                     onFilter: (props, state, onSuccess, onError) => {
+                        const { pattern } = state;
+
                         axios
                             .post(
                                 graphql,
                                 {
                                     query: `
 {
-    statuses {
+    searchStatus(pattern: "${pattern}") {
         id
         seq
         name
@@ -115,7 +117,7 @@ export default {
                                     return '';
                                 }
 
-                                const v = data.statuses.map(({ id: value, name: label, seq }) => ({
+                                const v = data.searchStatus.map(({ id: value, name: label, seq }) => ({
                                     value,
                                     label,
                                     className: resolveClassName(seq),
