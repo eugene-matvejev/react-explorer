@@ -94,7 +94,7 @@ export default {
                                 {
                                     query: `
 {
-    search(pattern: "${pattern}") {
+    searchStatus(pattern: "${pattern}") {
         id
         seq
         name
@@ -117,7 +117,7 @@ export default {
                                     return '';
                                 }
 
-                                const v = data.statuses.map(({ id: value, name: label, seq }) => ({
+                                const v = data.searchStatus.map(({ id: value, name: label, seq }) => ({
                                     value,
                                     label,
                                     className: resolveClassName(seq),
