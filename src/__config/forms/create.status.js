@@ -1,13 +1,11 @@
+import { hasSequence } from 'byte-sequence-calculator';
+import axios from 'axios';
 import { composeRule, isRequired } from '../../validation/rules';
 import { validationEngine } from '../../validation/engine';
 import Text from '../../component/form/generic-input';
 import InteractiveSearch from '../../component/form/interactive-search';
 import resolvePayload from '../../graphql/payload-resolver';
-import { api } from '../../parameters';
-import { hasSequence } from 'byte-sequence-calculator';
-import axios from 'axios';
-
-const graphqlURI = `${api.protocol}://${api.host}:${api.port}`;
+import { graphql } from '../../parameters';
 
 export const composeMutation = (type) => (props, state, onSuccess, onError) => {
     const v = resolvePayload(state.config);
@@ -37,7 +35,7 @@ mutation {
 
     axios
         .post(
-            graphqlURI,
+            graphql,
             {
                 query,
             }
@@ -90,7 +88,7 @@ export default {
                     onFilter: (props, state, onSuccess, onError) => {
                         axios
                             .post(
-                                graphqlURI,
+                                graphql,
                                 {
                                     query: `
 {

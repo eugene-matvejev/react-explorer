@@ -7,9 +7,7 @@ import Query from '../../handler/query';
 import createStatus from '../forms/create.status';
 import updateStatus from '../forms/update.status';
 import searchStatus from '../trees/explore.status';
-import { api } from '../../parameters';
-
-const graphqlURI = `${api.protocol}://${api.host}:${api.port}`;
+import { graphql } from '../../parameters';
 
 const resolveClassName = (status) => {
     if (hasSequence(status.seq, 0x1000)) {
@@ -26,7 +24,7 @@ const resolveClassName = (status) => {
 const onMount = (props, state, onSuccess, onError) => {
     axios
         .post(
-            graphqlURI,
+            graphql,
             {
                 query: `
 {
