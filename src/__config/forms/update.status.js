@@ -1,13 +1,11 @@
 import create, { composeMutation } from './create.status';
 import axios from 'axios';
-import { api } from '../../parameters';
-
-const graphqlURI = `${api.protocol}://${api.host}:${api.port}`;
+import { graphql } from '../../parameters';
 
 const onMount = (props, { config }, onSuccess, onError) => {
     axios
         .post(
-            graphqlURI,
+            graphql,
             {
                 query: `
 {

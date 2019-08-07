@@ -75,10 +75,8 @@ CI build is mandatory check for every PR into master/heroku branches
 
 ### used environment variables
 
-| variable                      | default value | used as
-|---                            |---            |---
-| PORT                          | 8080          | number
-| REACT_APP_API_PROTOCOL        | http          | string
-| REACT_APP_API_HOST            | localhost     | string
-| REACT_APP_API_PORT            | 8081          | number
-| REACT_APP_WEBSITE_NAME        | EXAMPLE       | string
+| variable                  | default value     | used as   | purpose
+|---                        |---                |---        |---
+| PORT                      | 8080              | number    | port on which application will be made available
+| REACT_APP_GRAPHQL         | //localhost:8081  | string    | GraphQL backend URI
+| REACT_APP_WEBSITE_NAME    | EXAMPLE           | string    | website's title in browser
