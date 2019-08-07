@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { filter } from '../../filtering/filter';
-import { api } from '../../parameters';
-
-const graphqlURI = `${api.protocol}://${api.host}:${api.port}`;
+import { graphql } from '../../parameters';
 
 const resolveTree = (v, onlyId) => {
     const hashmap = {};
@@ -26,7 +24,7 @@ const resolveTree = (v, onlyId) => {
             roots.push(node);
         }
     }
-    
+
     return onlyId ? [hashmap[onlyId]] : roots;
 }
 
@@ -35,7 +33,7 @@ export const onMount = (props, state, onSuccess, onError) => {
 
     axios
         .post(
-            graphqlURI,
+            graphql,
             {
                 query: `
 {
