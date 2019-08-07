@@ -1,11 +1,11 @@
-import { hasSequence } from 'byte-sequence-calculator';
-import axios from 'axios';
 import { composeRule, isRequired } from '../../validation/rules';
 import { validationEngine } from '../../validation/engine';
 import Text from '../../component/form/generic-input';
 import InteractiveSearch from '../../component/form/interactive-search';
 import resolvePayload from '../../graphql/payload-resolver';
 import { graphql } from '../../parameters';
+import { hasSequence } from 'byte-sequence-calculator';
+import axios from 'axios';
 
 export const composeMutation = (type) => (props, state, onSuccess, onError) => {
     const v = resolvePayload(state.config);
