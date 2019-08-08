@@ -64,6 +64,15 @@ export default {
         /** hack for because of PureComponent, @TODO improve it */
         onSuccess({ config: [...c] });
     },
+    onSuccess: (props, state) => {
+        const { data } = state;
+        data && props.history.push(
+            {
+                pathname: `/explore/${data.id}`,
+                state: { isModal: true },
+            }
+        );
+    },
     config: [
         {
             items: [
