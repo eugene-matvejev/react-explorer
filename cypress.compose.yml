@@ -5,15 +5,13 @@ services:
     build:
       context: .
       dockerfile: cypress.cwa.Dockerfile
+      args:
+        - REACT_APP_GRAPHQL=//sa:28081
     image: explorer-cwa-cypress
     ports:
       - 28080:28080
     environment:
       - PORT=28080
-      # proper address
-      # - REACT_APP_GRAPHQL=//sa:28081
-      # enforce cypress to intercept request with 'graphql' prefix
-      - REACT_APP_GRAPHQL=//sa:28081/graphql
       - REACT_APP_WEBSITE_NAME=example
     entrypoint:
       - serve
@@ -49,10 +47,7 @@ services:
       - sa
     environment:
       - CYPRESS_baseUrl=http://cwa:28080
-    # proper addres
-    #  - CYPRESS_baseUrl=http://sa:28081
-    # enforce cypress to intercept requests with 'graphql' prefix
-      - CYPRESS_graphql=graphql
+      - CYPRESS_graphql=http://sa:28081
     entrypoint:
       - npm
     command: run test
