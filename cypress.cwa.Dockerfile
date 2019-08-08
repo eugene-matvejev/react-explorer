@@ -12,6 +12,9 @@ COPY public ./public
 COPY src ./src
 COPY .env ./
 
+ARG REACT_APP_GRAPHQL
+ENV REACT_APP_GRAPHQL=$REACT_APP_GRAPHQL
+
 RUN npm run build
 
 ###################################################
