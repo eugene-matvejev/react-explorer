@@ -66,6 +66,7 @@ export default {
     },
     onSuccess: (props, state) => {
         const { data } = state;
+
         data && props.history.push(
             {
                 pathname: `/explore/${data.id}`,
