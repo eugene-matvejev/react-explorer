@@ -43,6 +43,7 @@ const onMount = (props, { config }, onSuccess, onError) => {
 export default {
     ...create,
     title: undefined,
+    onSuccess: undefined,
     onMount,
     onSubmit: composeMutation('updateStatus'),
 }
