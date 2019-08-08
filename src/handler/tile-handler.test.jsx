@@ -51,7 +51,7 @@ describe('<TileHandler/>', () => {
             it('should invoke external callback ::onChange', () => {
                 const spy = jest.fn(({ data: v }) => v);
 
-                shallow(<TileHandler {...props} onFilter={spy}/>)
+                shallow(<TileHandler {...props} onFilter={spy} />)
                     .find('[data-cy="-pattern"]')
                     .simulate('change', { target: { value: 'v' } });
 
@@ -60,4 +60,3 @@ describe('<TileHandler/>', () => {
         });
     });
 });
-
