@@ -24,6 +24,9 @@ help:
 	@echo ""
 	@echo " make help\t\tdisplay help"
 	@echo ""
+	@echo "-- GIT SYNC MODULES"
+	@echo " make sync\t\talias for 'git submodule update --init --recursive --remote'"
+	@echo ""
 	@echo "-- DOCKER IMAGE PREPARATION"
 	@echo " make dev-image\t\tbuild [$(.DEV_IMAGE)] image which encapsulate dev-dependencies, nothing else"
 	@echo " make serve-image\tbuild [$(.SERVE_IMAGE)] image which encapsulate 'serve', nothing else"
@@ -41,6 +44,9 @@ help:
 	@echo " argument\t\tdefault"
 	@echo " PORT\t\t\t$(.PORT)"
 	@echo " REACT_APP_GRAPHQL\t$(.REACT_APP_GRAPHQL)"
+
+sync:
+	git submodule update --init --recursive --remote
 
 cy-image:
 	docker-compose -f cypress.compose.yml build
