@@ -7,6 +7,7 @@ configure({ adapter: new Adapter() });
 
 describe('<Tile/>', () => {
     const props = {
+        to: '//example.com',
     };
 
     describe('render', () => {
@@ -30,4 +31,3 @@ describe('<Tile/>', () => {
         });
     });
 });
-
