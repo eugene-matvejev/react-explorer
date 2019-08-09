@@ -73,17 +73,11 @@ export default class TreeHandler extends PureComponent {
         'data-cy': PropTypes.string,
         className: PropTypes.string,
         pattern: PropTypes.string,
-
         data: PropTypes.arrayOf(
             PropTypes.shape({
                 isVisible: PropTypes.bool,
             })
         ),
-
-        onMount: PropTypes.func,
-        onError: PropTypes.func,
-        onSuccess: PropTypes.func,
-
         onFilter: PropTypes.func.isRequired,
         onExpand: PropTypes.func.isRequired,
     }

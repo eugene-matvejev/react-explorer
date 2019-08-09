@@ -71,7 +71,7 @@ export default class TileHandler extends PureComponent {
         onFilter: PropTypes.func,
         data: PropTypes.arrayOf(
             PropTypes.shape({
-                id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired
+                id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
             })
         ).isRequired,
     }
