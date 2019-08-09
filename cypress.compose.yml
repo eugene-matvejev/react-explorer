@@ -25,15 +25,8 @@ services:
     image: explorer-sa-cypress
     ports:
       - 28081:28081
-      - 3306:3306
     environment:
       - PORT=28081
-      - DB_HOSTNAME=host.docker.internal
-      - DB_USERNAME=root
-      - DB_PASSWORD=password
-      - DB_NAME=explorer
-      - DB_PORT=3306
-      - DB_DIALECT=mysql
     command: node -r dotenv/config build/app.js
 
   cypress:
