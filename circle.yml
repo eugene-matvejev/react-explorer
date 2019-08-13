@@ -39,14 +39,26 @@ jobs:
       - store_artifacts:
           path: build
           prefix: build
-#   cypress:
-#       steps:
-#         - checkout
-#         - run: npm i --verbose
-#         - run: npm build
-#         # - run: cd cypress; npm i --verbose
-#         - run: sudo npm i -g serve
-#         - run: serve -n
+    cypress/install
+    cypress/run:
+        name: Chrome
+        requires:
+          - cypress/install
+        # executor: cypress/browsers-chrome69
+        # record: true
+        # parallel: true
+        # parallelism: 2
+        # group: smoke tests
+        # browser: chrome
+        spec: cypress/specs/*
+    # cypress/run:
+    #   steps:
+    #     - checkout
+    #     - run: npm i --verbose
+    #     - run: npm build
+    #     # - run: cd cypress; npm i --verbose
+    #     - run: sudo npm i -g serve
+    #     - run: serve -n
 #     cypress/install
 #     # cypress/run:
 #     #     name: 4 machines
