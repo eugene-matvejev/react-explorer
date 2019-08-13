@@ -81,8 +81,9 @@ jobs:
             npm run build
             npm run sql db:migrate
             npm run sql db:seed:all
-      # - run: cd node-explorer && node ./build/app.js
-      # - run: PORT=8080 npx serve -n
+      # - run: PORT=8080 npx serve -n &
+      # - run: cd node-explorer && PORT=8081 node ./build/app.js
+      # - run: cd cypress && npx run cypress run
 
 workflows:
   version: 2
