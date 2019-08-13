@@ -1,6 +1,8 @@
-version: 2
+version: 2.1
+# orbs:
+#   cypress: cypress-io/cypress@1.0.0
 jobs:
-  test:
+  - unit/functional test:
     docker:
       - image: circleci/node:lts-jessie
     steps:
@@ -12,6 +14,17 @@ jobs:
       - store_artifacts:
           path: coverage
           prefix: coverage
+  # - cypress:
+  #   steps:
+  #     - checkout
+  #     - run: npm i --verbose
+  #     - run: npm build
+  #     - run: cd cypress; npm i --verbose
+  #     - run: sudo npm i -g serve
+  #     - run: serve -n
+  # - cypress/run:
+  #   steps:
+  #     - run: cypress/node_modules/.bin/cypress run
 workflows:
   version: 2
   test-only:
