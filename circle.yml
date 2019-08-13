@@ -42,6 +42,8 @@ jobs:
   cypress/run:
     docker:
       - image: cypress/base:10
+        environment:
+          DB_DIALECT: sqlite
     steps:
       - checkout
       - run:
@@ -69,8 +71,8 @@ jobs:
             - ~/.npm
             - ~/.cache
       - run: cd node-explorer; npm run build;
-      - run: DB_DIALECT=sqlite cd node-explorer && npm run sql db:migrate && npm run sql db:seed:all;
-      - run: DB_DIALECT=sqlite cd node-explorer && ./build/app.js
+      - run: cd node-explorer && npm run sql db:migrate && npm run sql db:seed:all;
+      - run: cd node-explorer && ./build/app.js
       # - run: PORT=8080 npx serve -n
       - run: cd cypress && npm i --verbose
       - save_cache:
