@@ -2,7 +2,7 @@ version: 2.1
 # orbs:
 #   cypress: cypress-io/cypress@1.0.0
 jobs:
-  - unit/functional test:
+  - tests/functional:
     docker:
       - image: circleci/node:lts-jessie
     steps:
@@ -29,4 +29,4 @@ workflows:
   version: 2
   test-only:
     jobs:
-      - test
+      - tests/functional
