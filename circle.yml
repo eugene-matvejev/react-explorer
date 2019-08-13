@@ -39,7 +39,7 @@ jobs:
       - store_artifacts:
           path: build
           prefix: build
-    cypress/install
+    # cypress/install
     cypress/run:
         name: Chrome
         requires:
