@@ -1,21 +1,23 @@
-version: 2.1
-# orbs:
-#   cypress: cypress-io/cypress@1
-workflows:
-  build:
-    jobs:
-      - jest:
-          docker:
-            - image: circleci/node:lts-jessie
-          steps:
-            - checkout
-            - run: npm i --verbose
-            - run: npm test -- --coverage --watchAll=false
-            - run: sudo npm i -g codecov
-            - run: codecov
-            - store_artifacts:
-                path: coverage
-                prefix: coverage
+version: 2
+
+jobs:
+  jest:
+    docker:
+      - image: circleci/node:lts-jessie
+    steps:
+      - checkout
+      - run: npm i --verbose
+      - run: sudo npm i -g codecov
+      - save_cache:
+          key: npm-{{ checksum "package.json" }}
+          paths:
+            - ~/.npm
+            - ~/.cache
+      - run: npm test -- --coverage --watchAll=false
+      - run: codecov
+      - store_artifacts:
+          path: coverage
+          prefix: coverage
 #   cypress:
 #       steps:
 #         - checkout
@@ -46,9 +48,9 @@ workflows:
 #         spec: cypress/specs/*
 #     #   steps:
 #     #     - run: cypress/node_modules/.bin/cypress run
-# # workflows:
-# #   version: 2
-# #   test-only:
-# #     jobs:
-# #       - jest
-# #       - cypress/run
+workflows:
+  version: 2
+  test-only:
+    jobs:
+      - jest
+      # - cypress/run
