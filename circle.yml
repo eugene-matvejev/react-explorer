@@ -53,7 +53,7 @@ jobs:
             git submodule update --remote
       - restore_cache:
           keys:
-            key: npm-{{ checksum "package.json" }}-{{ checksum "node-explorer/package.json" }}-{{ checksum "cypress/package.json" }}
+            - npm-{{ checksum "package.json" }}-{{ checksum "node-explorer/package.json" }}-{{ checksum "cypress/package.json" }}
       - run:
           name: fetch 'CWA' dependencies
           command: npm i --verbose
