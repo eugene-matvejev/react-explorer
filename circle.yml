@@ -54,7 +54,7 @@ jobs:
             - npm-{{ checksum "package.json" }}
             - npm-cypress-{{ checksum "cypress/package.json" }}
       - run: npm i --verbose
-      - run: sudo npm i -g serve
+      - run: npm i -g serve
       - save_cache:
           key: npm-{{ checksum "package.json" }}
           paths:
