@@ -1,6 +1,8 @@
 version: 2.1
+orbs:
+  cypress: cypress-io/cypress@1
 jobs:
-  unit_tests:
+  jest:
     docker:
       - image: circleci/node:lts-jessie
     steps:
@@ -12,19 +14,39 @@ jobs:
       - store_artifacts:
           path: coverage
           prefix: coverage
-  # - cypress:
-  #   steps:
-  #     - checkout
-  #     - run: npm i --verbose
-  #     - run: npm build
-  #     - run: cd cypress; npm i --verbose
-  #     - run: sudo npm i -g serve
-  #     - run: serve -n
-  # - cypress/run:
+  build:
+    steps:
+      - checkout
+      - run: npm i --verbose
+      - run: npm build
+      # - run: cd cypress; npm i --verbose
+      - run: sudo npm i -g serve
+      - run: serve -n
+  cypress/install
+  # cypress/run:
+  #     name: 4 machines
+  #     requires:
+  #       - cypress/install
+  #     record: true
+  #     parallel: true
+  #     parallelism: 4
+  #     group: 4 machines
+  cypress/run:
+      name: Chrome
+      requires:
+        - cypress/install
+      # executor: cypress/browsers-chrome69
+      # record: true
+      # parallel: true
+      # parallelism: 2
+      # group: smoke tests
+      # browser: chrome
+      spec: cypress/specs/*
   #   steps:
   #     - run: cypress/node_modules/.bin/cypress run
 workflows:
   version: 2
   test-only:
     jobs:
-      - unit_tests
+      - jest
+      - cypress/run
