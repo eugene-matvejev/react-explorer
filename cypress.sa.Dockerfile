@@ -8,9 +8,10 @@ COPY node-explorer/package.json node-explorer/package-lock.json ./
 
 RUN npm i --verbose
 
-COPY node-explorer/.sequelizerc ./.sequelizerc
-COPY node-explorer/.babelrc ./.babelrc
-COPY node-explorer/.env ./.env
+COPY node-explorer/.babelrc \
+     node-explorer/.env \
+     node-explorer/.sequelizerc \
+     ./
 COPY node-explorer/database ./database
 COPY node-explorer/src ./src
 
