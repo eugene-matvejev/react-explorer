@@ -47,7 +47,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "pull graphql backend"
+          name: pull graphql backend
           command: |
             git submodule init
             git submodule update --remote
@@ -56,7 +56,9 @@ jobs:
             - npm-{{ checksum "package.json" }}
             - npm-graphql-{{ checksum "node-explorer/package.json" }}
             - npm-cypress-{{ checksum "cypress/package.json" }}
-      - run: npm i --verbose
+      - run:
+          name: fetch CWA dependencies
+          command: npm i --verbose
       - run: npm i -g serve
       - save_cache:
           key: npm-{{ checksum "package.json" }}
@@ -64,7 +66,9 @@ jobs:
             - ~/.npm
             - ~/.cache
       # - run: npm run build
-      - run: cd node-explorer && npm i --verbose
+      - run:
+          name: fetch SA dependencies
+          command: cd node-explorer && npm i --verbose
       - save_cache:
           key: npm-cypress-{{ checksum "node-explorer/package.json" }}
           paths:
@@ -72,15 +76,16 @@ jobs:
             - ~/.cache
       - run: cd node-explorer && npm run build
       - run: cd node-explorer && npm run sql db:migrate && npm run sql db:seed:all
-      - run: cd node-explorer && node ./build/app.js
+      # - run: cd node-explorer && node ./build/app.js
       # - run: PORT=8080 npx serve -n
-      # - run: cd cypress && npm i --verbose
-      # - save_cache:
-      #     key: npm-cypress-{{ checksum "cypress/package.json" }}
-      #     paths:
-      #       - ~/.npm
-      #       - ~/.cache
-      # - run: cd cypress && npx cypress run
+      - run:
+          name: fetch Cypress dependencies
+          command: cd cypress && npm i --verbose
+      - save_cache:
+          key: npm-cypress-{{ checksum "cypress/package.json" }}
+          paths:
+            - ~/.npm
+            - ~/.cache
 
 workflows:
   version: 2
