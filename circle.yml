@@ -39,18 +39,11 @@ jobs:
       - store_artifacts:
           path: build
           prefix: build
-    # cypress/install
-    cypress/run:
-        name: Chrome
-        requires:
-          - cypress/install
-        # executor: cypress/browsers-chrome69
-        # record: true
-        # parallel: true
-        # parallelism: 2
-        # group: smoke tests
-        # browser: chrome
-        spec: cypress/specs/*
+  cypress/run:
+    # name: Chrome
+    # requires:
+    #   - cypress/install
+    spec: cypress/specs/*
     # cypress/run:
     #   steps:
     #     - checkout
