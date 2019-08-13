@@ -69,7 +69,7 @@ jobs:
             - ~/.npm
             - ~/.cache
       - run: cd node-explorer; npm run build;
-      - run: cd node-explorer; DB_DIALECT=sqlite mkdir var && npm run sql db:migrate && npm run sql db:seed:all;
+      - run: cd node-explorer; DB_DIALECT=sqlite npm run sql db:migrate && npm run sql db:seed:all;
       - run: cd node-explorer; DB_DIALECT=sqlite ./build/app.js
       # - run: PORT=8080 npx serve -n
       - run: cd cypress && npm i --verbose
