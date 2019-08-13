@@ -53,9 +53,7 @@ jobs:
             git submodule update --remote
       - restore_cache:
           keys:
-            - npm-{{ checksum "package.json" }}
-            - npm-graphql-{{ checksum "node-explorer/package.json" }}
-            - npm-cypress-{{ checksum "cypress/package.json" }}
+            key: npm-{{ checksum "package.json" }}-{{ checksum "node-explorer/package.json" }}-{{ checksum "cypress/package.json" }}
       - run:
           name: fetch 'CWA' dependencies
           command: npm i --verbose
@@ -68,11 +66,11 @@ jobs:
       - run:
           name: fetch 'cypress' dependencies
           command: cd cypress && npm i --verbose
-      # - save_cache:
-      #     key: npm-cypress-{{ checksum "cypress/package.json" }}
-      #     paths:
-      #       - ~/.npm
-      #       - ~/.cache
+      - save_cache:
+          key: npm-{{ checksum "package.json" }}-{{ checksum "node-explorer/package.json" }}-{{ checksum "cypress/package.json" }}
+          paths:
+            - ~/.npm
+            - ~/.cache
       - run:
           name: assemble 'CWA' static assets
           command: npm run build
