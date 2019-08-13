@@ -21,6 +21,24 @@ jobs:
       - store_artifacts:
           path: coverage
           prefix: coverage
+  build:
+    docker:
+      - image: circleci/node:lts-jessie
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - npm-{{ checksum "package.json" }}
+      - run: npm i --verbose
+      - save_cache:
+          key: npm-{{ checksum "package.json" }}
+          paths:
+            - ~/.npm
+            - ~/.cache
+      - run: npm build
+      - store_artifacts:
+          path: build
+          prefix: build
 #   cypress:
 #       steps:
 #         - checkout
@@ -56,4 +74,5 @@ workflows:
   test-only:
     jobs:
       - jest
+      - build
       # - cypress/run
