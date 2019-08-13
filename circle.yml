@@ -52,6 +52,7 @@ jobs:
       - restore_cache:
           keys:
             - npm-{{ checksum "package.json" }}
+            - npm-graphql-{{ checksum "node-explorer/package.json" }}
             - npm-cypress-{{ checksum "cypress/package.json" }}
       - run: npm i --verbose
       - run: npm i -g serve
@@ -61,7 +62,16 @@ jobs:
             - ~/.npm
             - ~/.cache
       - run: npm run build
-      - run: PORT=8080 npx serve -n
+      - run: cd node-explorer; npm i --verbose;
+      - save_cache:
+          key: npm-cypress-{{ checksum "node-explorer/package.json" }}
+          paths:
+            - ~/.npm
+            - ~/.cache
+      - run: cd node-explorer; npm run build;
+      - run: cd node-explorer; DB_DIALECT=sqlite mkdir var && npm run sql db:migrate && npm run sql db:seed:all;
+      - run: cd node-explorer; DB_DIALECT=sqlite ./build/app.js
+      # - run: PORT=8080 npx serve -n
       - run: cd cypress && npm i --verbose
       - save_cache:
           key: npm-cypress-{{ checksum "cypress/package.json" }}
