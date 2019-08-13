@@ -14,10 +14,9 @@ COPY node-explorer/.env ./.env
 COPY node-explorer/database ./database
 COPY node-explorer/src ./src
 
-RUN mkdir var
 ENV DB_DIALECT=sqlite
-
-RUN npm run sql db:migrate \
+RUN mkdir var \
+    && npm run sql db:migrate \
     && npm run sql db:seed:all
 
 RUN npm run build
