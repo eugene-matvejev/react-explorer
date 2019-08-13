@@ -5,17 +5,17 @@ workflows:
   jest:
     jobs:
       - jest:
-        docker:
-          - image: circleci/node:lts-jessie
-        steps:
-          - checkout
-          - run: npm i --verbose
-          - run: npm test -- --coverage --watchAll=false
-          - run: sudo npm i -g codecov
-          - run: codecov
-          - store_artifacts:
-              path: coverage
-              prefix: coverage
+          docker:
+            - image: circleci/node:lts-jessie
+          steps:
+            - checkout
+            - run: npm i --verbose
+            - run: npm test -- --coverage --watchAll=false
+            - run: sudo npm i -g codecov
+            - run: codecov
+            - store_artifacts:
+                path: coverage
+                prefix: coverage
 #   cypress:
 #       steps:
 #         - checkout
