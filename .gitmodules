@@ -1,0 +1,3 @@
+[submodule "node-explorer"]
+	path = node-explorer
+	url = git@github.com:eugene-matvejev/node-explorer.git
