@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  tests/functional:
+  tests:functional:
     docker:
       - image: circleci/node:lts-jessie
     steps:
@@ -27,4 +27,4 @@ workflows:
   version: 2
   test-only:
     jobs:
-      - tests/functional
+      - tests:functional
