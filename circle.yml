@@ -40,10 +40,24 @@ jobs:
           path: build
           prefix: build
   cypress/run:
+    docker:
+      - image: cypress/base:10
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - npm-cypress-{{ checksum "cypress/package.json" }}
+      - run: cd cypress && npm i --verbose
+      - save_cache:
+          key: npm-cypress-{{ checksum "cypress/package.json" }}
+          paths:
+            - ~/.npm
+            - ~/.cache
+      - run: cd cypress && npx cypress run
     # name: Chrome
     # requires:
     #   - cypress/install
-    spec: cypress/specs/*
+    # spec: cypress/specs/*
     # cypress/run:
     #   steps:
     #     - checkout
