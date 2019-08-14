@@ -25,7 +25,7 @@ jobs:
           path: coverage
   cypress/run:
     docker:
-      - image: cypress/base:10
+      - image: cypress/base:12.6.0
         environment:
           DB_DIALECT: sqlite
     steps:
@@ -70,6 +70,11 @@ jobs:
             PORT=8080 npx serve -n &
             cd node-explorer && PORT=8081 node ./build/app.js &
             cd cypress && npm test
+      - store_artifacts:
+          path: cypress/screenshots
+      - store_artifacts:
+          path: cypress/report
+
 
 workflows:
   version: 2
