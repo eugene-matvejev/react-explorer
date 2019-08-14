@@ -18,6 +18,6 @@
     "start": "cypress open",
     "pretest": "node ./pretest.js",
     "test": "cypress run",
-    "posttest": "mochawesome-merge --reportDir report > report/summary.json && marge --reportDir report report/summary.json"
+    "posttest": "mochawesome-merge --reportDir report > report/index.json && marge --reportDir report report/index.json"
   }
 }
