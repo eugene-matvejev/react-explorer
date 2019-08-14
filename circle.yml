@@ -8,11 +8,11 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - npm-{{ checksum "package.json" }}
+            - jest-{{ checksum "package.json" }}
       - run: npm i --verbose
       - run: sudo npm i -g codecov
       - save_cache:
-          key: npm-{{ checksum "package.json" }}
+          key: jest-{{ checksum "package.json" }}
           paths:
             - ~/.npm
       - run:
@@ -38,7 +38,7 @@ jobs:
             git submodule update --remote
       - restore_cache:
           keys:
-            - npm-{{ checksum "package.json" }}-{{ checksum "node-explorer/package.json" }}-{{ checksum "cypress/package.json" }}
+            - cy-{{ checksum "package.json" }}-{{ checksum "node-explorer/package.json" }}-{{ checksum "cypress/package.json" }}
       - run:
           name: fetch 'CWA' dependencies
           command: npm i --verbose
@@ -52,7 +52,7 @@ jobs:
           name: fetch 'cypress' dependencies
           command: cd cypress && npm i --verbose
       - save_cache:
-          key: npm-{{ checksum "package.json" }}-{{ checksum "node-explorer/package.json" }}-{{ checksum "cypress/package.json" }}
+          key: cy-{{ checksum "package.json" }}-{{ checksum "node-explorer/package.json" }}-{{ checksum "cypress/package.json" }}
           paths:
             - ~/.npm
       - run:
