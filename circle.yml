@@ -23,7 +23,6 @@ jobs:
           command: codecov
       - store_artifacts:
           path: coverage
-          prefix: coverage
   cypress/run:
     docker:
       - image: cypress/base:10
