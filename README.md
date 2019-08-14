@@ -13,9 +13,11 @@
 | __tests__     | [![tests][ci.tests-master-badge]][ci.tests-master]            | [![tests][ci.tests-heroku-badge]][ci.tests-heroku]
 | __coverage__  | [![coverage][ci.coverage-master-badge]][ci.coverage-master]   | [![coverage][ci.coverage-heroku-badge]][ci.coverage-heroku]
 
-# 'Explorer' CWA
-
 ##### THIS IS A SPARE TIME PROJECT, WORK IN PROGRESS! [DEMO](https://cwa-explorer.herokuapp.com)
+
+# 'Explorer' front-end
+
+back-end can be found [here](https://github.com/eugene-matvejev/node-explorer)
 
 ### software requirements
 
