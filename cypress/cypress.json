@@ -15,8 +15,13 @@
     "pageLoadTimeout": 60000,
     "pluginsFile": false,
     "port": null,
-    "reporter": "spec",
-    "reporterOptions": null,
+    "reporter": "mochawesome",
+    "reporterOptions": {
+      "reportDir": "report",
+      "overwrite": false,
+      "html": false,
+      "json": true
+    },
     "requestTimeout": 5000,
     "responseTimeout": 30000,
     "screenshotsFolder": "screenshots",
