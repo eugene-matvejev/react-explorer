@@ -73,7 +73,7 @@ if you're using `make` commands, local **node.js** and **npm** aren't required
 * master -> most upto date __production ready__
 * other branches -> 'feature branches' get merged into master
 CI 'jest' and 'cypress' checks are mandatory for every PR into master branch
-CI execute tests in isolated enviroment per commit
+CI execute tests in isolated enviroment
 
 ### used environment variables
 
