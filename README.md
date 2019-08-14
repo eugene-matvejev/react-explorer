@@ -17,7 +17,7 @@
 
 # 'Explorer' front-end
 
-back-end can be found [here](https://github.com/eugene-matvejev/react-explorer)
+back-end can be found [here](https://github.com/eugene-matvejev/node-explorer)
 
 ### software requirements
 
