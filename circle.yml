@@ -15,6 +15,7 @@ jobs:
           key: jest-{{ checksum "package.json" }}
           paths:
             - ~/.npm
+            - ~/.cache
       - run:
           name: execute 'jest' tests with coverage
           command: npm test -- --coverage
@@ -54,6 +55,7 @@ jobs:
           key: cy-{{ checksum "package.json" }}-{{ checksum "node-explorer/package.json" }}-{{ checksum "cypress/package.json" }}
           paths:
             - ~/.npm
+            - ~/.cache
       - run:
           name: assemble 'CWA' static assets
           command: npm run build
