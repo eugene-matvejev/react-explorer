@@ -23,7 +23,7 @@ jobs:
           command: codecov
       - store_artifacts:
           path: coverage
-  cypress/run:
+  cypress:
     docker:
       - image: cypress/base:12.6.0
         environment:
@@ -81,4 +81,4 @@ workflows:
   full-coverage:
     jobs:
       - jest
-      - cypress/run
+      - cypress
