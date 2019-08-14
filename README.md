@@ -13,9 +13,9 @@
 | __tests__     | [![tests][ci.tests-master-badge]][ci.tests-master]            | [![tests][ci.tests-heroku-badge]][ci.tests-heroku]
 | __coverage__  | [![coverage][ci.coverage-master-badge]][ci.coverage-master]   | [![coverage][ci.coverage-heroku-badge]][ci.coverage-heroku]
 
-# 'Explorer' react frontend
+# 'Explorer' CWA
 
-##### THIS IS SPARE TIME PROJECT, WORK IN PROGRESS! [DEMO](https://cwa-explorer.herokuapp.com)
+##### THIS IS A SPARE TIME PROJECT, WORK IN PROGRESS! [DEMO](https://cwa-explorer.herokuapp.com)
 
 ### software requirements
 
@@ -49,8 +49,9 @@ if you're using `make` commands, local **node.js** and **npm** aren't required
 
 ### how to run tests
 
-* 'cypress' integration tests `$ make cypress` or `$ npm test` inside `./cypress` directory
-* 'jest' unit and functional tests `$ make test` or `$ npm test`
+* end to end 'cypress' tests: `$ make sync` to fetch GraphQL backend as git submodule, then `$ make cypress`
+  * _npm analogue_ require booting up [CWA](https://github.com/eugene-matvejev/react-explorer) & [SA](https://github.com/eugene-matvejev/node-explorer/) and link them together, then `cd cypress && npm test`
+* functional 'jest' tests: `$ make test` or `$ npm test`
   * __[optional 'jest' CLI params](https://facebook.github.io/jest/docs/en/cli.html)__
     * to generate coverage report `--coverage`, example: `$ npm test -- --coverage`, report will be located in __./coverage__ directory
     * to run tests __only__ in specific file, example: `$ npm test src/validation/rules.test.js`
@@ -68,10 +69,11 @@ if you're using `make` commands, local **node.js** and **npm** aren't required
 
 ### gitflow
 
-* master -> most upto date __production__ version
-* __proxy branch__ heroku -> master is not deployed to heroku with every push, because of limitations of 'free account'
+* heroku -> current __production__, contains _heroku specific changes_, trigger deploy on heroku on every push
+* master -> most upto date __production ready__
 * other branches -> 'feature branches' get merged into master
-CI build is mandatory check for every PR into master/heroku branches
+CI 'jest' and 'cypress' checks are mandatory for every PR into master branch
+CI execute tests in isolated enviroment per commit
 
 ### used environment variables
 
