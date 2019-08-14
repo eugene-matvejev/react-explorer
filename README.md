@@ -50,7 +50,7 @@ if you're using `make` commands, local **node.js** and **npm** aren't required
 ### how to run tests
 
 * end to end 'cypress' tests: `$ make sync` to fetch GraphQL backend as git submodule, then `$ make cypress`
-  * _npm analogue_ require booting up [CWA](https://github.com/eugene-matvejev/react-explorer)/[SA](https://github.com/eugene-matvejev/node-explorer/)/DB for SA and link them together, then `cd cypress && npm test`
+  * _npm analogue_ require booting up [CWA](https://github.com/eugene-matvejev/react-explorer) & [SA](https://github.com/eugene-matvejev/node-explorer/) and link them together, then `cd cypress && npm test`
 * functional 'jest' tests: `$ make test` or `$ npm test`
   * __[optional 'jest' CLI params](https://facebook.github.io/jest/docs/en/cli.html)__
     * to generate coverage report `--coverage`, example: `$ npm test -- --coverage`, report will be located in __./coverage__ directory
