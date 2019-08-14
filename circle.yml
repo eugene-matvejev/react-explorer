@@ -16,8 +16,12 @@ jobs:
           paths:
             - ~/.npm
             - ~/.cache
-      - run: npm test -- --coverage
-      - run: codecov
+      - run:
+          name: execute 'jest' tests with coverage
+          command: npm test -- --coverage
+      - run:
+          name: upload coverage to codecov.io
+          command: codecov
       - store_artifacts:
           path: coverage
           prefix: coverage
