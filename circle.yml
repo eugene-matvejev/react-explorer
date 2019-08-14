@@ -81,9 +81,12 @@ jobs:
             npm run build
             npm run sql db:migrate
             npm run sql db:seed:all
-      # - run: PORT=8080 npx serve -n &
-      # - run: cd node-explorer && PORT=8081 node ./build/app.js
-      # - run: cd cypress && npx run cypress run
+      - run:
+          name: bootup CWA/SA and execute cypress tests
+          command: |
+            PORT=8080 npx serve -n &
+            cd node-explorer && PORT=8081 node ./build/app.js &
+            cd cypress && npm test
 
 workflows:
   version: 2
