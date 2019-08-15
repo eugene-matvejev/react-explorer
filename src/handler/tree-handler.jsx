@@ -78,8 +78,8 @@ export default class TreeHandler extends PureComponent {
                 isVisible: PropTypes.bool,
             })
         ),
-        onFilter: PropTypes.func.isRequired,
         onExpand: PropTypes.func.isRequired,
+        onFilter: PropTypes.func.isRequired,
     }
 
     static defaultProps = {
