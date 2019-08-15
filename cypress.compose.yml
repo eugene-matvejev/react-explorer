@@ -12,7 +12,6 @@ services:
       - 28080:28080
     environment:
       - PORT=28080
-      - REACT_APP_WEBSITE_NAME=example
     entrypoint:
       - serve
     command: -n
