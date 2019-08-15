@@ -19,7 +19,7 @@
 
 ### software requirements
 
-if you're using `make` commands, local **node.js** and **npm** aren't required
+if you're using `make` commands, local __node.js__ and __npm__ aren't required
 * [node.js](https://nodejs.org/) v10+
 * [npm](https://www.npmjs.com/) v6+ or [yarn](https://yarnpkg.com/)
 * __optional__ [makefile](https://en.wikipedia.org/wiki/Makefile) comes out of the box in *nix enviroments
@@ -45,7 +45,7 @@ if you're using `make` commands, local **node.js** and **npm** aren't required
 ### how to install
 
 * if you're using `make` commands and have [docker](https://docs.docker.com/install/) and [docker-compose](https://docs.docker.com/compose/install/) installed, then no steps required
-* otherwise you need **node.js** installed, and execute `$ npm i`
+* otherwise you need __node.js__ installed, and execute `$ npm i`
 
 ### how to run tests
 
