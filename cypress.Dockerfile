@@ -1,4 +1,4 @@
-FROM cypress/browsers:chrome69
+FROM cypress/base:12.6.0
 
 WORKDIR /www
 
