@@ -44,6 +44,4 @@ services:
       - npm
     command: run test
     volumes:
-      - ./cypress/specs:/www/specs
-      - ./cypress/screenshots:/www/screenshots
-      - ./cypress/cypress.json:/www/cypress.json
+      - ./cypress:/www
