@@ -66,7 +66,6 @@ export default {
         {
             path: ['/explore/:id'],
             exact: true,
-            // className: "modal--fullscreen",
             component: (props) =>
                 <Fragment>
                     <FormHandler {...props} {...updateStatus} className="form--explore-mode" />
