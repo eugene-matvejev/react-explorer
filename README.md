@@ -21,10 +21,10 @@ back-end can be found [here](https://github.com/eugene-matvejev/node-explorer)
 
 ### software requirements
 
-if you're using `make` commands, local __node.js__ and __npm__ aren't required
+if you're using `make` commands, __[docker](https://docs.docker.com/install/)__ and __[docker-compose](https://docs.docker.com/compose/install/)__ are required, and local __[node.js](https://nodejs.org/)__ with __[npm](https://www.npmjs.com/)__ are optional
 * [node.js](https://nodejs.org/) v10+
 * [npm](https://www.npmjs.com/) v6+ or [yarn](https://yarnpkg.com/)
-* __optional__ [makefile](https://en.wikipedia.org/wiki/Makefile) comes out of the box in *nix enviroments
+* __optional__ [makefile](https://en.wikipedia.org/wiki/Makefile) comes out of the box in *unix* enviroments
 * __optional__ [docker](https://www.docker.com/) v18.09+
 * __optional__ [docker-compose](https://docs.docker.com/compose/) v3+ *for 'cypress' tests only*
 
@@ -46,8 +46,7 @@ if you're using `make` commands, local __node.js__ and __npm__ aren't required
 
 ### how to install
 
-* if you're using `make` commands and have [docker](https://docs.docker.com/install/) and [docker-compose](https://docs.docker.com/compose/install/) installed, then no steps required
-* otherwise you need __node.js__ installed, and execute `$ npm i`
+* with `make` commands no steps additional required, otherwise you need execute `$ npm i`
 
 ### how to run tests
 
@@ -64,10 +63,13 @@ if you're using `make` commands, local __node.js__ and __npm__ aren't required
 
 ### how to run in 'production' mode
 
-* `$ make serve`, there is no _npm only_ analogue
-  * to run on non-default port you can overwrite PORT variable, example `$ make serve PORT=18080`
-* if you need __only__ generate static assets
+* `$ make serve`, there is no *npm* equivalent
+* if you __only__ need to generate static assets
   * `$ make build` or `$ npm run build` - generated assets will be located in __./build__ directory
+
+### how to run containers with different variables using 'make'
+
+* example: `make PORT=18080`
 
 ### gitflow
 
