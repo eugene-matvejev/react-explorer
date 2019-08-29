@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { hasSequence } from 'byte-sequence-calculator';
 import FormHandler from '../../handler/form-handler';
 import TreeHandler from '../../handler/tree-handler';
@@ -54,7 +54,7 @@ export default {
             path: ['/explore/:id'],
             exact: true,
             component: (props) =>
-                <Fragment>
+                <>
                     <FormHandler {...props} {...updateStatus} className="form--explore-mode" />
                     <Query
                         {...props}
@@ -68,7 +68,7 @@ export default {
                             />
                         }
                     />
-                </Fragment>,
+                </>,
         },
     ],
 };
