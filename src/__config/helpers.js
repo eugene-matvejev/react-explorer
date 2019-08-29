@@ -5,7 +5,7 @@ export const composeGraphQLRequest = (query, queryTransformer) => (props, state,
         .post(
             `${process.env['REACT_APP_GRAPHQL']}/graphql`,
             {
-                query: v.query === 'function' ? query(props, state) : query,
+                query: query === 'function' ? query(props, state) : query,
             }
         )
         .then(({ data: { data } }) => {
