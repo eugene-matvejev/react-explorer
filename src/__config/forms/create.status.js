@@ -3,51 +3,42 @@ import { validationEngine } from '../../validation/engine';
 import Text from '../../component/form/generic-input';
 import InteractiveSearch from '../../component/form/interactive-search';
 import resolvePayload from '../../graphql/payload-resolver';
-import { graphql } from '../../parameters';
+import { composeGraphQLRequest } from '../helpers';
 import { hasSequence } from 'byte-sequence-calculator';
-import axios from 'axios';
 
 export const composeMutation = (type) => (props, state, onSuccess, onError) => {
     const v = resolvePayload(state.config);
 
-    const query = `
+    return composeGraphQLRequest(`
 mutation {
-    ${type}(
-        input: {
-        ${
+${type}(
+    input: {
+    ${
         Object
             .keys(v)
             .reduce(
                 (acc, key) => {
                     acc += `
-            ${key}: ${typeof v[key] === 'string' ? `"${v[key]}"` : v[key]}`;
+        ${key}: ${typeof v[key] === 'string' ? `"${v[key]}"` : v[key]}`;
 
                     return acc;
                 },
                 ''
             )
         }
-        }
-    ) {
-        id
     }
-}`;
-
-    axios
-        .post(
-            graphql,
-            {
-                query,
-            }
-        )
-        .then(({ data }) => {
+) {
+    id
+}
+}`,
+        ((data) => {
             if (data.errors) {
                 throw new Error(data.errors);
             }
 
-            onSuccess({ data: data.data[type], config: state.config });
+            return { data: data.data[type], config: state.config };
         })
-        .catch(onError);
+    )(props, state, onSuccess, onError);
 };
 
 export default {
@@ -95,49 +86,38 @@ export default {
                     ],
                     maxValues: 1,
                     valueTransformer: (v) => !v ? null : v[0].value,
-                    onFilter: (props, state, onSuccess, onError) => {
-                        const { pattern } = state;
-
-                        axios
-                            .post(
-                                graphql,
-                                {
-                                    query: `
+                    onFilter: composeGraphQLRequest(
+                        (props, state) => `
 {
-    searchStatus(pattern: "${pattern}") {
+    searchStatus(pattern: "${state.pattern}") {
         id
         seq
         name
     }
-}`
+}`,
+                        ({ data }) => {
+                            const resolveClassName = (seq) => {
+                                if (hasSequence(seq, 0x1000)) {
+                                    return 'suggestion--red';
                                 }
-                            )
-                            .then(({ data: { data } }) => {
-                                const resolveClassName = (seq) => {
-                                    if (hasSequence(seq, 0x1000)) {
-                                        return 'suggestion--red';
-                                    }
-                                    if (hasSequence(seq, 0x0100)) {
-                                        return 'suggestion--amber';
-                                    }
-                                    if (hasSequence(seq, 0x0010)) {
-                                        return 'suggestion--green';
-                                    }
-
-                                    return '';
+                                if (hasSequence(seq, 0x0100)) {
+                                    return 'suggestion--amber';
+                                }
+                                if (hasSequence(seq, 0x0010)) {
+                                    return 'suggestion--green';
                                 }
 
-                                const v = data.searchStatus.map(({ id: value, name: label, seq }) => ({
-                                    value,
-                                    label,
-                                    className: resolveClassName(seq),
-                                    description: 'lorum ipsum, '.repeat(20),
-                                }));
+                                return '';
+                            }
 
-                                onSuccess(v);
-                            })
-                            .catch(onError);
-                    }
+                            return data.searchStatus.map(({ id: value, name: label, seq }) => ({
+                                value,
+                                label,
+                                className: resolveClassName(seq),
+                                description: 'lorum ipsum, '.repeat(20),
+                            }));
+                        }
+                    ),
                 },
             ],
         },
