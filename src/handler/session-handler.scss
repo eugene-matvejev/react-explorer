@@ -1,0 +1,20 @@
+.session {
+    padding: .5rem;
+    display: flex;
+    flex: 1;
+
+    &_handler {
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+    }
+
+    &_logout-button {
+        margin-top: 2rem;
+        margin-right: auto;
+    }
+
+    &_info {
+        flex-basis: 30rem;
+    }
+}

@@ -12,12 +12,15 @@
 @import './component/form/suggestions';
 
 @import './component/button';
+@import './component/landing-page';
 @import './component/modal';
 @import './component/tile';
 @import './component/top-nav';
 @import './component/tree-node';
 
+@import './handler/auth-handler';
 @import './handler/form-handler';
 @import './handler/query';
+@import './handler/session-handler';
 @import './handler/tile-handler';
 @import './handler/tree-handler';

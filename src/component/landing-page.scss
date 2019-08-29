@@ -1,0 +1,47 @@
+.landing-page {
+    display: flex;
+    height: 100%;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign-up {
+    &_options {
+        width: 20rem;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &-with {
+        list-style: none;
+
+        color: #fff;
+        border-radius: 1rem;
+        margin: .5rem;
+        padding: 1rem;
+        // display: inline-flex;
+
+        &--icon {
+            display: inline-block;
+            // height: 2.5rem;
+            // width: 2.5rem;;
+        }
+
+        & a {
+            color: #fff;
+            line-height: 1.5;
+            font-size: 1.5rem;
+        }
+    }
+
+    &-with--github {
+        background: #04AA51;
+    }
+
+    &-with--bitbucket {
+        background: #0d56c9;
+    }
+}
