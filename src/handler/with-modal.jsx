@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter, Switch, Route } from 'react-router-dom';
 import Portal from '../portal';
 
 export default (Component) => {
     const C = ({ location, modals, ...props }) =>
-        <Fragment>
+        <>
             <Component {...props} />
             {
                 location.state &&
@@ -18,7 +18,7 @@ export default (Component) => {
                     </Switch>
                 </Portal>
             }
-        </Fragment>;
+        </>;
 
     C.displayName = `withModal(${Component.displayName || Component.name})`;
     /** if you follow 'withRouter' HOC style, testing is broken */
