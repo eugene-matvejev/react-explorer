@@ -1,0 +1,250 @@
+import React from 'react';
+import { configure, shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import AuthHandler from './auth-handler';
+
+configure({ adapter: new Adapter() });
+
+describe('<AuthHandler/>', () => {
+    const props = {
+        onMount: jest.fn(),
+    };
+
+    describe('render', () => {
+        it('with default/required props', () => {
+            const c = shallow(<AuthHandler {...props} />);
+
+            expect(c).toMatchSnapshot();
+        });
+
+        describe('with optional props', () => {
+            [
+            ].forEach(([prop, v]) => {
+                it(`[::${prop}] as "${v}"`, () => {
+                    const c = shallow(<AuthHandler {...props} {...{ [prop]: v }} />);
+
+                    expect(c).toMatchSnapshot();
+                });
+            });
+        });
+    });
+
+    describe('lifecycle events', () => {
+        describe('::componentDidMount', () => {
+            it('should invoke external callback [::onMount]', () => {
+                const spy = jest.fn();
+
+                const c = shallow(<AuthHandler {...props} onMount={spy} />);
+
+                expect(spy).toBeCalledWith(c.instance().props, c.state(), c.instance().onSuccess, c.instance().onError);
+            });
+        });
+    });
+
+    describe('internal callbacks', () => {
+        describe('::onSuccess', () => {
+            it('should set state fields [::config, ::data] from payload', () => {
+                const spy = spyOn(AuthHandler.prototype, 'setState');
+
+                shallow(<AuthHandler {...props} />).instance().onSuccess({ data, config: props.config });
+
+                expect(spy).toBeCalledWith({ data, config: props.config });
+            });
+
+            it(`should set state fields ::config from local state, if it hasn't been provide in payload`, () => {
+                const spy = spyOn(AuthHandler.prototype, 'setState');
+
+                const c = shallow(<AuthHandler {...props} />);
+                c.instance().onSuccess({ data });
+
+                expect(spy).toBeCalledWith({ data, config: c.state('config') });
+            });
+
+            it('should invoke external callback [::onSuccess]', () => {
+                const spy = jest.fn();
+
+                const c = shallow(<AuthHandler {...props} onSuccess={spy} />);
+                c.instance().onSuccess({ data, config: props.config });
+
+                expect(spy).toBeCalledWith(c.instance().props, c.state());
+            });
+        });
+
+        describe('::onError', () => {
+            it('should set state fields [::config, ::data] from payload', () => {
+                const spy = spyOn(AuthHandler.prototype, 'setState');
+
+                shallow(<AuthHandler {...props} />).instance().onError({ data, config: props.config });
+
+                expect(spy).toBeCalledWith({ data, config: props.config });
+            });
+
+            it(`should set state fields ::config from local state, if it hasn't been provide in payload`, () => {
+                const spy = spyOn(AuthHandler.prototype, 'setState');
+
+                const c = shallow(<AuthHandler {...props} />);
+                c.instance().onError({ data });
+
+                expect(spy).toBeCalledWith({ data, config: c.state('config') });
+            });
+
+            it('should invoke external callback [::onError]', () => {
+                const spy = jest.fn();
+
+                const c = shallow(<AuthHandler {...props} onError={spy} />);
+                c.instance().onError({ data, config: props.config });
+
+                expect(spy).toBeCalledWith(c.instance().props, c.state());
+            });
+        });
+
+        describe('::onSubmit', () => {
+            it('should invoke external callback [::onSubmit] from click on [data-cy="form-action-submit"]', () => {
+                const spy = jest.fn();
+                const c = shallow(<AuthHandler {...props} onSubmit={spy} />);
+
+                c.find('Button[data-cy="form-action-submit"]').simulate('click', e);
+
+                expect(spy).toBeCalledWith(c.instance().props, c.state(), c.instance().onSuccess, c.instance().onError);
+            });
+
+            it('should invoke external callback [::onSubmit] from click on [data-cy="form-action-update"]', () => {
+                const spy = jest.fn();
+                const c = shallow(<AuthHandler {...props} onSubmit={spy} data={data} />);
+
+                c.find('Button[data-cy="form-action-update"]').simulate('click', e);
+
+                expect(spy).toBeCalledWith(c.instance().props, c.state(), c.instance().onSuccess, c.instance().onError);
+            });
+
+            it('should invoke external callback [::validate] from click on [data-cy="form-action-submit"]', () => {
+                const spy = jest.fn();
+                const c = shallow(<AuthHandler {...props} validate={spy} />);
+
+                c.find('Button[data-cy="form-action-submit"]').simulate('click', e);
+
+                expect(spy).toBeCalledWith(c.state('config'));
+            });
+
+            it('when external callback [::validate] undefined, state field [::isValid] should be set to true', () => {
+                const spy = spyOn(AuthHandler.prototype, 'setState');
+
+                const c = shallow(<AuthHandler {...props}  />);
+
+                c.find('Button[data-cy="form-action-submit"]').simulate('click', e);
+
+                expect(spy).toBeCalledWith({ isValid: true });
+            });
+
+            it('when external callback [::validate] return false, state field [::isValid] should be set to false, and [::config] field should get new reference', () => {
+                const spy = spyOn(AuthHandler.prototype, 'setState');
+
+                const c = shallow(<AuthHandler {...props} validate={() => false} />);
+
+                c.find('Button[data-cy="form-action-submit"]').simulate('click', e);
+
+                expect(spy).toBeCalledWith({ config: c.state('config'), isValid: false });
+            });
+        });
+
+        describe('::onCancel', () => {
+            it('should invoke external callback [::onCancel] from click on [data-cy="form-action-cancel"]', () => {
+                const spy = jest.fn();
+                const c = shallow(<AuthHandler {...props} onCancel={spy} />);
+
+                c.find('Button[data-cy="form-action-cancel"]').simulate('click', e);
+
+                expect(spy).toBeCalledWith(c.instance().props, c.state(), c.instance().onSuccess, c.instance().onError);
+            });
+        });
+
+        /** functionality relay on data-section attribute */
+        describe('::onCollapse', () => {
+            it('should mutate state field [::config] and toggle [::isCollapsed] field for relevant section, from click on <Accordion/>', () => {
+                const c = shallow(<AuthHandler {...props} />);
+
+                c.find('[data-section][data-cy="section-0"]').simulate('collapse', e);
+
+                expect(c.state('config')).toMatchSnapshot();
+            });
+        });
+
+        /** functionality relay on data-section and data-field attributes */
+        describe('::onChange', () => {
+            it('should invoke external callback [::validate] with relevant payload', () => {
+                const spy = jest.fn();
+                const c = shallow(<AuthHandler {...props} validate={spy} />);
+
+                c.find('[data-section][data-field][data-cy="section-0-input-0"]').simulate('change', e);
+
+                expect(spy).toBeCalledWith(c.state('config'), [[0, 0]]);
+            });
+
+            it('should mutate state field [::config] and set [::value] for relevant field from payload', () => {
+                const config = [
+                    {
+                        items: [
+                            {
+                                c: () => <span />,
+                            },
+                            {
+                                c: () => <span />,
+                            },
+                        ],
+                    },
+                ];
+
+                const c = shallow(<AuthHandler {...props} config={config} />);
+
+                c.find('[data-section][data-field][data-cy="section-0-input-0"]').simulate('change', e);
+
+                expect(c.state('config')).toMatchSnapshot();
+            });
+
+            it('should set state field [::isValid] to FALSE, if there is least one error', () => {
+                const spy = spyOn(AuthHandler.prototype, 'setState');
+                const config = [
+                    {
+                        items: [
+                            {
+                                c: () => <span />,
+                            },
+                            {
+                                c: () => <span />,
+                                errors: ['error'],
+                            },
+                        ],
+                    },
+                ];
+
+                shallow(<AuthHandler {...props} config={config} />)
+                    .find('[data-section][data-field][data-cy="section-0-input-0"]')
+                    .simulate('change', e);
+
+                expect(spy).toBeCalledWith({ config, isValid: false });
+            });
+
+            it('should set state field [::isValid] to TRUE, if there are NO errors', () => {
+                const spy = spyOn(AuthHandler.prototype, 'setState');
+                const config = [
+                    {
+                        items: [
+                            {
+                                c: () => <span />,
+                            },
+                            {
+                                c: () => <span />,
+                            },
+                        ],
+                    },
+                ];
+
+                shallow(<AuthHandler {...props} config={config} />)
+                    .find('[data-section][data-field][data-cy="section-0-input-0"]')
+                    .simulate('change', e);
+
+                expect(spy).toBeCalledWith({ config, isValid: true });
+            });
+        });
+    });
+});

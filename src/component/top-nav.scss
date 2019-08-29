@@ -9,14 +9,33 @@
         margin-left: .5rem;
     }
 
-    &__logo--github {
+    &__user-avatar {
         height: 4rem;
         width: 4rem;
         padding: .5rem;
+        border-radius: 2rem;
         box-sizing: border-box;
     }
 
-    &__link--github {
+    &__user-wrapper {
         margin-left: auto;
+        position: relative;
+    }
+
+    &__user-menu-options {
+        position: absolute;
+        right: 1rem;
+        width: 15rem;
+        padding: 0;
+        margin: 0;
+    }
+
+    &__user-menu-option {
+        padding: .5rem;
+        list-style: none;
+
+        &:hover {
+            background: #c8bbbb;
+        }
     }
 }
