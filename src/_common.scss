@@ -14,7 +14,6 @@ a:hover {
     text-decoration: none;
 }
 
-#app {
-    display: flex;
-    flex-wrap: wrap
+html, body, #root {
+    height: 100%;
 }

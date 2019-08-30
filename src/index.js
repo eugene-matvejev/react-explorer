@@ -14,5 +14,5 @@ ReactDOM.render(
             }
         </Switch>
     </BrowserRouter>,
-    document.getElementById('app')
+    document.getElementById('root')
 );
