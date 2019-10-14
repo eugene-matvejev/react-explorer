@@ -53,8 +53,8 @@ if you're using `make` commands, __[docker](https://docs.docker.com/install/)__ 
 * end to end 'cypress' tests: `$ make sync` to fetch GraphQL backend as git submodule, then `$ make cypress`
   * _npm analogue_ require booting up [CWA](https://github.com/eugene-matvejev/react-explorer) & [SA](https://github.com/eugene-matvejev/node-explorer/) and link them together, then `cd cypress && npm test`
 * functional 'jest' tests: `$ make test` or `$ npm test`
-  * __[optional 'jest' CLI params](https://facebook.github.io/jest/docs/en/cli.html)__
-    * to generate coverage report `--coverage`, example: `$ npm test -- --coverage`, report will be located in __./coverage__ directory
+  * __optional__ [ 'jest' CLI params](https://facebook.github.io/jest/docs/en/cli.html), examples:
+    * to collect coverage, example: `$ npm test -- --coverage`, report will be located in __./coverage__ directory
     * to run tests __only__ in specific file, example: `$ npm test src/validation/rules.test.js`
 
 ### how to run in 'development' mode
