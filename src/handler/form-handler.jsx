@@ -109,9 +109,11 @@ export default class FormHandler extends PureComponent {
         return <form className={`form ${className}`}>
             {title && <h1 className="form_title" data-cy={`${cy}form-title`}>{title}</h1>}
             {
-                config.map(({ items, ...props }, i) =>
+                config.map(({ className, title, isCollapsed, items }, i) =>
                     <Accordion
-                        {...props}
+                        className={className}
+                        title={title}
+                        isCollapsed={isCollapsed}
                         onCollapse={this.onCollapse}
                         key={i}
                         data-section={i}
@@ -172,6 +174,9 @@ export default class FormHandler extends PureComponent {
 
         config: PropTypes.arrayOf(
             PropTypes.shape({
+                className: PropTypes.string,
+                title: PropTypes.string,
+                isCollapsed: PropTypes.bool,
                 items: PropTypes.arrayOf(
                     PropTypes.shape({
                         c: PropTypes.func.isRequired,
