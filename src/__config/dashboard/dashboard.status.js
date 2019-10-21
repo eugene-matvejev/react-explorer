@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import axios from 'axios';
 import { hasSequence } from 'byte-sequence-calculator';
 import FormHandler from '../../handler/form-handler';
@@ -67,14 +67,14 @@ export default {
             path: ['/explore/:id'],
             exact: true,
             component: (props) =>
-                <Fragment>
+                <>
                     <FormHandler {...props} {...updateStatus} className="form--explore-mode" />
                     <Query
                         {...props}
                         onMount={searchStatus.onMount}
                         children={(_, state) => <TreeHandler {...props} {...state} {...searchStatus} onCancel={props.history.goBack}/>}
                     />
-                </Fragment>,
+                </>,
         },
     ],
 };
