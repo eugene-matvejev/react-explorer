@@ -78,8 +78,8 @@ if you're using `make` commands, local __node.js__ and __npm__ aren't required
 
 ### used environment variables
 
-| variable                  | default value     | used as   | purpose
-|---                        |---                |---        |---
-| PORT                      | 8080              | number    | port on which application will be made available
-| REACT_APP_GRAPHQL         | //localhost:8081  | string    | GraphQL backend URI
-| REACT_APP_WEBSITE_NAME    | EXAMPLE           | string    | website's title in browser
+| variable          | default value     | used as   | purpose
+|---                |---                |---        |---
+| PORT              | 8080              | number    | port on which application will be made available
+| REACT_APP_GRAPHQL | //localhost:8081  | string    | GraphQL backend URI
+| REACT_APP_TITLE   | EXAMPLE           | string    | website's title
