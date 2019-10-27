@@ -46,7 +46,7 @@ jobs:
           name: fetch 'SA' dependencies
           command: cd node-explorer && npm i --verbose
       - run:
-          name: fetch 'serve' http server
+          name: install 'serve' module
           command: npm i -g serve
       - run:
           name: fetch 'cypress' dependencies
