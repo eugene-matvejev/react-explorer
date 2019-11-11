@@ -29,7 +29,7 @@ export default class TileHandler extends PureComponent {
     render() {
         const { pattern, data } = this.state;
 
-        const { className, 'data-cy': cy, label, placeholder } = this.props;
+        const { className, 'data-cy': cy, placeholder } = this.props;
 
         return <section className={`tile-handler ${className}`}>
             <HTMLInput
@@ -37,7 +37,6 @@ export default class TileHandler extends PureComponent {
                 onChange={this.onChange}
                 value={pattern}
                 placeholder={placeholder}
-                label={label}
             />
             <div className="tile-handler__container">
                 {
