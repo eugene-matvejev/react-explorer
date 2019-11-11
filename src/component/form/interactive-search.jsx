@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Suggestions from './suggestions';
 import InputWithPills from './input-with-pills';
-import composeInput from './compose-input';
+import compose from './compose-form-field';
 
 export const executeOnChange = (props, value) => props.onChange(
     {
@@ -199,7 +199,7 @@ class InteractiveSearch extends PureComponent {
     }
 }
 
-export default composeInput(InteractiveSearch);
+export default compose(InteractiveSearch);
 export {
     InteractiveSearch as PureInteractiveSearch,
 }

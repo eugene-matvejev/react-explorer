@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { PureGenericInput } from './generic-input';
+import { PureHTMLInput } from './html-input';
 import Pill from './pill';
 
-const InputWithPills = ({ 'data-cy': cy, value, onClick, ...props }) =>
+const InputWithPills = ({ 'data-cy': cy, onClick, value, ...props }) =>
     <div className="input-with-pills" onClick={onClick}>
         {
             value && value.map((props, i) =>
@@ -15,13 +15,13 @@ const InputWithPills = ({ 'data-cy': cy, value, onClick, ...props }) =>
                 />
             )
         }
-        <PureGenericInput {...props} data-cy={cy} className="input-with-pills__input" />
+        <PureHTMLInput {...props} data-cy={cy} className="input-with-pills__input" />
     </div>;
 
 InputWithPills.propTypes = {
     'data-cy': PropTypes.string,
-    value: PropTypes.arrayOf(PropTypes.object),
     onClick: PropTypes.func,
+    value: PropTypes.array,
 }
 
 InputWithPills.defaultProps = {
