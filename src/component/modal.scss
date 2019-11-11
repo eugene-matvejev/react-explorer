@@ -9,7 +9,7 @@
     min-width: 33%;
     flex-direction: column;
 
-    &-container {
+    &_container {
         top: 0;
         position: fixed;
         height: 100%;
@@ -18,18 +18,17 @@
         background: #00000060;
     }
 
-    &-head {
-        // display: flex;
+    &_head {
         margin-left: auto;
     }
 
-    &-content {
+    &_content {
         display: flex;
         flex-wrap: wrap;
         flex-basis: 100%;
     }
 
-    &-button {
+    &_button--close {
         background: transparent;
         border: none;
         padding: 0;
