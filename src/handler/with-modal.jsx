@@ -10,7 +10,7 @@ export default (Component) => {
             {
                 location.state &&
                 location.state.isModal &&
-                <Portal onClose={props.history.goBack} className="modal--fullscreen">
+                <Portal onClose={props.history.goBack}>
                     <Switch>
                         {
                             modals.map((p, i) => <Route key={i} {...props} {...p} />)

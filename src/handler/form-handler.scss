@@ -9,6 +9,9 @@
 
         &_label {
             font-size: 1.5rem;
+
+            display: flex;
+            flex-direction: column;
         }
 
         input {
@@ -46,5 +49,5 @@
 .form.form--centered {
     margin: auto;
     align-self: center;
-    flex: 1 0 60rem;
+    flex-grow: 1;
 }
