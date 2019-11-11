@@ -13,7 +13,7 @@ describe('<WithModal/> as HOC', () => {
         history: {
             goBack: jest.fn(),
         },
-        'data-cy': 'should be passed "as is"',
+        'data-cy': '{{data-cy}}', //should be passed "as is",
         modals: [
             {
                 path: ['/explore/:id'],

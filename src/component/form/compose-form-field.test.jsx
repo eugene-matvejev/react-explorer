@@ -1,19 +1,19 @@
 import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import composeInput from './compose-input';
+import compose from './compose-form-field';
 
 configure({ adapter: new Adapter() });
 
-const ComposedInput = composeInput((props) => <input {...props} />);
+const FormField = compose((props) => <input {...props} />);
 
-describe('<ComposedInput/>', () => {
+describe('<FormField/>', () => {
     const props = {
     };
 
     describe('render', () => {
         it('with default/required props', () => {
-            const c = shallow(<ComposedInput {...props} />);
+            const c = shallow(<FormField {...props} />);
 
             expect(c).toMatchSnapshot();
         });
@@ -23,7 +23,7 @@ describe('<ComposedInput/>', () => {
                 ['errors', ['{{error}}']],
             ].forEach(([prop, v]) => {
                 it(`[::${prop}] as "${v}"`, () => {
-                    const c = shallow(<ComposedInput {...props} {...{ [prop]: v }} />);
+                    const c = shallow(<FormField {...props} {...{ [prop]: v }} />);
 
                     expect(c).toMatchSnapshot();
                 });

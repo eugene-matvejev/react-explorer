@@ -9,7 +9,7 @@ exports[`<InputWithPills/> render with default/required props 1`] = `
     key="0"
     label="{{label}}"
   />
-  <GenericInput
+  <HTMLInput
     className="input-with-pills__input"
     data-cy=""
   />
@@ -25,7 +25,7 @@ exports[`<InputWithPills/> render with optional props [::data-cy] as "{{data-cy}
     key="0"
     label="{{label}}"
   />
-  <GenericInput
+  <HTMLInput
     className="input-with-pills__input"
     data-cy="{{data-cy}}"
   />
@@ -43,7 +43,7 @@ exports[`<InputWithPills/> render with optional props [::onClick] as "() => {}" 
     key="0"
     label="{{label}}"
   />
-  <GenericInput
+  <HTMLInput
     className="input-with-pills__input"
     data-cy=""
   />

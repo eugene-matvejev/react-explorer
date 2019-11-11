@@ -1,6 +1,6 @@
 import { composeRule, isRequired } from '../../validation/rules';
 import { validationEngine } from '../../validation/engine';
-import Text from '../../component/form/generic-input';
+import Text from '../../component/form/html-input';
 import InteractiveSearch from '../../component/form/interactive-search';
 import resolvePayload from '../../graphql/payload-resolver';
 import { graphql } from '../../parameters';
