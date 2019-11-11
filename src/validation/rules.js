@@ -31,25 +31,5 @@ export const composeRule = (fn, message, args = []) => (v) => fn(v, ...args) || 
 export const composeConditionalRule = (condition, fn) => (v, c) => !condition(v, c) || fn(v);
 
 export const isRequired = (v) => "" !== v && v !== undefined && v !== null;
-export const isMatchRegex = (v, pattern) => {
-    if (pattern instanceof RegExp) {
-        return pattern.test(v);
-    }
-
-    return new RegExp(pattern).test(v);
-};
-export const isLengthBetween = (v, min, max) => {
-    if (undefined !== min) {
-        if (min > v.length) {
-            return false;
-        }
-    }
-
-    if (undefined !== max) {
-        if (max < v.length) {
-            return false;
-        }
-    }
-
-    return true;
-}
+export const isMatchRegex = (v, pattern) => new RegExp(pattern).test(v);
+export const isLengthBetween = (v, min, max) => !(min > v.length || max < v.length);

@@ -4,7 +4,7 @@ exports[`<TileHandler/> render with default/require d props 1`] = `
 <section
   className="tile-handler "
 >
-  <ComposedInput
+  <ComposedFormField
     className=""
     data-cy="-pattern"
     onChange={[Function]}
@@ -46,7 +46,7 @@ exports[`<TileHandler/> render with optional props [::className] as "{{className
 <section
   className="tile-handler {{className}}"
 >
-  <ComposedInput
+  <ComposedFormField
     className=""
     data-cy="-pattern"
     onChange={[Function]}
@@ -88,7 +88,7 @@ exports[`<TileHandler/> render with optional props [::data-cy] as "{{data-cy}}" 
 <section
   className="tile-handler "
 >
-  <ComposedInput
+  <ComposedFormField
     className=""
     data-cy="{{data-cy}}-pattern"
     onChange={[Function]}

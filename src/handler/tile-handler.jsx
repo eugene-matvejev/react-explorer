@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Tile from '../component/tile';
-import GenericInput from '../component/form/generic-input';
+import HTMLInput from '../component/form/html-input';
 
 export default class TileHandler extends PureComponent {
     constructor({ data, pattern }) {
@@ -32,12 +32,12 @@ export default class TileHandler extends PureComponent {
         const { className, 'data-cy': cy, label, placeholder } = this.props;
 
         return <section className={`tile-handler ${className}`}>
-            <GenericInput
+            <HTMLInput
+                data-cy={`${cy}-pattern`}
                 onChange={this.onChange}
+                value={pattern}
                 placeholder={placeholder}
                 label={label}
-                value={pattern}
-                data-cy={`${cy}-pattern`}
             />
             <div className="tile-handler__container">
                 {

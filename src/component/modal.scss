@@ -1,15 +1,13 @@
 .modal {
     margin: auto;
-    width: 40rem;
     background: #fff;
-    display: flex;
-    flex-wrap: wrap;
     padding: 2rem;
     border-radius: 2rem;
 
-    &--fullscreen {
-        width: 60rem;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 33%;
+    flex-direction: column;
 
     &_container {
         top: 0;
@@ -20,21 +18,25 @@
         background: #00000060;
     }
 
-    &_title {
-        display: flex;
-        justify-content: flex-end;
+    &_head {
         margin-left: auto;
-        flex: 1 0 100%;
     }
 
-    &_body {
+    &_content {
         display: flex;
+        flex-wrap: wrap;
+        flex-basis: 100%;
     }
 
-    &-control {
-        &__close {
-            border: none;
-            font-size: 2rem;
-        }
+    &_button--close {
+        background: transparent;
+        border: none;
+        padding: 0;
+
+        text-align: center;
+        font-size: 2rem;
+        line-height: 2rem;
+
+        cursor: pointer;
     }
 }
