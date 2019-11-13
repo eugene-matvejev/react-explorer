@@ -1,7 +1,7 @@
-import create, { composeMutation } from './create.status';
-import { composeGraphQLRequest } from '../helpers';
+import create from './create.status';
+import { composeQuery, composeMutation } from '../helpers';
 
-const onMount = composeGraphQLRequest(
+const onMount = composeQuery(
     (props, state) => `
 {
     status(id: ${props.match.params.id}) {
@@ -13,7 +13,8 @@ const onMount = composeGraphQLRequest(
         }
     }
 }`,
-    ({ status }, props, state) => {
+    (data, props, state) => {
+        const { status } = data;
         const { config } = state;
 
         config[0].items.push({
@@ -28,7 +29,7 @@ const onMount = composeGraphQLRequest(
             config[0].items[1].value = [{ value: status.parent.id, label: status.parent.name }];
         }
 
-        return ({ data: status, config });
+        return { data: status, config };
     }
 );
 

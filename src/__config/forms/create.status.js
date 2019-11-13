@@ -1,45 +1,9 @@
+import { hasSequence } from 'byte-sequence-calculator';
 import { composeRule, isRequired } from '../../validation/rules';
 import { validationEngine } from '../../validation/engine';
 import Text from '../../component/form/html-input';
 import InteractiveSearch from '../../component/form/interactive-search';
-import resolvePayload from '../../graphql/payload-resolver';
-import { composeGraphQLRequest } from '../helpers';
-import { hasSequence } from 'byte-sequence-calculator';
-
-export const composeMutation = (type) => (props, state, onSuccess, onError) => {
-    const v = resolvePayload(state.config);
-
-    return composeGraphQLRequest(`
-mutation {
-${type}(
-    input: {
-    ${
-        Object
-            .keys(v)
-            .reduce(
-                (acc, key) => {
-                    acc += `
-        ${key}: ${typeof v[key] === 'string' ? `"${v[key]}"` : v[key]}`;
-
-                    return acc;
-                },
-                ''
-            )
-        }
-    }
-) {
-    id
-}
-}`,
-        ((data) => {
-            if (data.errors) {
-                throw new Error(data.errors);
-            }
-
-            return { data: data.data[type], config: state.config };
-        })
-    )(props, state, onSuccess, onError);
-};
+import { composeQuery, composeMutation } from '../helpers';
 
 export default {
     title: 'create new status',
@@ -50,7 +14,7 @@ export default {
 
         c[0].items[0].value = '';
         c[0].items[1].value = undefined;
-        c[0].items.splice(2);
+        // c[0].items.splice(2);
 
         /** hack for because of PureComponent, @TODO improve it */
         onSuccess({ config: [...c] });
@@ -82,11 +46,9 @@ export default {
                     attr: 'parent',
                     label: 'parent',
                     placeholder: 'parent status',
-                    validators: [
-                    ],
                     maxValues: 1,
                     valueTransformer: (v) => !v ? null : v[0].value,
-                    onFilter: composeGraphQLRequest(
+                    onFilter: composeQuery(
                         (props, state) => `
 {
     searchStatus(pattern: "${state.pattern}") {
@@ -114,7 +76,6 @@ export default {
                                 value,
                                 label,
                                 className: resolveClassName(seq),
-                                description: 'lorum ipsum, '.repeat(20),
                             }));
                         }
                     ),

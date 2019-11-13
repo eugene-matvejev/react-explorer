@@ -1,5 +1,5 @@
 import { filter } from '../../filtering/filter';
-import { composeGraphQLRequest } from '../helpers';
+import { composeQuery } from '../helpers';
 
 const resolveTree = (v, onlyId) => {
     const hashmap = {};
@@ -27,7 +27,7 @@ const resolveTree = (v, onlyId) => {
     return onlyId ? [hashmap[onlyId]] : roots;
 }
 
-export const onMount = composeGraphQLRequest(`
+export const onMount = composeQuery(`
 {
     statuses {
         id
@@ -39,7 +39,6 @@ export const onMount = composeGraphQLRequest(`
     }
 }`,
     (v, props, state) => {
-        debugger;
         const { statuses } = v;
         const { match: { params: { id } } } = props;
 
