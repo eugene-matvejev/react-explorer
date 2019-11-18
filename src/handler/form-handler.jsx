@@ -72,9 +72,6 @@ export default class FormHandler extends PureComponent {
     }
 
     onCollapse(e) {
-        e.preventDefault();
-        e.stopPropagation();
-
         const { config } = this.state;
 
         const section = e.target.getAttribute('data-section');
@@ -85,9 +82,6 @@ export default class FormHandler extends PureComponent {
     }
 
     onChange(e) {
-        e.preventDefault();
-        e.stopPropagation();
-
         const { config } = this.state;
 
         const section = e.target.getAttribute('data-section');
