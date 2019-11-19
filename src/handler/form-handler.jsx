@@ -136,9 +136,8 @@ export default class FormHandler extends PureComponent {
                 {
                     updateCTRL && data &&
                     <Button
-                        className={updateCTRL.className}
+                        {...updateCTRL}
                         data-cy={`${cy}form-action-update`}
-                        label={updateCTRL.label}
                         onClick={this.onSubmit}
                         disabled={!isValid}
                     />
@@ -146,9 +145,8 @@ export default class FormHandler extends PureComponent {
                 {
                     submitCTRL && !data &&
                     <Button
-                        className={submitCTRL.className}
+                        {...submitCTRL}
                         data-cy={`${cy}form-action-submit`}
-                        label={submitCTRL.label}
                         onClick={this.onSubmit}
                         disabled={!isValid}
                     />
@@ -156,9 +154,8 @@ export default class FormHandler extends PureComponent {
                 {
                     cancelCTRL &&
                     <Button
-                        className={cancelCTRL.className}
+                        {...cancelCTRL}
                         data-cy={`${cy}form-action-cancel`}
-                        label={cancelCTRL.label}
                         onClick={this.onCancel}
                     />
                 }
@@ -183,18 +180,9 @@ export default class FormHandler extends PureComponent {
         data: PropTypes.object,
         isValid: PropTypes.bool,
 
-        updateCTRL: PropTypes.shape({
-            className: PropTypes.string,
-            label: PropTypes.string,
-        }),
-        submitCTRL: PropTypes.shape({
-            className: PropTypes.string,
-            label: PropTypes.string,
-        }),
-        cancelCTRL: PropTypes.shape({
-            className: PropTypes.string,
-            label: PropTypes.string,
-        }),
+        updateCTRL: PropTypes.object,
+        submitCTRL: PropTypes.object,
+        cancelCTRL: PropTypes.object,
 
         onMount: PropTypes.func,
         onError: PropTypes.func,
