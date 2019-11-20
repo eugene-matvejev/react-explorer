@@ -284,9 +284,6 @@ describe('on change proxy', () => {
 
         executeOnChange(props, []);
 
-        _.stopPropagation();
-        _.preventDefault();
-
         expect(_.target.getAttribute('data-field')).toBe(0);
         expect(_.target.getAttribute('data-section')).toBe(0);
     });
