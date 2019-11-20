@@ -7,15 +7,10 @@ import compose from './compose-form-field';
 export const executeOnChange = (props, value) => props.onChange(
     {
         target: {
-            getAttribute: (key) => ({
-                'data-section': props['data-section'],
-                'data-field': props['data-field'],
-            })[key],
+            getAttribute: (key) => props[key],
             /** required because of PureComponent */
             value: [...value],
         },
-        stopPropagation: () => { },
-        preventDefault: () => { },
     }
 );
 
