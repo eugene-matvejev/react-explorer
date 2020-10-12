@@ -1,33 +1,19 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import '@testing-library/jest-dom/extend-expect';
+;import { render } from '@testing-library/react';
 import Button from './button';
 
-configure({ adapter: new Adapter() });
-
-describe('<Button/>', () => {
+describe('<Button />', () => {
     const props = {
         label: '{{label}}',
+        'data-cy': '{{data-cy}}',
     };
 
     describe('render', () => {
         it('with default/required props', () => {
-            const c = shallow(<Button {...props} />);
+            const { container } = render(<Button {...props} />);
 
-            expect(c).toMatchSnapshot();
-        });
-
-        describe('with optional props', () => {
-            [
-                ['className', '{{className}}'],
-                ['data-cy', '{{data-cy}}'], /** should be passed 'as is' */
-            ].forEach(([prop, v]) => {
-                it(`[::${prop}] as "${v}"`, () => {
-                    const c = shallow(<Button {...props} {...{ [prop]: v }} />);
-
-                    expect(c).toMatchSnapshot();
-                });
-            });
+            expect(container.querySelector('[data-cy="{{data-cy}}"]')).toBeInTheDocument();
         });
     });
 });
