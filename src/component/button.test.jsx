@@ -1,24 +1,19 @@
 import React from 'react';
-// import { setupServer } from 'msw/node'
-import { render, asFragment } from '@testing-library/react';
-// import '@testing-library/jest-dom/extend-expect'
+import '@testing-library/jest-dom/extend-expect';
+;import { render } from '@testing-library/react';
 import Button from './button';
 
-describe('<Button/>', () => {
+describe('<Button />', () => {
     const props = {
         label: '{{label}}',
+        'data-cy': '{{data-cy}}',
     };
 
     describe('render', () => {
         it('with default/required props', () => {
             const { container } = render(<Button {...props} />);
 
-            expect(container).toMatchSnapshot();
-        });
-        it('with default/required props 2', () => {
-            const { asFragment } = render(<Button {...props} />);
-
-            expect(asFragment()).toMatchSnapshot();
+            expect(container.querySelector('[data-cy="{{data-cy}}"]')).toBeInTheDocument();
         });
     });
 });
