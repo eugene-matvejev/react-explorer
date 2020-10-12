@@ -34,6 +34,7 @@ if you're using `make` commands, __[docker](https://docs.docker.com/install/)__ 
 * [sass](https://sass-lang.com/)
 * [jest](https://facebook.github.io/jest/)
 * [enzyme](http://airbnb.io/enzyme/)
+* [react testing library](https://testing-library.com/docs/react-testing-library/intro)
 * [cypress](https://www.cypress.io/)
 
 ### used services
