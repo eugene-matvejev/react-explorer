@@ -3,7 +3,7 @@ import '@testing-library/jest-dom/extend-expect';
 ;import { render } from '@testing-library/react';
 import Button from './button';
 
-describe('<Button />', () => {
+describe('<Button/>', () => {
     const props = {
         label: '{{label}}',
         'data-cy': '{{data-cy}}',

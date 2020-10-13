@@ -9,14 +9,14 @@ const TopNav = (props) =>
         <_TopNav {...props} />
     </MemoryRouter>;
 
-describe('<TopNav />', () => {
+describe('<TopNav/>', () => {
     const props = {
         label: '{{label}}',
     };
 
     describe('render', () => {
         it('with default/required props', () => {
-            const { container, debug } = render(<TopNav {...props} />);
+            const { container } = render(<TopNav {...props} />);
 
             expect(container.querySelector('[data-cy="topnav-main"]')).toBeInTheDocument();
             expect(container.querySelector('[data-cy="topnav-github"]')).toBeInTheDocument();
