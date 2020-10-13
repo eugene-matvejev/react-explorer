@@ -1,33 +1,25 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import TopNav from './top-nav';
+import '@testing-library/jest-dom/extend-expect';
+import { render } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import _TopNav from './top-nav';
 
-configure({ adapter: new Adapter() });
+const TopNav = (props) =>
+    <MemoryRouter>
+        <_TopNav {...props} />
+    </MemoryRouter>;
 
-describe('<TopNav/>', () => {
+describe('<TopNav />', () => {
     const props = {
         label: '{{label}}',
     };
+
     describe('render', () => {
-        it('with default/require d props', () => {
-            const c = shallow(<TopNav {...props} />);
+        it('with default/required props', () => {
+            const { container, debug } = render(<TopNav {...props} />);
 
-            expect(c).toMatchSnapshot();
-        });
-
-        describe('with optional props', () => {
-            [
-                ['className', '{{className}}'],
-                ['data-cy', '{{data-cy}}'], /** should be passed 'as is' */
-            ].forEach(([prop, v]) => {
-                it(`[::${prop}] as "${v}"`, () => {
-                    const c = shallow(<TopNav {...props} {...{ [prop]: v }} />);
-
-                    expect(c).toMatchSnapshot();
-                });
-            });
+            expect(container.querySelector('[data-cy="topnav-main"]')).toBeInTheDocument();
+            expect(container.querySelector('[data-cy="topnav-github"]')).toBeInTheDocument();
         });
     });
 });
-
