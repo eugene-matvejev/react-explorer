@@ -18,23 +18,14 @@ describe('<Modal/>', () => {
         });
 
         describe('with optional props', () => {
-
             test.each`
-            prop            | v
-            ${'className'}  | ${'{{className}}'}
-            ${'data-cy'}    | ${'{{data-cy}}'}
-`('returns $expected when $a is added $b', ({ a, b, expected }) => {
-                expect(a + b).toBe(expected);
-            });
-            [
-                [,],
-                [], /** should be passed 'as is' */
-            ].forEach(([prop, v]) => {
-                it(`[::${prop}] as "${v}"`, () => {
-                    const c = shallow(<Modal {...props} {...{ [prop]: v }} />);
+                prop            | v
+                ${'className'}  | ${'{{className}}'}
+                ${'data-cy'}    | ${'{{data-cy}}'}
+            `(`[::$prop] as "$v}"`, ({ prop, v }) => {
+                const c = shallow(<Modal {...props} {...{ [prop]: v }} />);
 
-                    expect(c).toMatchSnapshot();
-                });
+                expect(c).toMatchSnapshot();
             });
         });
     });
