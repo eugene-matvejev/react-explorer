@@ -18,15 +18,14 @@ describe('<Modal/>', () => {
         });
 
         describe('with optional props', () => {
-            [
-                ['className', '{{className}}'],
-                ['data-cy', '{{data-cy}}'], /** should be passed 'as is' */
-            ].forEach(([prop, v]) => {
-                it(`[::${prop}] as "${v}"`, () => {
-                    const c = shallow(<Modal {...props} {...{ [prop]: v }} />);
+            test.each`
+                prop            | v
+                ${'className'}  | ${'{{className}}'}
+                ${'data-cy'}    | ${'{{data-cy}}'}
+            `(`[::$prop] as "$v}"`, ({ prop, v }) => {
+                const c = shallow(<Modal {...props} {...{ [prop]: v }} />);
 
-                    expect(c).toMatchSnapshot();
-                });
+                expect(c).toMatchSnapshot();
             });
         });
     });
