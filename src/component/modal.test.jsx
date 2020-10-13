@@ -1,33 +1,28 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import '@testing-library/jest-dom/extend-expect';
+;import { render, fireEvent } from '@testing-library/react';
 import Modal from './modal';
 
-configure({ adapter: new Adapter() });
-
-describe('<Modal/>', () => {
+describe('<Modal />', () => {
     const props = {
         onClose: jest.fn(),
     };
 
     describe('render', () => {
         it('with default/required props', () => {
-            const c = shallow(<Modal {...props} />);
+            const { container } = render(<Modal {...props} />);
 
-            expect(c).toMatchSnapshot();
+            expect(container.querySelector('[data-cy="-modal-close"]')).toBeInTheDocument();
         });
+    });
 
-        describe('with optional props', () => {
-            [
-                ['className', '{{className}}'],
-                ['data-cy', '{{data-cy}}'], /** should be passed 'as is' */
-            ].forEach(([prop, v]) => {
-                it(`[::${prop}] as "${v}"`, () => {
-                    const c = shallow(<Modal {...props} {...{ [prop]: v }} />);
+    describe('callbacks', () => {
+        describe('onClose', () => {
+            const { container } = render(<Modal {...props} />);
 
-                    expect(c).toMatchSnapshot();
-                });
-            });
+            fireEvent.click(container.querySelector('[data-cy="-modal-close"]'));
+
+            expect(props.onClose).toBeCalled();
         });
     });
 });
