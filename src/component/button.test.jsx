@@ -15,11 +15,5 @@ describe('<Button />', () => {
 
             expect(container.querySelector('[data-cy="{{data-cy}}"]')).toBeInTheDocument();
         });
-
-        it('with default/required props [as Snapshot]', () => {
-            const { asFragment } = render(<Button {...props} />);
-
-            expect(asFragment()).toMatchSnapshot();
-        });
     });
 });
