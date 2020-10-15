@@ -11,7 +11,7 @@ const Tile = (props) =>
 
 describe('<Tile/>', () => {
     const props = {
-        to: '//example.com'
+        to: '//example.com',
     };
 
     describe('render', () => {
