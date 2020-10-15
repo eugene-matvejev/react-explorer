@@ -1,9 +1,13 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import Tile from './tile';
+import '@testing-library/jest-dom/extend-expect';
+import { render } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import _Tile from './tile';
 
-configure({ adapter: new Adapter() });
+const Tile = (props) =>
+    <MemoryRouter>
+        <_Tile {...props} />
+    </MemoryRouter>;
 
 describe('<Tile/>', () => {
     const props = {
@@ -11,23 +15,10 @@ describe('<Tile/>', () => {
     };
 
     describe('render', () => {
-        it('with default/require d props', () => {
-            const c = shallow(<Tile {...props} />);
+        it('with default/required props', () => {
+            const { container } = render(<Tile {...props} />);
 
-            expect(c).toMatchSnapshot();
-        });
-
-        describe('with optional props', () => {
-            [
-                ['className', '{{className}}'],
-                ['data-cy', '{{data-cy}}'], /** should be passed 'as is' */
-            ].forEach(([prop, v]) => {
-                it(`[::${prop}] as "${v}"`, () => {
-                    const c = shallow(<Tile {...props} {...{ [prop]: v }} />);
-
-                    expect(c).toMatchSnapshot();
-                });
-            });
+            expect(container.querySelector('[href="//example.com"]')).toBeInTheDocument();
         });
     });
 });
