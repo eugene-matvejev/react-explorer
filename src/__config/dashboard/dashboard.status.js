@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { hasSequence } from 'byte-sequence-calculator';
 import FormHandler from '../../handler/form-handler';
 import TreeHandler from '../../handler/tree-handler';
@@ -7,42 +6,29 @@ import Query from '../../handler/query';
 import createStatus from '../forms/create.status';
 import updateStatus from '../forms/update.status';
 import searchStatus from '../trees/explore.status';
-import { graphql } from '../../parameters';
+import { composeQuery } from '../helpers';
 
-const resolveClassName = (status) => {
-    if (hasSequence(status.seq, 0x1000)) {
-        status.className = 'tile--red';
+const resolveClassName = (seq) => {
+    if (hasSequence(seq, 0x1000)) {
+        return 'tile--red';
     }
-    if (hasSequence(status.seq, 0x0100)) {
-        status.className = 'tile--amber';
+    if (hasSequence(seq, 0x0100)) {
+        return 'tile--amber';
     }
-    if (hasSequence(status.seq, 0x0010)) {
-        status.className = 'tile--green';
+    if (hasSequence(seq, 0x0010)) {
+        return 'tile--green';
     }
 };
-
-const onMount = (props, state, onSuccess, onError) => {
-    axios
-        .post(
-            graphql,
-            {
-                query: `
+const onMount = composeQuery(`
 {
     statuses {
         id
         name
         seq
     }
-}`
-            }
-        )
-        .then(({ data: { data } }) => {
-            data.statuses.forEach(resolveClassName);
-
-            onSuccess(data.statuses);
-        })
-        .catch(onError);
-};
+}`,
+    ({ statuses }) => statuses.map(({ id, seq }) => ({ id, className: resolveClassName(seq) }))
+);
 
 const onFilter = ({ data }, state, pattern) => {
     for (const el of data) {
@@ -60,8 +46,8 @@ export default {
     modals: [
         {
             path: ['/new'],
-            exact: true,
-            component: (props) => <FormHandler className="form--centered" {...props} {...createStatus} onCancel={props.history.goBack}/>,
+            // exact: true,
+            component: (props) => <FormHandler {...props} {...createStatus} onCancel={props.history.goBack} />,
         },
         {
             path: ['/explore/:id'],
@@ -72,7 +58,14 @@ export default {
                     <Query
                         {...props}
                         onMount={searchStatus.onMount}
-                        children={(_, state) => <TreeHandler {...props} {...state} {...searchStatus} onCancel={props.history.goBack}/>}
+                        children={(_, state) =>
+                            <TreeHandler
+                                {...props}
+                                {...state}
+                                {...searchStatus}
+                                onCancel={props.history.goBack}
+                            />
+                        }
                     />
                 </>,
         },

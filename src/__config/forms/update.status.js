@@ -1,13 +1,8 @@
-import create, { composeMutation } from './create.status';
-import axios from 'axios';
-import { graphql } from '../../parameters';
+import create from './create.status';
+import { composeQuery, composeMutation } from '../helpers';
 
-const onMount = (props, { config }, onSuccess, onError) => {
-    axios
-        .post(
-            graphql,
-            {
-                query: `
+const onMount = composeQuery(
+    (props, state) => `
 {
     status(id: ${props.match.params.id}) {
         id
@@ -17,28 +12,26 @@ const onMount = (props, { config }, onSuccess, onError) => {
             name
         }
     }
-}`
-            }
-        )
-        .then(({ data: { data } }) => {
-            const status = data.status;
+}`,
+    (data, props, state) => {
+        const { status } = data;
+        const { config } = state;
 
-            config[0].items.push({
-                c: () => null,
-                attr: 'id',
-                value: status.id,
-            });
+        config[0].items.push({
+            c: () => null,
+            attr: 'id',
+            value: status.id,
+        });
 
-            config[0].items[0].value = status.name;
+        config[0].items[0].value = status.name;
 
-            if (null !== status.parent) {
-                config[0].items[1].value = [{ value: status.parent.id, label: status.parent.name }];
-            }
+        if (null !== status.parent) {
+            config[0].items[1].value = [{ value: status.parent.id, label: status.parent.name }];
+        }
 
-            onSuccess({ data: status, config });
-        })
-        .catch(onError)
-};
+        return { data: status, config };
+    }
+);
 
 export default {
     ...create,
