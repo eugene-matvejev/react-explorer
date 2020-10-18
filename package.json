@@ -23,8 +23,9 @@
     "react-scripts": "^3.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "serve",
     "build": "react-scripts build",
+    "postbuild": "npm i serve -g",
     "test": "react-scripts test --verbose",
     "eject": "react-scripts eject"
   },
