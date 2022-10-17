@@ -13,8 +13,6 @@
 | __tests__     | [![tests][ci.tests-master-badge]][ci.tests-master]            | [![tests][ci.tests-heroku-badge]][ci.tests-heroku]
 | __coverage__  | [![coverage][ci.coverage-master-badge]][ci.coverage-master]   | [![coverage][ci.coverage-heroku-badge]][ci.coverage-heroku]
 
-##### THIS IS A SPARE TIME PROJECT, WORK IN PROGRESS! [DEMO](https://cwa-explorer.herokuapp.com)
-
 # 'Explorer' front-end
 
 back-end can be found [here](https://github.com/eugene-matvejev/node-explorer)
@@ -47,16 +45,16 @@ if you're using `make` commands, __[docker](https://docs.docker.com/install/)__ 
 
 ### how to install
 
-* with `make` commands no steps additional required, otherwise you need execute `$ npm i`
+* with `make` commands no steps additional are required, otherwise you need to execute `$ npm i`
 
 ### how to run tests
 
-* end to end 'cypress' tests: `$ make sync` to fetch GraphQL backend as git submodule, then `$ make cypress`
+* end-to-end 'cypress' tests: `$ make sync` to fetch GraphQL backend as a git submodule, then `$ make cypress`
   * _npm analogue_ require booting up [CWA](https://github.com/eugene-matvejev/react-explorer) & [SA](https://github.com/eugene-matvejev/node-explorer/) and link them together, then `cd cypress && npm test`
 * functional 'jest' tests: `$ make test` or `$ npm test`
   * __optional__ [ 'jest' CLI params](https://facebook.github.io/jest/docs/en/cli.html), examples:
     * to collect coverage, example: `$ npm test -- --coverage`, report will be located in __./coverage__ directory
-    * to run tests __only__ in specific file, example: `$ npm test src/validation/rules.test.js`
+    * to run tests __only__ in a specific file, for example: `$ npm test src/validation/rules.test.js`
 
 ### how to run in 'development' mode
 
@@ -76,13 +74,13 @@ if you're using `make` commands, __[docker](https://docs.docker.com/install/)__ 
 
 * *heroku* -> current __production__, contains *heroku specific changes*, trigger deploy on heroku on *every push*
 * *master* -> most upto date __production ready__, all pull requests in to this branch got mandatory checks 'ci/circleci: jest' and 'ci/circleci: cypress'
-* *feature branches* -> get merged into master branch, when they ready and mandatory checks passed
-* *CI execute tests in isolated enviroment*
+* *feature branches* -> get merged into master branch, when they are ready and mandatory checks passed
+* *CI executes tests in an isolated environment*
 
 ### used environment variables
 
 | variable          | default value     | used as   | purpose
 |---                |---                |---        |---
-| PORT              | 8080              | number    | port on which application will be made available
+| PORT              | 8080              | number    | port on which the application will be made available
 | REACT_APP_GRAPHQL | //localhost:8081  | string    | GraphQL backend URI
 | REACT_APP_TITLE   | EXAMPLE           | string    | website's title
