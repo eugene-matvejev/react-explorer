@@ -1,54 +1,9 @@
+import { hasSequence } from 'byte-sequence-calculator';
 import { composeRule, isRequired } from '../../validation/rules';
 import { validationEngine } from '../../validation/engine';
 import Text from '../../component/form/html-input';
 import InteractiveSearch from '../../component/form/interactive-search';
-import resolvePayload from '../../graphql/payload-resolver';
-import { graphql } from '../../parameters';
-import { hasSequence } from 'byte-sequence-calculator';
-import axios from 'axios';
-
-export const composeMutation = (type) => (props, state, onSuccess, onError) => {
-    const v = resolvePayload(state.config);
-
-    const query = `
-mutation {
-    ${type}(
-        input: {
-        ${
-        Object
-            .keys(v)
-            .reduce(
-                (acc, key) => {
-                    acc += `
-            ${key}: ${typeof v[key] === 'string' ? `"${v[key]}"` : v[key]}`;
-
-                    return acc;
-                },
-                ''
-            )
-        }
-        }
-    ) {
-        id
-    }
-}`;
-
-    axios
-        .post(
-            graphql,
-            {
-                query,
-            }
-        )
-        .then(({ data }) => {
-            if (data.errors) {
-                throw new Error(data.errors);
-            }
-
-            onSuccess({ data: data.data[type], config: state.config });
-        })
-        .catch(onError);
-};
+import { composeQuery, composeMutation } from '../helpers';
 
 export default {
     title: 'create new status',
@@ -59,7 +14,7 @@ export default {
 
         c[0].items[0].value = '';
         c[0].items[1].value = undefined;
-        c[0].items.splice(2);
+        // c[0].items.splice(2);
 
         /** hack for because of PureComponent, @TODO improve it */
         onSuccess({ config: [...c] });
@@ -91,53 +46,39 @@ export default {
                     attr: 'parent',
                     label: 'parent',
                     placeholder: 'parent status',
-                    validators: [
-                    ],
                     maxValues: 1,
                     valueTransformer: (v) => !v ? null : v[0].value,
-                    onFilter: (props, state, onSuccess, onError) => {
-                        const { pattern } = state;
-
-                        axios
-                            .post(
-                                graphql,
-                                {
-                                    query: `
+                    onFilter: composeQuery(
+                        (props, state) => `
 {
-    searchStatus(pattern: "${pattern}") {
+    searchStatus(pattern: "${state.pattern}") {
         id
         seq
         name
     }
-}`
+}`,
+                        ({ data }) => {
+                            const resolveClassName = (seq) => {
+                                if (hasSequence(seq, 0x1000)) {
+                                    return 'suggestion--red';
                                 }
-                            )
-                            .then(({ data: { data } }) => {
-                                const resolveClassName = (seq) => {
-                                    if (hasSequence(seq, 0x1000)) {
-                                        return 'suggestion--red';
-                                    }
-                                    if (hasSequence(seq, 0x0100)) {
-                                        return 'suggestion--amber';
-                                    }
-                                    if (hasSequence(seq, 0x0010)) {
-                                        return 'suggestion--green';
-                                    }
-
-                                    return '';
+                                if (hasSequence(seq, 0x0100)) {
+                                    return 'suggestion--amber';
+                                }
+                                if (hasSequence(seq, 0x0010)) {
+                                    return 'suggestion--green';
                                 }
 
-                                const v = data.searchStatus.map(({ id: value, name: label, seq }) => ({
-                                    value,
-                                    label,
-                                    className: resolveClassName(seq),
-                                    description: 'lorum ipsum, '.repeat(20),
-                                }));
+                                return '';
+                            }
 
-                                onSuccess(v);
-                            })
-                            .catch(onError);
-                    }
+                            return data.searchStatus.map(({ id: value, name: label, seq }) => ({
+                                value,
+                                label,
+                                className: resolveClassName(seq),
+                            }));
+                        }
+                    ),
                 },
             ],
         },

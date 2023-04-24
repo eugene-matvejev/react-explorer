@@ -1,6 +1,5 @@
-import axios from 'axios';
 import { filter } from '../../filtering/filter';
-import { graphql } from '../../parameters';
+import { composeQuery } from '../helpers';
 
 const resolveTree = (v, onlyId) => {
     const hashmap = {};
@@ -28,14 +27,7 @@ const resolveTree = (v, onlyId) => {
     return onlyId ? [hashmap[onlyId]] : roots;
 }
 
-export const onMount = (props, state, onSuccess, onError) => {
-    const { match: { params: { id } } } = props;
-
-    axios
-        .post(
-            graphql,
-            {
-                query: `
+export const onMount = composeQuery(`
 {
     statuses {
         id
@@ -45,16 +37,14 @@ export const onMount = (props, state, onSuccess, onError) => {
             id
         }
     }
-}`
-            }
-        )
-        .then(({ data: { data } }) => {
-            const v = resolveTree(data.statuses, id);
+}`,
+    (v, props, state) => {
+        const { statuses } = v;
+        const { match: { params: { id } } } = props;
 
-            onSuccess(v);
-        })
-        .catch(onError);
-};
+        return resolveTree(statuses, id);
+    }
+);
 
 const onExpand = (data, path) => {
     let pos = 0;
